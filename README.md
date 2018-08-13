@@ -16,11 +16,14 @@ npm install --save react-native-signature-canvas
 ## Example
 
 ```js
-import SinatureScreen from 'react-native-signature-canvas';
+import SignatureScreen from 'react-native-signature-canvas';
+import DemoScreen from './Demo';
 const ROUTES = {
     // other screen
-    SinatureScreen
+    SignatureScreen,
+    DemoScreen
 }
+
 const AppNavigator = StackNavigator(
     {
         ...ROUTES
@@ -30,7 +33,7 @@ const AppNavigator = StackNavigator(
         // },
     },
     {
-        initialRouteName: 'TabScreen',
+        initialRouteName: 'DemoScreen',
         mode: Platform.OS === 'ios' ? 'modal' : 'card',
         cardStyle: {
             backgroundColor: '#fff'
@@ -47,7 +50,7 @@ var {
 
 export default class Demo extends Component {
   startSignature = () => {
-    this.props.navigation.navigate("SinatureScreen", {
+    this.props.navigation.navigate("SignatureScreen", {
         title: "签字",
         callback: (data) => {
           this.setState({
@@ -73,7 +76,7 @@ export default class Demo extends Component {
   };
 }
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   preview: {
     width: 335,
     height: 114,
