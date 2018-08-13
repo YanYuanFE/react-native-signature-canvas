@@ -4,6 +4,7 @@ React Native Signature Component based Canvas for Android &amp;&amp; IOS &amp;&a
 - Supports Android and iOS and Expo
 - Pure JavaScript implementation with no native dependencies
 - Tested with RN 0.50
+- Core user [signature_pad.js](https://github.com/szimek/signature_pad)
 - Only depend on react and react native and react-navigation
 - Generates a base64 encoded png image of the signature
 
