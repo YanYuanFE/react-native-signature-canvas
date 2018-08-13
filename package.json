@@ -1,0 +1,29 @@
+{
+  "name": "react-native-signature-canvas",
+  "version": "1.0.0",
+  "description": "React Native Signature Component based Canvas for Android && IOS && expo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YanYuanFE/react-native-signature-canvas.git"
+  },
+  "keywords": [
+    "react-native",
+    "react component",
+    "ios",
+    "android",
+    "signature",
+    "pad",
+    "canvas",
+    "expo"
+  ],
+  "author": "YanYuanFE",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YanYuanFE/react-native-signature-canvas/issues"
+  },
+  "homepage": "https://github.com/YanYuanFE/react-native-signature-canvas#readme"
+}

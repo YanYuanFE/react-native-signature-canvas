@@ -1,12 +1,44 @@
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+# Logs
+logs
+*.log
 
-# Test binary, build with `go test -c`
-*.test
+# Coverage directory used by tools like istanbul
+coverage
 
-# Output of the go coverage tool, specifically when used with LiteIDE
+# node-waf configuration
+.lock-wscript
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+node_modules
+
+# Node.JS specifics
+pids
+lib-cov
+*.seed
+*.csv
+*.dat
 *.out
+*.pid
+*.gz
+.expo
+
+results
+
+# MacOSX specifics
+.DS_Store
+
+# Build artifacts
+tmp
+bower_components
+dist
+ts_dist
+.sass-cache
+build/Release
+
+# IDE specifics
+.idea
+
+# temp files
+.tmp
+mock
