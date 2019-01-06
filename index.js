@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { View, StyleSheet, WebView } from "react-native";
+import React, { Component } from 'react';
+import { View, StyleSheet, WebView } from 'react-native';
 
-import htmlContent from "./h5/html";
-import injectedSignaturePad from "./h5/js/signature_pad";
-import injectedApplication from "./h5/js/app";
+import htmlContent from './h5/html';
+import injectedSignaturePad from './h5/js/signature_pad';
+import injectedApplication from './h5/js/app';
 
 const styles = StyleSheet.create({
   signature: {

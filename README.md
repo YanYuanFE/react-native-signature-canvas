@@ -1,5 +1,7 @@
 # react-native-signature-canvas
 
+[![](https://img.shields.io/npm/l/react-native-signature-canvas.svg)](https://www.npmjs.com/package/react-native-signature-canvas)
+
 React Native Signature Component based Canvas for Android &amp;&amp; IOS &amp;&amp; expo
 
 - Supports Android and iOS and Expo
@@ -11,18 +13,20 @@ React Native Signature Component based Canvas for Android &amp;&amp; IOS &amp;&a
 
 ## Installation
 
-```sh
+```bash
 npm install --save react-native-signature-canvas
 ```
 
 ## Example
 
-![Signature](http://img.yanyuanfe.cn/reactnativesinature.jpeg)
+![IOS](http://img.yanyuanfe.cn/reactnativesinature.jpeg)
+![Android](http://img.yanyuanfe.cn/signatureandroid.jpg)
+
 
 ```js
-import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
-import SignatureScreen from "react-native-signature-canvas";
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import SignatureScreen from 'react-native-signature-canvas';
 
 export default class Signature extends React.Component {
   constructor(props) {
