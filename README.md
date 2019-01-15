@@ -50,7 +50,7 @@ export default class Signature extends React.Component {
             />
           ) : null}
         </View>
-        <SignatureScreen onOK={this.handleSignature} />
+        <SignatureScreen onOK={this.handleSignature} descriptionText="Sign" clearText="Clear" confirmText="Save" />
       </View>
     );
   }

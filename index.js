@@ -29,15 +29,23 @@ class SignatureView extends Component {
   static defaultProps = {
     style: styles.webView,
     webBgStyle: styles.webBg,
-    activeOpacity: 0.8
+    activeOpacity: 0.8,
+    descriptionText: 'Sign above',
+    clearText: 'Clear',
+    confirmText: 'Confirm'
   };
 
   constructor(props) {
     super(props);
+    const { descriptionText, clearText, confirmText } = props;
     this.state = { base64DataUrl: props.dataURL || null };
     const { backgroundColor } = StyleSheet.flatten(props.style);
     const injectedJavaScript = injectedSignaturePad + injectedApplication;
-    const html = htmlContent(injectedJavaScript);
+    let html = htmlContent(injectedJavaScript);
+    html = html.replace('<%description%>', descriptionText);
+    html = html.replace('<%confirm%>', confirmText);
+    html = html.replace('<%clear%>', clearText);
+
     this.source = { html };
   }
 
