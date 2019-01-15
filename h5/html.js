@@ -103,12 +103,15 @@ const content = script =>
         position: absolute;
         bottom: 0;
         background-color: #3F99F7;
-        width: 100px;
-        height: 30px;
-        line-height: 30px;
+        height: 32px;
+        padding: 0 20px;
+        line-height: 32px;
         text-align: center;
         color: #FFF;
-        border-color: #3F99F7;
+        border: 1px solid #3F99F7;
+        border-radius: 4px;
+        outline: none;
+        box-shadow: none;
       }
     
     .m-signature-pad--footer
