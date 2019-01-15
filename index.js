@@ -38,8 +38,10 @@ class SignatureView extends Component {
   constructor(props) {
     super(props);
     const { descriptionText, clearText, confirmText } = props;
-    this.state = { base64DataUrl: props.dataURL || null };
-    const { backgroundColor } = StyleSheet.flatten(props.style);
+    this.state = { 
+      base64DataUrl: props.dataURL || null 
+    };
+
     const injectedJavaScript = injectedSignaturePad + injectedApplication;
     let html = htmlContent(injectedJavaScript);
     html = html.replace('<%description%>', descriptionText);
@@ -47,19 +49,6 @@ class SignatureView extends Component {
     html = html.replace('<%clear%>', clearText);
 
     this.source = { html };
-  }
-
-  state = {
-    bridgeJs: `
-        (function ready() {
-          saveButton.addEventListener("click", function (event) {
-            if (signaturePad.isEmpty()) {
-                alert("Please provide signature first.");
-            } else {
-                window.postMessage(signaturePad.toDataURL());
-            }
-          });
-        })();`
   };
 
   getSignature = e => {
