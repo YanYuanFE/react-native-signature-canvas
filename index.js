@@ -10,26 +10,24 @@ const styles = StyleSheet.create({
     width: 200,
     height: 110,
     borderWidth: 2,
-    borderColor: "grey"
+    borderColor: 'grey'
   },
   signaturBg: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 20
   },
   webView: {},
   webBg: {
-    width: "100%",
-    paddingTop: 20,
-    backgroundColor: "#FFF",
+    width: '100%',
+    backgroundColor: '#FFF',
     flex: 1
   }
 });
 
 class SignatureView extends Component {
   static defaultProps = {
-    style: styles.webView,
-    webBgStyle: styles.webBg,
-    activeOpacity: 0.8,
+    webStyle: '',
+    onOK: () => {},
     descriptionText: 'Sign above',
     clearText: 'Clear',
     confirmText: 'Confirm'
@@ -37,13 +35,14 @@ class SignatureView extends Component {
 
   constructor(props) {
     super(props);
-    const { descriptionText, clearText, confirmText } = props;
+    const { descriptionText, clearText, confirmText, webStyle } = props;
     this.state = { 
       base64DataUrl: props.dataURL || null 
     };
 
     const injectedJavaScript = injectedSignaturePad + injectedApplication;
     let html = htmlContent(injectedJavaScript);
+    html = html.replace('<%style%>', webStyle);
     html = html.replace('<%description%>', descriptionText);
     html = html.replace('<%confirm%>', confirmText);
     html = html.replace('<%clear%>', clearText);

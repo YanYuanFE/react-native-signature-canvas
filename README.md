@@ -17,6 +17,36 @@ React Native Signature Component based Canvas for Android &amp;&amp; IOS &amp;&a
 npm install --save react-native-signature-canvas
 ```
 
+## Usage
+
+``` js
+import Signature from 'react-native-signature-canvas';
+```
+
+### Basic parameters
+
+``` js
+<Signature
+  // handle when you click save button
+  onOK={(img) => console.log(img)}
+  // description text for signature
+  descriptionText="Sign"
+  // clear button text
+  clearText="Clear"
+  // save button text
+  confirmText="Save"
+  // String, webview style for overwrite default style, all style: https://github.com/YanYuanFE/react-native-signature-canvas/blob/master/h5/css/signature-pad.css
+  webStyle={`.m-signature-pad--footer
+    .button {
+      background-color: red;
+      color: #FFF;
+    }`}
+/>
+
+```
+
+
+
 ## Example
 
 ![IOS](http://img.yanyuanfe.cn/reactnativesinature.jpeg)
@@ -26,9 +56,9 @@ npm install --save react-native-signature-canvas
 ```js
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import SignatureScreen from 'react-native-signature-canvas';
+import Signature from 'react-native-signature-canvas';
 
-export default class Signature extends React.Component {
+export default class SignatureScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = { signature: null };
@@ -39,6 +69,11 @@ export default class Signature extends React.Component {
   };
 
   render() {
+    const style = `.m-signature-pad--footer
+    .button {
+      background-color: red;
+      color: #FFF;
+    }`;
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.preview}>
@@ -50,11 +85,12 @@ export default class Signature extends React.Component {
             />
           ) : null}
         </View>
-        <SignatureScreen
+        <Signature
           onOK={this.handleSignature}
           descriptionText="Sign"
           clearText="Clear"
           confirmText="Save"
+          webStyle={style}
         />
       </View>
     );

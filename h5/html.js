@@ -36,30 +36,30 @@ const content = script =>
     }
     
     .m-signature-pad:before, .m-signature-pad:after {
-        position: absolute;
+      position: absolute;
       z-index: -1;
       content: "";
-        width: 40%;
-        height: 10px;
-        left: 20px;
-        bottom: 10px;
-        background: transparent;
-        -webkit-transform: skew(-3deg) rotate(-3deg);
-        -moz-transform: skew(-3deg) rotate(-3deg);
-        -ms-transform: skew(-3deg) rotate(-3deg);
-        -o-transform: skew(-3deg) rotate(-3deg);
-        transform: skew(-3deg) rotate(-3deg);
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+      width: 40%;
+      height: 10px;
+      left: 20px;
+      bottom: 10px;
+      background: transparent;
+      -webkit-transform: skew(-3deg) rotate(-3deg);
+      -moz-transform: skew(-3deg) rotate(-3deg);
+      -ms-transform: skew(-3deg) rotate(-3deg);
+      -o-transform: skew(-3deg) rotate(-3deg);
+      transform: skew(-3deg) rotate(-3deg);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
     }
     
     .m-signature-pad:after {
-        left: auto;
-        right: 20px;
-        -webkit-transform: skew(3deg) rotate(3deg);
-        -moz-transform: skew(3deg) rotate(3deg);
-        -ms-transform: skew(3deg) rotate(3deg);
-        -o-transform: skew(3deg) rotate(3deg);
-        transform: skew(3deg) rotate(3deg);
+      left: auto;
+      right: 20px;
+      -webkit-transform: skew(3deg) rotate(3deg);
+      -moz-transform: skew(3deg) rotate(3deg);
+      -ms-transform: skew(3deg) rotate(3deg);
+      -o-transform: skew(3deg) rotate(3deg);
+      transform: skew(3deg) rotate(3deg);
     }
     
     .m-signature-pad--body {
@@ -108,7 +108,7 @@ const content = script =>
         line-height: 32px;
         text-align: center;
         color: #FFF;
-        border: 1px solid #3F99F7;
+        border: 1px solid transparent;
         border-radius: 4px;
         outline: none;
         box-shadow: none;
@@ -166,6 +166,7 @@ const content = script =>
           margin-top: 1em;
         }
     }
+    <%style%>
     </style>
 </head>
 <body onselectstart="return false">
