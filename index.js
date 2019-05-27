@@ -65,6 +65,7 @@ class SignatureView extends Component {
     return (
       <View style={styles.webBg}>
         <WebView
+          useWebKit={true}
           style={styles.webView}
           source={this.source}
           onMessage={this.getSignature}
