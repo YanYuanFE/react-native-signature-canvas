@@ -44,3 +44,5 @@ build/Release
 # temp files
 .tmp
 mock
+
+.DS_Store
