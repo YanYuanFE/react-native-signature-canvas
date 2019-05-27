@@ -30,12 +30,13 @@ class SignatureView extends Component {
     onOK: () => {},
     descriptionText: 'Sign above',
     clearText: 'Clear',
-    confirmText: 'Confirm'
+    confirmText: 'Confirm',
+    emptyText: 'Please provide signature first.'
   };
 
   constructor(props) {
     super(props);
-    const { descriptionText, clearText, confirmText, webStyle } = props;
+    const { descriptionText, clearText, confirmText, emptyText, webStyle } = props;
     this.state = { 
       base64DataUrl: props.dataURL || null 
     };
@@ -44,6 +45,7 @@ class SignatureView extends Component {
     let html = htmlContent(injectedJavaScript);
     html = html.replace('<%style%>', webStyle);
     html = html.replace('<%description%>', descriptionText);
+    html = html.replace('<%empty%>', emptyText);
     html = html.replace('<%confirm%>', confirmText);
     html = html.replace('<%clear%>', clearText);
 
