@@ -10,7 +10,7 @@ export default class App extends React.Component {
 
   handleSignature = signature => {
     console.log(signature);
-    this.setState({ signature });
+    this.setState({ signature: decodeURIComponent(decodeURIComponent(signature)) });
   };
 
   render() {
@@ -33,12 +33,12 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   preview: {
-    width: 335,
     height: 114,
     backgroundColor: "#F8F8F8",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 15
+    marginTop: 15,
+    flex: 1,
   },
   previewText: {
     color: "#FFF",
