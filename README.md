@@ -49,8 +49,10 @@ import Signature from 'react-native-signature-canvas';
 
 ## Example
 
-![IOS](http://img.yanyuanfe.cn/signature-ios.png)
-![Android](http://img.yanyuanfe.cn/signature-android.png)
+* Android <br/>
+<img src="http://img.yanyuanfe.cn/signature-android.png" width="400" />
+* iOS <br/>
+<img src="http://img.yanyuanfe.cn/signature-ios.png" width="400" />
 
 
 ```js
