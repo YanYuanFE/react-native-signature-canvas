@@ -4727,10 +4727,10 @@ react-native-screens@1.0.0-alpha.22:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha512-kSyAt0AeVU6N7ZonfV6dP6iZF8B7Bce+tk3eujXhzBGsLg0VSLnU7uE9VqJF0xdQrHR91ZjGgVMieo/8df9KTA==
 
-react-native-signature-canvas@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-signature-canvas/-/react-native-signature-canvas-1.3.0.tgz#8cbbdfd8058773e7844cae664f9aa33c6c39b6a8"
-  integrity sha512-Yvip9DzRHg31vr/RgiiA2wnqwJlb4Zzngvp+itcQYxCT2nsJQNsNN0u+J0m4HQBNiCR8FGkKuX4ddemeJq+0vQ==
+react-native-signature-canvas@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-signature-canvas/-/react-native-signature-canvas-1.4.0.tgz#90bffb9dea97cd94bad1beb758d53632e5118d35"
+  integrity sha512-56IfCtl+a9Fv1gASMMZLM9mgR/d9de7MUHjxyxHc3J9xlYK3G9I+e5OgkBPZsG8pB9VLZHHemJxRZYGmm4T/4w==
 
 react-native-svg@8.0.10:
   version "8.0.10"
