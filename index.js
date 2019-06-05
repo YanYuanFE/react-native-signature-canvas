@@ -28,6 +28,7 @@ class SignatureView extends Component {
   static defaultProps = {
     webStyle: '',
     onOK: () => {},
+    onEmpty: () => {},
     descriptionText: 'Sign above',
     clearText: 'Clear',
     confirmText: 'Confirm',
@@ -51,8 +52,12 @@ class SignatureView extends Component {
   };
 
   getSignature = e => {
-    const { onOK } = this.props;
-    onOK(e.nativeEvent.data);
+    const { onOK, onEmpty } = this.props;
+    if (e.nativeEvent.data === "EMPTY") {
+      onEmpty();
+    } else {
+      onOK(e.nativeEvent.data);
+    }
   };
 
   _renderError = args => {
