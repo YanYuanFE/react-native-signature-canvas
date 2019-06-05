@@ -30,7 +30,6 @@ import Signature from 'react-native-signature-canvas';
 | descriptionText | `string` | description text for signature |
 | clearText | `string` | clear button text |
 | confirmText | `string` | save button text |
-| emptyText | `string` | alert text after click save button when signature is empty |
 | webStyle | `string` | webview style for overwrite default style, all style: https://github.com/YanYuanFE/react-native-signature-canvas/blob/master/h5/css/signature-pad.css |
 | onOK | `function` | handle function when you click save button |
 

@@ -29,7 +29,7 @@ const content = `
     
     saveButton.addEventListener("click", function (event) {
         if (signaturePad.isEmpty()) {
-            alert(<%empty%>);
+            alert("Please provide signature first.");
         } else {
             window.postMessage(signaturePad.toDataURL());
         }

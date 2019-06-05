@@ -31,7 +31,6 @@ class SignatureView extends Component {
     descriptionText: 'Sign above',
     clearText: 'Clear',
     confirmText: 'Confirm',
-    emptyText: 'Please provide signature first.'
   };
 
   constructor(props) {
@@ -45,7 +44,6 @@ class SignatureView extends Component {
     let html = htmlContent(injectedJavaScript);
     html = html.replace('<%style%>', webStyle);
     html = html.replace('<%description%>', descriptionText);
-    html = html.replace('<%empty%>', emptyText);
     html = html.replace('<%confirm%>', confirmText);
     html = html.replace('<%clear%>', clearText);
 
