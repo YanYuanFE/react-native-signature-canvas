@@ -13,6 +13,10 @@ export default class App extends React.Component {
     this.setState({ signature });
   };
 
+  handleEmpty = () => {
+    console.log('Empty');
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -25,7 +29,7 @@ export default class App extends React.Component {
             />
           ) : null}
         </View>
-        <SignatureScreen onOK={this.handleSignature} />
+        <SignatureScreen onOK={this.handleSignature} onEmpty={this.handleEmpty} />
       </View>
     );
   }
