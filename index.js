@@ -6,17 +6,6 @@ import injectedSignaturePad from './h5/js/signature_pad';
 import injectedApplication from './h5/js/app';
 
 const styles = StyleSheet.create({
-  signature: {
-    width: 200,
-    height: 110,
-    borderWidth: 2,
-    borderColor: 'grey'
-  },
-  signaturBg: {
-    alignItems: 'center',
-    marginTop: 20
-  },
-  webView: {},
   webBg: {
     width: '100%',
     backgroundColor: '#FFF',
@@ -69,7 +58,6 @@ class SignatureView extends Component {
       <View style={styles.webBg}>
         <WebView
           useWebKit={true}
-          style={styles.webView}
           source={this.source}
           onMessage={this.getSignature}
           javaScriptEnabled={true}
