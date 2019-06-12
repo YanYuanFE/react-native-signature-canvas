@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "react-native-webview": "^5.11.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/YanYuanFE/react-native-signature-canvas.git"
