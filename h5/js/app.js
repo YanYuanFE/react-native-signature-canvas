@@ -29,9 +29,10 @@ const content = `
     
     saveButton.addEventListener("click", function (event) {
         if (signaturePad.isEmpty()) {
-            window.postMessage("EMPTY");
+            window.ReactNativeWebView.postMessage("EMPTY");
         } else {
-            window.postMessage(signaturePad.toDataURL());
+            window.ReactNativeWebView.postMessage(signaturePad.toDataURL());
+            
         }
     });
 `;
