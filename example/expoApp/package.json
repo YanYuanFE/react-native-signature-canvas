@@ -7,10 +7,10 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "^32.0.0",
+    "expo": "^33.0.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-    "react-native-signature-canvas": "^1.4.2"
+    "react-native-signature-canvas": "^1.5.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"

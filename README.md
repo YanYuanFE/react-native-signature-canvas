@@ -10,11 +10,18 @@ React Native Signature Component based Canvas for Android &amp;&amp; IOS &amp;&a
 - Core use [signature_pad.js](https://github.com/szimek/signature_pad)
 - Only depend on react and react native
 - Generates a base64 encoded png image of the signature
+Note: Expo support for React Native Signature Canvas v1.5.0 started with Expo SDK v33.0.0.
 
-## Installation
+## Installation(for React Native V0.60.0 or Expo SDK v33.0.0)
 
 ```bash
 npm install --save react-native-signature-canvas
+```
+
+## Installation(for React Native V0.5x.x or Expo SDK < v33)
+
+```bash
+npm install --save react-native-signature-canvas@1.4.2
 ```
 
 ## Usage
@@ -40,6 +47,7 @@ import Signature from 'react-native-signature-canvas';
 <Signature
   // handle when you click save button
   onOK={(img) => console.log(img)}
+  onEmpty={() => console.log("empty")}
   // description text for signature
   descriptionText="Sign"
   // clear button text
@@ -81,6 +89,10 @@ export default class SignatureScreen extends React.Component {
     this.setState({ signature });
   };
 
+  handleEmpty = () => {
+    console.log('Empty');
+  }
+
   render() {
     const style = `.m-signature-pad--footer
     .button {
@@ -100,6 +112,7 @@ export default class SignatureScreen extends React.Component {
         </View>
         <Signature
           onOK={this.handleSignature}
+          onEmpty={this.handleEmpty}
           descriptionText="Sign"
           clearText="Clear"
           confirmText="Save"
