@@ -51,8 +51,9 @@ class SignatureView extends Component {
     }
   };
 
-  _renderError = args => {
-    console.log("error", args);
+  renderError = e => {
+    const { nativeEvent } = e;
+    console.warn('WebView error: ', nativeEvent);
   };
 
   render() {
@@ -63,7 +64,7 @@ class SignatureView extends Component {
           source={this.source}
           onMessage={this.getSignature}
           javaScriptEnabled={true}
-          onError={this._renderError}
+          onError={this.renderError}
         />
       </View>
     );
