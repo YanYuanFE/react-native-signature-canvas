@@ -10,8 +10,12 @@ export default class App extends React.Component {
 
   handleSignature = signature => {
     console.log(signature);
-    this.setState({ signature: decodeURIComponent(decodeURIComponent(signature)) });
+    this.setState({ signature });
   };
+
+  handleEmpty = () => {
+    console.log('Empty');
+  }
 
   render() {
     return (
@@ -25,7 +29,7 @@ export default class App extends React.Component {
             />
           ) : null}
         </View>
-        <SignatureScreen onOK={this.handleSignature} />
+        <SignatureScreen onOK={this.handleSignature} onEmpty={this.handleEmpty} />
       </View>
     );
   }
