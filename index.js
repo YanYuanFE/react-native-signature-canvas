@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 
 import htmlContent from './h5/html';
 import injectedSignaturePad from './h5/js/signature_pad';
@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#FFF',
     flex: 1
-  }
+  },
+  loadingOverlayContainer: { position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, alignItems: 'center', justifyContent: 'center' },
 });
 
 class SignatureView extends Component {
@@ -29,7 +30,8 @@ class SignatureView extends Component {
     super(props);
     const { descriptionText, clearText, confirmText, emptyText, webStyle } = props;
     this.state = {
-      base64DataUrl: props.dataURL || null
+      base64DataUrl: props.dataURL || null,
+      isLoading: true,
     };
 
     const injectedJavaScript = injectedSignaturePad + injectedApplication;
@@ -65,7 +67,11 @@ class SignatureView extends Component {
           onMessage={this.getSignature}
           javaScriptEnabled={true}
           onError={this.renderError}
+          onLoadEnd={() => this.setState({ isLoading: false })}
         />
+        {this.state.isLoading && <View style={styles.loadingOverlayContainer}>
+          <ActivityIndicator />
+        </View>}
       </View>
     );
   }
