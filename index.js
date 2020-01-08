@@ -24,6 +24,7 @@ class SignatureView extends Component {
     descriptionText: 'Sign above',
     clearText: 'Clear',
     confirmText: 'Confirm',
+    customHtml: null,
   };
 
   constructor(props) {
@@ -35,6 +36,10 @@ class SignatureView extends Component {
     };
 
     const injectedJavaScript = injectedSignaturePad + injectedApplication;
+    if (customHtml) {
+      htmlContent = customHtml;
+    }
+
     let html = htmlContent(injectedJavaScript);
     html = html.replace('<%style%>', webStyle);
     html = html.replace('<%description%>', descriptionText);
