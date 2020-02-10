@@ -24,18 +24,24 @@ class SignatureView extends Component {
     descriptionText: 'Sign above',
     clearText: 'Clear',
     confirmText: 'Confirm',
+    customHtml: null,
   };
 
   constructor(props) {
     super(props);
-    const { descriptionText, clearText, confirmText, emptyText, webStyle } = props;
+    const { descriptionText, clearText, confirmText, emptyText, webStyle, customHtml } = props;
     this.state = {
       base64DataUrl: props.dataURL || null,
       isLoading: true,
     };
 
     const injectedJavaScript = injectedSignaturePad + injectedApplication;
-    let html = htmlContent(injectedJavaScript);
+    let htmlContentValue = htmlContent;
+    if (customHtml) {
+      htmlContentValue = customHtml;
+    }
+
+    let html = htmlContentValue(injectedJavaScript);
     html = html.replace('<%style%>', webStyle);
     html = html.replace('<%description%>', descriptionText);
     html = html.replace('<%confirm%>', confirmText);
