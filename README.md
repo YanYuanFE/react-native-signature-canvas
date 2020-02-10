@@ -12,7 +12,7 @@ React Native Signature Component based Canvas for Android &amp;&amp; IOS &amp;&a
 - Generates a base64 encoded png image of the signature
 Note: Expo support for React Native Signature Canvas v1.5.0 started with Expo SDK v33.0.0.
 
-## Installation(for React Native V0.60.0 or Expo SDK v33.0.0)
+## Installation(for React Native V0.60.0 or Expo SDK v35.0.0)
 
 ```bash
 npm install --save react-native-signature-canvas
