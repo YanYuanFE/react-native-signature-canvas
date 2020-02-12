@@ -41,6 +41,7 @@ import Signature from 'react-native-signature-canvas';
 | onOK | `function` | handle function when you click save button |
 | onEmpty | `function` | handle function of empty signature when you click save button |
 | customHtml | `function` | html string that lets you modify things like the layout or elements.
+| autoClear | `boolean` | is auto clear the signature after click confirm button 
 
 ## Basic parameters
 
@@ -60,7 +61,9 @@ import Signature from 'react-native-signature-canvas';
     .button {
       background-color: red;
       color: #FFF;
-    }`}
+    }`
+  }
+  autoClear={true}
 />
 
 ```

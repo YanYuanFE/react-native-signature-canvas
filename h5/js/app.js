@@ -26,13 +26,17 @@ const content = `
     clearButton.addEventListener("click", function (event) {
         signaturePad.clear();
     });
+
+    var autoClear = <%autoClear%>;
     
     saveButton.addEventListener("click", function (event) {
         if (signaturePad.isEmpty()) {
             window.ReactNativeWebView.postMessage("EMPTY");
         } else {
             window.ReactNativeWebView.postMessage(signaturePad.toDataURL());
-            
+            if (autoClear) {
+                signaturePad.clear();
+            }
         }
     });
 `;
