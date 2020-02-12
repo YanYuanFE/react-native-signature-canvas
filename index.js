@@ -36,7 +36,7 @@ class SignatureView extends Component {
       isLoading: true,
     };
 
-    const injectedJavaScript = injectedSignaturePad + injectedApplication;
+    let injectedJavaScript = injectedSignaturePad + injectedApplication;
     const htmlContentValue = customHtml ? customHtml : htmlContent;
     injectedJavaScript = injectedJavaScript.replace('<%autoClear%>', autoClear);
     let html = htmlContentValue(injectedJavaScript);
