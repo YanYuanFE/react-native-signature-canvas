@@ -4106,12 +4106,12 @@ react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha1-LMD+D7p0LZf9UnxCoTvsTusGJBw=
 
-react-native-signature-canvas@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.npm.taobao.org/react-native-signature-canvas/download/react-native-signature-canvas-1.7.1.tgz#d01bf505ab9e674d4c662d00729964e551874b80"
-  integrity sha1-0Bv1BaueZ01MZi0Acplk5VGHS4A=
+react-native-signature-canvas@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.npm.taobao.org/react-native-signature-canvas/download/react-native-signature-canvas-1.8.0.tgz#a9df89997fc3eeab7a9ef58cf0afbc065f0ed82c"
+  integrity sha1-qd+JmX/D7qt6nvWM8K+8Bl8O2Cw=
   dependencies:
-    react-native-webview "^7.5.2"
+    react-native-webview "^8.1.0"
 
 react-native-view-shot@3.0.2:
   version "3.0.2"
@@ -4134,10 +4134,10 @@ react-native-web@~0.11.7:
     prop-types "^15.6.0"
     react-timer-mixin "^0.13.4"
 
-react-native-webview@^7.5.2:
-  version "7.6.0"
-  resolved "https://registry.npm.taobao.org/react-native-webview/download/react-native-webview-7.6.0.tgz#6bae76430200be5e5ead7d986af2fa341b650186"
-  integrity sha1-a652QwIAvl5erX2YavL6NBtlAYY=
+react-native-webview@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.npm.taobao.org/react-native-webview/download/react-native-webview-8.1.0.tgz#6c8976c24792402eabe34b8bb86a43ad414266f6"
+  integrity sha1-bIl2wkeSQC6r40uLuGpDrUFCZvY=
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
