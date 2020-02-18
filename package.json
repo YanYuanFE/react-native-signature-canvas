@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/YanYuanFE/react-native-signature-canvas#readme",
   "dependencies": {
-    "react-native-webview": "^7.5.2"
+    "react-native-webview": "^8.1.0"
   }
 }
