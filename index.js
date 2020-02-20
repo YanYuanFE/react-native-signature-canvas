@@ -26,11 +26,12 @@ class SignatureView extends Component {
     confirmText: 'Confirm',
     customHtml: null,
     autoClear: false,
+    imageType: "",
   };
 
   constructor(props) {
     super(props);
-    const { descriptionText, clearText, confirmText, webStyle, customHtml, autoClear } = props;
+    const { descriptionText, clearText, confirmText, webStyle, customHtml, autoClear, imageType } = props;
     this.state = {
       base64DataUrl: props.dataURL || null,
       isLoading: true,
@@ -39,6 +40,7 @@ class SignatureView extends Component {
     let injectedJavaScript = injectedSignaturePad + injectedApplication;
     const htmlContentValue = customHtml ? customHtml : htmlContent;
     injectedJavaScript = injectedJavaScript.replace('<%autoClear%>', autoClear);
+    injectedJavaScript = injectedJavaScript.replace('<%imageType%>', imageType);
     let html = htmlContentValue(injectedJavaScript);
     html = html.replace('<%style%>', webStyle);
     html = html.replace('<%description%>', descriptionText);

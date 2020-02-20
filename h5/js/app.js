@@ -33,7 +33,8 @@ const content = `
         if (signaturePad.isEmpty()) {
             window.ReactNativeWebView.postMessage("EMPTY");
         } else {
-            window.ReactNativeWebView.postMessage(signaturePad.toDataURL());
+            var url = signaturePad.toDataURL('<%imageType%>');
+            window.ReactNativeWebView.postMessage(url);
             if (autoClear) {
                 signaturePad.clear();
             }

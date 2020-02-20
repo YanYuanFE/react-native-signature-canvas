@@ -42,6 +42,7 @@ import Signature from 'react-native-signature-canvas';
 | onEmpty | `function` | handle function of empty signature when you click save button |
 | customHtml | `function` | html string that lets you modify things like the layout or elements.
 | autoClear | `boolean` | is auto clear the signature after click confirm button 
+| imageType | `string` | default is "", "image/jpeg"、"image/svg+xml", imageType of export signature
 
 ## Basic parameters
 
