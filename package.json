@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/YanYuanFE/react-native-signature-canvas.git"
   },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "keywords": [
     "react-native",
     "react component",
