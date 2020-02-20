@@ -29,7 +29,7 @@ export default class App extends React.Component {
             />
           ) : null}
         </View>
-        <SignatureScreen onOK={this.handleSignature} onEmpty={this.handleEmpty} autoClear={true} imgType={"image/svg+xml"} />
+        <SignatureScreen onOK={this.handleSignature} onEmpty={this.handleEmpty} autoClear={true} imageType={"image/svg+xml"} />
       </View>
     );
   }
