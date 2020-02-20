@@ -65,6 +65,7 @@ import Signature from 'react-native-signature-canvas';
     }`
   }
   autoClear={true}
+  imageType={"image/svg+xml"}
 />
 
 ```
