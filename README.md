@@ -76,7 +76,8 @@ import Signature from 'react-native-signature-canvas';
 
 * Android <br/>
 <img src="http://img.yanyuanfe.cn/signature-android.png" width="400" />
-* iOS <br/>
+
+*  iOS <br/>
 <img src="http://img.yanyuanfe.cn/signature-ios.png" width="400" />
 
 
