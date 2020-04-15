@@ -46,3 +46,5 @@ build/Release
 mock
 
 .DS_Store
+
+.idea
