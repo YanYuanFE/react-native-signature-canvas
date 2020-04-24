@@ -4106,10 +4106,10 @@ react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha1-LMD+D7p0LZf9UnxCoTvsTusGJBw=
 
-react-native-signature-canvas@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-signature-canvas/-/react-native-signature-canvas-2.0.0.tgz#472b33f4fbeeed556f09366790cec7926ddfc2e6"
-  integrity sha512-/Y4PlY7P26v+mHy4FIX1OYaXIk+u9sYfgqJr31Z+gHjR0nmqzkTAsjYbKZmrVoktR4HUUR5iFDr/PWl50WKTDQ==
+react-native-signature-canvas@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-signature-canvas/-/react-native-signature-canvas-2.2.0.tgz#cb79d6aefca699fbd6d52341e6c01f6fce545726"
+  integrity sha512-ZTPa+p6QbzopvlmDlT1QUhXlbnDLH+UodBRYQQSbhzKtu9XfvuExZlvpJH3izRZwNKp7679KfHFJAl3FAK+JtQ==
   dependencies:
     react-native-webview "^9.2.1"
 
