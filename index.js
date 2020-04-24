@@ -49,7 +49,7 @@ const SignatureView = ({
       onEmpty();
     } else if (e.nativeEvent.data === "CLEAR") {
       onClear();
-    } {
+    } else {
       onOK(e.nativeEvent.data);
     }
   };
