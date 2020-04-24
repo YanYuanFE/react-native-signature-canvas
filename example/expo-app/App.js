@@ -17,6 +17,10 @@ const App = () => {
     console.log('Empty');
   }
 
+  handleClear = () => {
+    console.log('clear success!');
+  }
+
   return (
     <View style={{ flex: 1, paddingTop: 40 }}>
       <TextInput
@@ -34,10 +38,11 @@ const App = () => {
         ) : null}
       </View>
       <SignatureScreen 
-      onOK={handleSignature} 
-      onEmpty={handleEmpty} 
-      autoClear={true} 
-      descriptionText={desc}
+        onOK={handleSignature} 
+        onEmpty={handleEmpty}
+        onClear={handleClear}
+        autoClear={true} 
+        descriptionText={desc}
        />
     </View>
   );
