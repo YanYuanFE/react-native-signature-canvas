@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, TextInput, View, Image } from 'react-native';
 import SignatureScreen from 'react-native-signature-canvas';
 
 const App = () => {
   const [signature, setSign] = useState(null);
+  const [value, onChangeText] = useState('Useless Placeholder');
   const [desc, setDesc] = useState("please sign");
 
   const handleSignature = signature => {
@@ -17,7 +18,12 @@ const App = () => {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, paddingTop: 40 }}>
+      <TextInput
+      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+      onChangeText={text => onChangeText(text)}
+      value={value}
+    />
       <View style={styles.preview}>
         {signature ? (
           <Image

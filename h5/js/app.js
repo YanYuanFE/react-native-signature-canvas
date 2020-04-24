@@ -12,10 +12,14 @@ const content = `
         // When zoomed out to less than 100%, for some very strange reason,
         // some browsers report devicePixelRatio as less than 1
         // and only part of the canvas is cleared then.
+        var context = canvas.getContext("2d"); //context.getImageData(0,0,canvas.width,canvas.height)
+        var imgData = signaturePad ? signaturePad.toData() : null;
         var ratio =  Math.max(window.devicePixelRatio || 1, 1);
         canvas.width = canvas.offsetWidth * ratio;
         canvas.height = canvas.offsetHeight * ratio;
-        canvas.getContext("2d").scale(ratio, ratio);
+        context.scale(ratio, ratio);
+        // context.putImageData(imgData,0,0);
+        imgData && signaturePad.fromData(imgData);
     }
     
     window.onresize = resizeCanvas;
