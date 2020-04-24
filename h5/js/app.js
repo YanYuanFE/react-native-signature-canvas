@@ -29,6 +29,7 @@ const content = `
     
     clearButton.addEventListener("click", function (event) {
         signaturePad.clear();
+        window.ReactNativeWebView.postMessage("CLEAR");
     });
 
     var autoClear = <%autoClear%>;

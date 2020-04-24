@@ -20,6 +20,7 @@ const SignatureView = ({
   webStyle = "",
   onOK = () => { },
   onEmpty = () => { },
+  onClear = () => { },
   descriptionText = "Sign above",
   clearText = "Clear",
   confirmText = "Confirm",
@@ -46,7 +47,9 @@ const SignatureView = ({
   const getSignature = e => {
     if (e.nativeEvent.data === "EMPTY") {
       onEmpty();
-    } else {
+    } else if (e.nativeEvent.data === "CLEAR") {
+      onClear();
+    } {
       onOK(e.nativeEvent.data);
     }
   };

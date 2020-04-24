@@ -40,6 +40,7 @@ import Signature from 'react-native-signature-canvas';
 | webStyle | `string` | webview style for overwrite default style, all style: https://github.com/YanYuanFE/react-native-signature-canvas/blob/master/h5/css/signature-pad.css |
 | onOK | `function` | handle function when you click save button |
 | onEmpty | `function` | handle function of empty signature when you click save button |
+| onClear | `function` | handle function when you click clear button 
 | customHtml | `function` | html string that lets you modify things like the layout or elements.
 | autoClear | `boolean` | is auto clear the signature after click confirm button 
 | imageType | `string` | default is "", "image/jpeg"、"image/svg+xml", imageType of export signature
