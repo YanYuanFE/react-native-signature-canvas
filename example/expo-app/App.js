@@ -1,39 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import SignatureScreen from 'react-native-signature-canvas';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { signature: null };
-  }
+const App = () => {
+  const [signature, setSign] = useState(null);
+  const [desc, setDesc] = useState("please sign");
 
-  handleSignature = signature => {
+  const handleSignature = signature => {
     console.log(signature);
-    this.setState({ signature });
+    setSign(signature);
+    setDesc("sign success");
   };
 
-  handleEmpty = () => {
+  const handleEmpty = () => {
     console.log('Empty');
   }
 
-  render() {
-    return (
-      <View style={{ flex: 1 }}>
-        <View style={styles.preview}>
-          {this.state.signature ? (
-            <Image
-              resizeMode={"contain"}
-              style={{ width: 335, height: 114 }}
-              source={{ uri: this.state.signature }}
-            />
-          ) : null}
-        </View>
-        <SignatureScreen onOK={this.handleSignature} onEmpty={this.handleEmpty} autoClear={true} imageType={"image/svg+xml"} />
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={styles.preview}>
+        {signature ? (
+          <Image
+            resizeMode={"contain"}
+            style={{ width: 335, height: 114 }}
+            source={{ uri: signature }}
+          />
+        ) : null}
       </View>
-    );
-  }
+      <SignatureScreen 
+      onOK={handleSignature} 
+      onEmpty={handleEmpty} 
+      autoClear={true} 
+      descriptionText={desc}
+       />
+    </View>
+  );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   preview: {
