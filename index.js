@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import { View, StyleSheet, ActivityIndicator } from "react-native";
 
 import htmlContent from "./h5/html";
@@ -16,11 +16,15 @@ const styles = StyleSheet.create({
   loadingOverlayContainer: { position: "absolute", top: 0, bottom: 0, left: 0, right: 0, alignItems: "center", justifyContent: "center" },
 });
 
+var webViewRef;
+
 const SignatureView = ({
   webStyle = "",
   onOK = () => { },
   onEmpty = () => { },
   onClear = () => { },
+  onBegin = () => { },
+  onEnd = () => { },
   descriptionText = "Sign above",
   clearText = "Clear",
   confirmText = "Confirm",
@@ -29,7 +33,7 @@ const SignatureView = ({
   imageType = "",
 }) => {
   const [loading, setLoading] = useState(true);
-
+  webViewRef = useRef();
   const source = useMemo(() => {
     let injectedJavaScript = injectedSignaturePad + injectedApplication;
     const htmlContentValue = customHtml ? customHtml : htmlContent;
@@ -45,12 +49,21 @@ const SignatureView = ({
   }, [customHtml, autoClear, imageType, webStyle, descriptionText, confirmText, clearText])
 
   const getSignature = e => {
-    if (e.nativeEvent.data === "EMPTY") {
-      onEmpty();
-    } else if (e.nativeEvent.data === "CLEAR") {
-      onClear();
-    } else {
-      onOK(e.nativeEvent.data);
+    switch (e.nativeEvent.data) {
+      case "BEGIN":
+        onBegin();
+        break;
+      case "END":
+        onEnd();
+        break;
+      case "EMPTY":
+        onEmpty();
+        break;
+      case "CLEAR":
+        onClear();
+        break;
+      default:
+        onOK(e.nativeEvent.data);
     }
   };
 
@@ -62,6 +75,7 @@ const SignatureView = ({
   return (
     <View style={styles.webBg}>
       <WebView
+        ref={webViewRef}
         useWebKit={true}
         source={source}
         onMessage={getSignature}
@@ -77,3 +91,14 @@ const SignatureView = ({
 }
 
 export default SignatureView;
+
+export function readSignature() {
+  if (webViewRef.current) {
+    webViewRef.current.injectJavaScript("readSignature();true;");
+  }
+}
+export function clearSignature() {
+  if (webViewRef.current) {
+    webViewRef.current.injectJavaScript("clearSignature();true;");
+  }
+}
