@@ -41,9 +41,23 @@ import Signature from 'react-native-signature-canvas';
 | onOK | `function` | handle function when you click save button |
 | onEmpty | `function` | handle function of empty signature when you click save button |
 | onClear | `function` | handle function when you click clear button 
+| onBegin | `function` | handle function when a new stroke is started 
+| onEnd | `function` | handle function when the stroke has ended 
 | customHtml | `function` | html string that lets you modify things like the layout or elements.
 | autoClear | `boolean` | is auto clear the signature after click confirm button 
 | imageType | `string` | default is "", "image/jpeg"、"image/svg+xml", imageType of export signature
+
+## Methods
+-------------
+| Function  | Description |
+| :------------ |:---------------|
+| readSignature() | Reads the current signature on the canvas and triggers either the onOK or onEmpty callbacks |
+| clearSignature() | Clears the current signature |
+
+You need to import the functions from react-native-signature-canvas like:
+``` js
+import Signature, {readSignature, clearSignature} from 'react-native-signature-canvas';
+```
 
 ## Basic parameters
 
@@ -70,7 +84,26 @@ import Signature from 'react-native-signature-canvas';
 />
 
 ```
+If you create your own triggers for the readSignature and/or clearSignature you can hide the built in Clear and Save buttons with css styles passed into the **webStyle** property.
 
+``` js
+const webStyle = `.m-signature-pad--footer
+	.save {
+		display: none;
+	}
+	.clear {
+		display: none;
+	}
+`;
+...
+  <Signature
+    webStyle={webStyle}
+    onOK={handleOK}
+    onEmpt={handleEmpty}
+    onEnd={handleEnd}
+  />
+
+```
 
 
 ## Example
