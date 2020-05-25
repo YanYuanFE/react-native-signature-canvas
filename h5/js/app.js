@@ -27,7 +27,10 @@ const content = `
     
     signaturePad = new SignaturePad(canvas, {
         onBegin: () => window.ReactNativeWebView.postMessage("BEGIN"),
-        onEnd: () => window.ReactNativeWebView.postMessage("END")
+        onEnd: () => {
+            var url = signaturePad.toDataURL('<%imageType%>');
+            window.ReactNativeWebView.postMessage(url)
+        }
     });
 
     function clearSignature (event) {

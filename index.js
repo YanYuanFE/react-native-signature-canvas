@@ -29,6 +29,7 @@ const SignatureView = ({
   clearText = "Clear",
   confirmText = "Confirm",
   customHtml = null,
+  sendOnEnd = false,
   autoClear = false,
   imageType = "",
   dataURL = "",
@@ -56,9 +57,9 @@ const SignatureView = ({
       case "BEGIN":
         onBegin();
         break;
-      case "END":
-        onEnd();
-        break;
+      // case "END":
+      //   onEnd(e.nativeEvent.data);
+      //   break;
       case "EMPTY":
         onEmpty();
         break;
@@ -66,7 +67,13 @@ const SignatureView = ({
         onClear();
         break;
       default:
-        onOK(e.nativeEvent.data);
+        if (onEnd && sendOnEnd)
+          onEnd(e.nativeEvent.data)
+        else if (onEnd && !sendOnEnd) {
+          onEnd("END");
+        }
+        else
+          onOK(e.nativeEvent.data);
     }
   };
 
