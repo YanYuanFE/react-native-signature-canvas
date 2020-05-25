@@ -31,6 +31,7 @@ const SignatureView = ({
   customHtml = null,
   autoClear = false,
   imageType = "",
+  dataURL = "",
 }) => {
   const [loading, setLoading] = useState(true);
   webViewRef = useRef();
@@ -39,6 +40,8 @@ const SignatureView = ({
     const htmlContentValue = customHtml ? customHtml : htmlContent;
     injectedJavaScript = injectedJavaScript.replace("<%autoClear%>", autoClear);
     injectedJavaScript = injectedJavaScript.replace("<%imageType%>", imageType);
+    injectedJavaScript = injectedJavaScript.replace("<%dataURL%>", dataURL);
+    
     let html = htmlContentValue(injectedJavaScript);
     html = html.replace("<%style%>", webStyle);
     html = html.replace("<%description%>", descriptionText);

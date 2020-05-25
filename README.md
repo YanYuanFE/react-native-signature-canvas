@@ -46,6 +46,7 @@ import Signature from 'react-native-signature-canvas';
 | customHtml | `function` | html string that lets you modify things like the layout or elements.
 | autoClear | `boolean` | is auto clear the signature after click confirm button 
 | imageType | `string` | default is "", "image/jpeg"、"image/svg+xml", imageType of export signature
+| dataURL | `string` | default is "", Base64 string, Draws signature image from data URL.
 
 ## Methods
 -------------
@@ -120,48 +121,44 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Signature from 'react-native-signature-canvas';
 
-export default class SignatureScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { signature: null };
-  }
+export const SignatureScreen = () => {
+  const [signature, setSign] = useState(null);
 
-  handleSignature = signature => {
-    this.setState({ signature });
+  const handleSignature = signature => {
+    console.log(signature);
+    setSign(signature);
   };
 
-  handleEmpty = () => {
+  const handleEmpty = () => {
     console.log('Empty');
   }
 
-  render() {
-    const style = `.m-signature-pad--footer
+  const style = `.m-signature-pad--footer
     .button {
       background-color: red;
       color: #FFF;
     }`;
-    return (
-      <View style={{ flex: 1 }}>
-        <View style={styles.preview}>
-          {this.state.signature ? (
-            <Image
-              resizeMode={"contain"}
-              style={{ width: 335, height: 114 }}
-              source={{ uri: this.state.signature }}
-            />
-          ) : null}
-        </View>
-        <Signature
-          onOK={this.handleSignature}
-          onEmpty={this.handleEmpty}
-          descriptionText="Sign"
-          clearText="Clear"
-          confirmText="Save"
-          webStyle={style}
-        />
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={styles.preview}>
+        {this.state.signature ? (
+          <Image
+            resizeMode={"contain"}
+            style={{ width: 335, height: 114 }}
+            source={{ uri: this.state.signature }}
+          />
+        ) : null}
       </View>
-    );
-  }
+      <Signature
+        onOK={this.handleSignature}
+        onEmpty={this.handleEmpty}
+        descriptionText="Sign"
+        clearText="Clear"
+        confirmText="Save"
+        webStyle={style}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -39,6 +39,12 @@ const content = `
 
     var autoClear = <%autoClear%>;
 
+    var dataURL = '<%dataURL%>';
+
+    if (dataURL) {
+        signaturePad.fromDataURL(dataURL);
+    }
+
     function readSignature()  {
         if (signaturePad.isEmpty()) {
             window.ReactNativeWebView.postMessage("EMPTY");
