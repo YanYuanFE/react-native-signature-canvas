@@ -55,9 +55,44 @@ import Signature from 'react-native-signature-canvas';
 | readSignature() | Reads the current signature on the canvas and triggers either the onOK or onEmpty callbacks |
 | clearSignature() | Clears the current signature |
 
-You need to import the functions from react-native-signature-canvas like:
+You need to use ref like:
 ``` js
-import Signature, {readSignature, clearSignature} from 'react-native-signature-canvas';
+import SignatureScreen from 'react-native-signature-canvas';
+
+const Sign = ({text, onOK}) => {
+  const ref = useRef();
+
+  const handleSignature = signature => {
+    console.log(signature);
+    onOK(signature);
+  };
+
+  const handleEmpty = () => {
+    console.log('Empty');
+  }
+
+  const handleClear = () => {
+    console.log('clear success!');
+  }
+
+  const handleEnd = () => {
+      ref.current.readSignature();
+  }
+
+  return (
+    <SignatureScreen
+        ref={ref}
+        onEnd={handleEnd}
+        onOK={handleSignature} 
+        onEmpty={handleEmpty}
+        onClear={handleClear}
+        autoClear={true} 
+        descriptionText={text}
+    />
+  );
+}
+
+export default Sign;
 ```
 
 ## Basic parameters

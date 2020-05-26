@@ -1,6 +1,6 @@
 {
   "name": "react-native-signature-canvas",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "React Native Signature Component based Canvas for Android && IOS && expo",
   "main": "index.js",
   "scripts": {

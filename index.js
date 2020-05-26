@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, forwardRef, useImperativeHandle } from "react";
 import { View, StyleSheet, ActivityIndicator } from "react-native";
 
 import htmlContent from "./h5/html";
@@ -16,9 +16,7 @@ const styles = StyleSheet.create({
   loadingOverlayContainer: { position: "absolute", top: 0, bottom: 0, left: 0, right: 0, alignItems: "center", justifyContent: "center" },
 });
 
-var webViewRef;
-
-const SignatureView = ({
+const SignatureView = forwardRef(({
   webStyle = "",
   onOK = () => { },
   onEmpty = () => { },
@@ -32,9 +30,9 @@ const SignatureView = ({
   autoClear = false,
   imageType = "",
   dataURL = "",
-}) => {
+}, ref) => {
   const [loading, setLoading] = useState(true);
-  webViewRef = useRef();
+  const webViewRef = useRef();
   const source = useMemo(() => {
     let injectedJavaScript = injectedSignaturePad + injectedApplication;
     const htmlContentValue = customHtml ? customHtml : htmlContent;
@@ -70,6 +68,19 @@ const SignatureView = ({
     }
   };
 
+  useImperativeHandle(ref, () => ({
+    readSignature: () => {
+      if (webViewRef.current) {
+        webViewRef.current.injectJavaScript("readSignature();true;");
+      }
+    },
+    clearSignature: () => {
+      if (webViewRef.current) {
+        webViewRef.current.injectJavaScript("clearSignature();true;");
+      }
+    }
+  }), [webViewRef]);
+
   const renderError = e => {
     const { nativeEvent } = e;
     console.warn("WebView error: ", nativeEvent);
@@ -91,17 +102,6 @@ const SignatureView = ({
       </View>}
     </View>
   );
-}
+})
 
 export default SignatureView;
-
-export function readSignature() {
-  if (webViewRef.current) {
-    webViewRef.current.injectJavaScript("readSignature();true;");
-  }
-}
-export function clearSignature() {
-  if (webViewRef.current) {
-    webViewRef.current.injectJavaScript("clearSignature();true;");
-  }
-}
