@@ -95,6 +95,27 @@ const Sign = ({text, onOK}) => {
 export default Sign;
 ```
 
+##  Save Base64 Image as File
+
+If you use expo, you can use **expo-file-system** for save base64 image as local file, if you use react-native-cli, use **react-native-fs**.
+
+``` js
+import * as FileSystem from 'expo-file-system';
+
+const handleSignature = signature => {
+    const path = FileSystem.cacheDirectory + 'sign.png';
+    FileSystem.writeAsStringAsync(path, signature.replace('data:image/png;base64,', ''), {encoding: FileSystem.EncodingType.Base64}).then(res => {
+      console.log(res);
+      FileSystem.getInfoAsync(path, {size: true, md5: true}).then(file => {
+        console.log(file);
+      })
+    }).catch(err => {
+      console.log("err", err);
+    })
+};
+
+```
+
 ## Basic parameters
 
 ``` js
