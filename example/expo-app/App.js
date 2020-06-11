@@ -49,11 +49,6 @@ const App = () => {
         onOK={handleSignature} 
         text={desc}
        />
-       <Sign
-        key="sign2"
-        onOK={handleSignature} 
-        text={"Test"}
-       />
     </View>
   );
 }
