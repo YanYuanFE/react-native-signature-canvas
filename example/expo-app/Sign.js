@@ -31,7 +31,7 @@ const Sign = ({text, onOK}) => {
         onOK={handleSignature} 
         onEmpty={handleEmpty}
         onClear={handleClear}
-        autoClear={true} 
+        autoClear={false} 
         descriptionText={text}
     />
   );

@@ -12,17 +12,17 @@ const App = () => {
 
   const handleSignature = signature => {
     console.log(signature);
-    // setSign(signature);
+    setSign(signature);
     setDesc("sign success");
-    const path = FileSystem.cacheDirectory + 'sign.png';
-    FileSystem.writeAsStringAsync(path, signature.replace('data:image/png;base64,', ''), {encoding: FileSystem.EncodingType.Base64}).then(res => {
-      console.log(res);
-      FileSystem.getInfoAsync(path, {size: true, md5: true}).then(file => {
-        console.log(file);
-      })
-    }).catch(err => {
-      console.log("err", err);
-    })
+    // const path = FileSystem.cacheDirectory + 'sign.png';
+    // FileSystem.writeAsStringAsync(path, signature.replace('data:image/png;base64,', ''), {encoding: FileSystem.EncodingType.Base64}).then(res => {
+    //   console.log(res);
+    //   FileSystem.getInfoAsync(path, {size: true, md5: true}).then(file => {
+    //     console.log(file);
+    //   })
+    // }).catch(err => {
+    //   console.log("err", err);
+    // })
   };
 
   const handleEmpty = () => {
