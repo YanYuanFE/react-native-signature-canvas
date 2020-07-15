@@ -156,7 +156,7 @@ const webStyle = `.m-signature-pad--footer
   <Signature
     webStyle={webStyle}
     onOK={handleOK}
-    onEmpt={handleEmpty}
+    onEmpty={handleEmpty}
     onEnd={handleEnd}
   />
 
@@ -239,4 +239,54 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 });
+```
+
+## Using Typescript
+
+To use Typescript just import `SignatureViewRef` and in [useRef hook](https://reactjs.org/docs/hooks-reference.html#useref) inform that the reference is of the `SignatureViewRef` type, with that the `readSignature` and `clearSignature` methods will be available.
+
+```ts
+import React, { useRef } from 'react';
+import SignatureScreen, { SignatureViewRef } from 'react-native-signature-canvas';
+
+interface Props {
+  text: string;
+  onOK: (signature) => void;
+}
+
+const Sign: React.FC<Props> = ({text, onOK}) => {
+  const ref = useRef<SignatureViewRef>(null);
+
+  const handleSignature = signature => {
+    console.log(signature);
+    onOK(signature);
+  };
+
+  const handleEmpty = () => {
+    console.log('Empty');
+  }
+
+  const handleClear = () => {
+    console.log('clear success!');
+  }
+
+  const handleEnd = () => {
+      ref.current?.readSignature();
+  }
+
+  return (
+    <SignatureScreen
+        ref={ref}
+        onEnd={handleEnd}
+        onOK={handleSignature} 
+        onEmpty={handleEmpty}
+        onClear={handleClear}
+        autoClear={true} 
+        descriptionText={text}
+    />
+  );
+}
+
+export default Sign;
+
 ```
