@@ -27,7 +27,9 @@ const content = `
     
     signaturePad = new SignaturePad(canvas, {
         onBegin: () => window.ReactNativeWebView.postMessage("BEGIN"),
-        onEnd: () => window.ReactNativeWebView.postMessage("END")
+        onEnd: () => window.ReactNativeWebView.postMessage("END"),
+        penColor: '<%penColor%>',
+        backgroundColor: '<%backgroundColor%>',
     });
 
     function clearSignature (event) {
