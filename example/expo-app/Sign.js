@@ -33,6 +33,8 @@ const Sign = ({text, onOK}) => {
         onClear={handleClear}
         autoClear={false} 
         descriptionText={text}
+        backgroundColor={"#FFF"}
+        penColor={"red"}
     />
   );
 }
