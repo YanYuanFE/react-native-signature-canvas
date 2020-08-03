@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-escape-string-regexp@1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
-  integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
+escape-string-regexp@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
+  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
 
 invariant@2.2.4:
   version "2.2.4"
@@ -26,10 +26,10 @@ loose-envify@^1.0.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-react-native-webview@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-7.0.1.tgz#ea2650d30acaa1fd443595d9f7f2a2648f54e0b5"
-  integrity sha512-KySHdf/nvGgFXwQEb7AH8id2dYdzSiIqWjMPdlql6+5Gi9kaEGiojGabXV2UYJRNk54Y8COFMDr65zdgdLlctw==
+react-native-webview@^10.3.2:
+  version "10.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-10.3.3.tgz#ab1cd1fdc800f4897362f80d97e2d9156dfabd22"
+  integrity sha512-RSBgwZ48/CfmBgmiEUUTfG4vbOHt6rPDC/O+dH6ivwRb8ymp00/0GO1zJql52LhUs2suz+MjwFen7QH/zy4TJA==
   dependencies:
-    escape-string-regexp "1.0.5"
+    escape-string-regexp "2.0.0"
     invariant "2.2.4"
