@@ -33,19 +33,18 @@ const Sign = ({text, onOK}) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={showSignature}><Text>Show signature view</Text></TouchableOpacity>
-      {show && <Modal>
-        <SignatureScreen
+      <SignatureScreen
           ref={ref}
           onEnd={handleEnd}
           onOK={handleSignature} 
           onEmpty={handleEmpty}
           onClear={handleClear}
           onBegin={handleBegin}
-          autoClear={true} 
+          autoClear={false} 
           descriptionText={text}
+          backgroundColor="rgb(255,255,255)"
+          penColor={"rgba(255,117,2,1)"}
       />
-        </Modal>}
     </View>
   );
 }
