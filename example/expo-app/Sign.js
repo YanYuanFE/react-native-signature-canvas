@@ -44,6 +44,7 @@ const Sign = ({text, onOK}) => {
           descriptionText={text}
           backgroundColor="rgb(255,255,255)"
           penColor={"rgba(255,117,2,1)"}
+          imageType="image/jpeg"
       />
     </View>
   );

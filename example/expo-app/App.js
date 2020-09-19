@@ -45,7 +45,6 @@ const App = () => {
         ) : null}
       </View>
       <Sign
-        key="sign1"
         onOK={handleSignature} 
         text={desc}
        />
