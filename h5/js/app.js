@@ -30,6 +30,8 @@ const content = `
         onEnd: () => window.ReactNativeWebView.postMessage("END"),
         penColor: '<%penColor%>',
         backgroundColor: '<%backgroundColor%>',
+        dotSize: <%dotSize%>,
+        minWidth: <%minWidth%>,
     });
 
     function clearSignature (event) {

@@ -32,6 +32,8 @@ const SignatureView = forwardRef(({
   dataURL = "",
   penColor = "",
   backgroundColor = "",
+  dotSize = 0,
+  minWidth = 0.5,
 }, ref) => {
   const [loading, setLoading] = useState(true);
   const webViewRef = useRef();
@@ -43,6 +45,8 @@ const SignatureView = forwardRef(({
     injectedJavaScript = injectedJavaScript.replace("<%dataURL%>", dataURL);
     injectedJavaScript = injectedJavaScript.replace("<%penColor%>", penColor);
     injectedJavaScript = injectedJavaScript.replace("<%backgroundColor%>", backgroundColor);
+    injectedJavaScript = injectedJavaScript.replace("<%dotSize%>", dotSize);
+    injectedJavaScript = injectedJavaScript.replace("<%minWidth%>", minWidth);
     
     let html = htmlContentValue(injectedJavaScript);
     html = html.replace("<%style%>", webStyle);

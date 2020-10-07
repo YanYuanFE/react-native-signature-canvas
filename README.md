@@ -49,6 +49,8 @@ import Signature from 'react-native-signature-canvas';
 | dataURL | `string` | default is "", Base64 string, Draws signature image from data URL.
 | penColor | `string` | default is "black", color of pen
 | backgroundColor | `string` | default is "rgba(0,0,0,0)", backgroundColor of canvas
+| dotSize | `number` | radius of a single dot
+| minWidth | `number` | minimum width of a line. Defaults to 0.5
 
 ## Methods
 -------------
