@@ -13,6 +13,8 @@ coverage
 node_modules
 example/exampleApp/node_modules
 example/expoApp/node_modules
+example/expo-app39/node_modules/
+example/**/expo/**
 
 # Node.JS specifics
 pids
