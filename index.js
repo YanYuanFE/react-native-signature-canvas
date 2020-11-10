@@ -34,6 +34,7 @@ const SignatureView = forwardRef(({
   backgroundColor = "",
   dotSize = 0,
   minWidth = 0.5,
+  androidHardwareAccelerationDisabled = false,
 }, ref) => {
   const [loading, setLoading] = useState(true);
   const webViewRef = useRef();
@@ -47,7 +48,7 @@ const SignatureView = forwardRef(({
     injectedJavaScript = injectedJavaScript.replace("<%backgroundColor%>", backgroundColor);
     injectedJavaScript = injectedJavaScript.replace("<%dotSize%>", dotSize);
     injectedJavaScript = injectedJavaScript.replace("<%minWidth%>", minWidth);
-    
+
     let html = htmlContentValue(injectedJavaScript);
     html = html.replace("<%style%>", webStyle);
     html = html.replace("<%description%>", descriptionText);
@@ -97,6 +98,7 @@ const SignatureView = forwardRef(({
   return (
     <View style={styles.webBg}>
       <WebView
+        androidHardwareAccelerationDisabled={androidHardwareAccelerationDisabled}
         ref={webViewRef}
         useWebKit={true}
         source={source}
