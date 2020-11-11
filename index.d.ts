@@ -25,6 +25,7 @@ declare module "react-native-signature-canvas" {
     backgroundColor?: string;
     dotSize?: number,
     minWidth?: number,
+    androidHardwareAccelerationDisabled?: boolean;
   }
 
   export type SignatureViewRef = {
