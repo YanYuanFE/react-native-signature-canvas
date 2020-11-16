@@ -177,7 +177,7 @@ const webStyle = `.m-signature-pad--footer
 
 
 ```js
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Signature from 'react-native-signature-canvas';
 
@@ -201,17 +201,17 @@ export const SignatureScreen = () => {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.preview}>
-        {this.state.signature ? (
+        {signature ? (
           <Image
             resizeMode={"contain"}
             style={{ width: 335, height: 114 }}
-            source={{ uri: this.state.signature }}
+            source={{ uri: signature }}
           />
         ) : null}
       </View>
       <Signature
-        onOK={this.handleSignature}
-        onEmpty={this.handleEmpty}
+        onOK={handleSignature}
+        onEmpty={handleEmpty}
         descriptionText="Sign"
         clearText="Clear"
         confirmText="Save"
