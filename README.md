@@ -1,6 +1,10 @@
 # react-native-signature-canvas
 
 [![](https://img.shields.io/npm/l/react-native-signature-canvas.svg)](https://www.npmjs.com/package/react-native-signature-canvas)
+[![](https://img.shields.io/npm/v/react-native-signature-canvas)](https://www.npmjs.com/package/react-native-signature-canvas)
+![npm](https://img.shields.io/npm/dt/react-native-signature-canvas)
+![GitHub last commit](https://img.shields.io/github/last-commit/yanyuanfe/react-native-signature-canvas)
+
 
 React Native Signature Component based Canvas for Android &amp;&amp; IOS &amp;&amp; expo
 
