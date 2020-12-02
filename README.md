@@ -37,18 +37,18 @@ import Signature from 'react-native-signature-canvas';
 ## Properties
 -------------
 | Prop  | Type | Description |
-| :------------ |:---------------:| :---------------| 
+| :------------ |:---------------:| :---------------|
 | descriptionText | `string` | description text for signature |
 | clearText | `string` | clear button text |
 | confirmText | `string` | save button text |
 | webStyle | `string` | webview style for overwrite default style, all style: https://github.com/YanYuanFE/react-native-signature-canvas/blob/master/h5/css/signature-pad.css |
 | onOK | `function` | handle function when you click save button |
 | onEmpty | `function` | handle function of empty signature when you click save button |
-| onClear | `function` | handle function when you click clear button 
-| onBegin | `function` | handle function when a new stroke is started 
-| onEnd | `function` | handle function when the stroke has ended 
+| onClear | `function` | handle function when you click clear button
+| onBegin | `function` | handle function when a new stroke is started
+| onEnd | `function` | handle function when the stroke has ended
 | customHtml | `function` | html string that lets you modify things like the layout or elements.
-| autoClear | `boolean` | is auto clear the signature after click confirm button 
+| autoClear | `boolean` | is auto clear the signature after click confirm button
 | imageType | `string` | default is "", "image/jpeg"、"image/svg+xml", imageType of export signature
 | dataURL | `string` | default is "", Base64 string, Draws signature image from data URL.
 | penColor | `string` | default is "black", color of pen
@@ -91,10 +91,10 @@ const Sign = ({text, onOK}) => {
     <SignatureScreen
         ref={ref}
         onEnd={handleEnd}
-        onOK={handleSignature} 
+        onOK={handleSignature}
         onEmpty={handleEmpty}
         onClear={handleClear}
-        autoClear={true} 
+        autoClear={true}
         descriptionText={text}
     />
   );
@@ -153,12 +153,12 @@ If you create your own triggers for the readSignature and/or clearSignature you 
 
 ``` js
 const webStyle = `.m-signature-pad--footer
-	.save {
-		display: none;
-	}
-	.clear {
-		display: none;
-	}
+    .save {
+        display: none;
+    }
+    .clear {
+        display: none;
+    }
 `;
 ...
   <Signature
@@ -286,10 +286,10 @@ const Sign: React.FC<Props> = ({text, onOK}) => {
     <SignatureScreen
         ref={ref}
         onEnd={handleEnd}
-        onOK={handleSignature} 
+        onOK={handleSignature}
         onEmpty={handleEmpty}
         onClear={handleClear}
-        autoClear={true} 
+        autoClear={true}
         descriptionText={text}
     />
   );
@@ -297,4 +297,38 @@ const Sign: React.FC<Props> = ({text, onOK}) => {
 
 export default Sign;
 
+```
+
+## Example inside ScrollView
+
+When using `react-native-signature-canvas` inside a ScrollView, you will only get a point on the canvas and the ScrollView will handle the gesture making it unused for the canvas.
+The work around is to use the `scrollEnabled` prop of `ScrollView`.
+Here an example:
+
+```
+import React, {useState} from 'react';
+import {ScrollView, View} from 'react-native';
+import Signature from 'react-native-signature-canvas';
+
+const SignInScroll = () => {
+  const [scrollEnabled, setScrollEnabled] = useState(true);
+
+  return (
+    <ScrollView scrollEnabled={scrollEnabled}>
+      <View style={{height: 300}}>
+        <Signature
+          onOK={(img) => console.log(img)}
+          onBegin={() => setScrollEnabled(false)}
+          onEnd={() => setScrollEnabled(true)}
+          descriptionText="Sign"
+          clearText="Clear"
+          confirmText="Save"
+          imageType="image/jpeg"
+        />
+      </View>
+    </ScrollView>
+  );
+};
+
+export default SignInScroll;
 ```
