@@ -28,6 +28,7 @@ const SignatureView = forwardRef(({
   confirmText = "Confirm",
   customHtml = null,
   autoClear = false,
+  trimWhitespace = false,
   imageType = "",
   dataURL = "",
   penColor = "",
@@ -42,6 +43,7 @@ const SignatureView = forwardRef(({
     let injectedJavaScript = injectedSignaturePad + injectedApplication;
     const htmlContentValue = customHtml ? customHtml : htmlContent;
     injectedJavaScript = injectedJavaScript.replace("<%autoClear%>", autoClear);
+    injectedJavaScript = injectedJavaScript.replace("<%trimWhitespace%>", trimWhitespace);
     injectedJavaScript = injectedJavaScript.replace("<%imageType%>", imageType);
     injectedJavaScript = injectedJavaScript.replace("<%dataURL%>", dataURL);
     injectedJavaScript = injectedJavaScript.replace("<%penColor%>", penColor);
@@ -56,7 +58,7 @@ const SignatureView = forwardRef(({
     html = html.replace("<%clear%>", clearText);
 
     return { html };
-  }, [customHtml, autoClear, imageType, webStyle, descriptionText, confirmText, clearText])
+  }, [customHtml, autoClear, trimWhitespace, imageType, webStyle, descriptionText, confirmText, clearText])
 
   const getSignature = e => {
     switch (e.nativeEvent.data) {
