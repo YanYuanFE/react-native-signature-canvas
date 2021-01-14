@@ -140,7 +140,7 @@ const content = `
                 cropLeft, cropTop, cropWidth, cropHeight,
                 0, 0, cropWidth, cropHeight);
 
-            return canvas.toDataURL();
+            return canvas.toDataURL('<%imageType%>');
         }
     }
 
