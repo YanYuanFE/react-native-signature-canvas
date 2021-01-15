@@ -49,6 +49,7 @@ import Signature from 'react-native-signature-canvas';
 | onEnd | `function` | handle function when the stroke has ended
 | customHtml | `function` | html string that lets you modify things like the layout or elements.
 | autoClear | `boolean` | is auto clear the signature after click confirm button
+| trimWhitespace | `boolean` | trim image whitespace
 | imageType | `string` | default is "", "image/jpeg"、"image/svg+xml", imageType of export signature
 | dataURL | `string` | default is "", Base64 string, Draws signature image from data URL.
 | penColor | `string` | default is "black", color of pen
