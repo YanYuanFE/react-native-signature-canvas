@@ -23,7 +23,7 @@ const content = script =>
       overflow:hidden;
     }
     
-    .wrapper-<%orientation%> {
+    .rotated {
       transform: rotate(90deg);
       transform-origin:bottom left;
       
@@ -185,7 +185,7 @@ const content = script =>
     </style>
 </head>
 <body onselectstart="return false">
-  <div class="wrapper-<%orientation%>">
+<div class="<%orientation%>">
     <div id="signature-pad" class="m-signature-pad">
       <div class="m-signature-pad--body">
         <canvas></canvas>

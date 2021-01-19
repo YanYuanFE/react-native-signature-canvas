@@ -43,22 +43,22 @@ const SignatureView = forwardRef(({
   const source = useMemo(() => {
     let injectedJavaScript = injectedSignaturePad + injectedApplication;
     const htmlContentValue = customHtml ? customHtml : htmlContent;
-    injectedJavaScript = injectedJavaScript.replace("<%autoClear%>", autoClear);
-    injectedJavaScript = injectedJavaScript.replace("<%trimWhitespace%>", trimWhitespace);
-    injectedJavaScript = injectedJavaScript.replace("<%imageType%>", imageType);
-    injectedJavaScript = injectedJavaScript.replace("<%dataURL%>", dataURL);
-    injectedJavaScript = injectedJavaScript.replace("<%penColor%>", penColor);
-    injectedJavaScript = injectedJavaScript.replace("<%backgroundColor%>", backgroundColor);
-    injectedJavaScript = injectedJavaScript.replace("<%dotSize%>", dotSize);
-    injectedJavaScript = injectedJavaScript.replace("<%minWidth%>", minWidth);
-    injectedJavaScript = injectedJavaScript.replace("<%orientation%>", rotated);
+    injectedJavaScript = injectedJavaScript.replaceAll("<%autoClear%>", autoClear);
+    injectedJavaScript = injectedJavaScript.replaceAll("<%trimWhitespace%>", trimWhitespace);
+    injectedJavaScript = injectedJavaScript.replaceAll("<%imageType%>", imageType);
+    injectedJavaScript = injectedJavaScript.replaceAll("<%dataURL%>", dataURL);
+    injectedJavaScript = injectedJavaScript.replaceAll("<%penColor%>", penColor);
+    injectedJavaScript = injectedJavaScript.replaceAll("<%backgroundColor%>", backgroundColor);
+    injectedJavaScript = injectedJavaScript.replaceAll("<%dotSize%>", dotSize);
+    injectedJavaScript = injectedJavaScript.replaceAll("<%minWidth%>", minWidth);
+    injectedJavaScript = injectedJavaScript.replaceAll("<%orientation%>", rotated);
     
     let html = htmlContentValue(injectedJavaScript);
-    html = html.replace("<%style%>", webStyle);
-    html = html.replace("<%description%>", descriptionText);
-    html = html.replace("<%confirm%>", confirmText);
-    html = html.replace("<%clear%>", clearText);
-    html = html.replace("<%orientation%>", rotated?'rotated':'default');
+    html = html.replaceAll("<%style%>", webStyle);
+    html = html.replaceAll("<%description%>", descriptionText);
+    html = html.replaceAll("<%confirm%>", confirmText);
+    html = html.replaceAll("<%clear%>", clearText);
+    html = html.replaceAll("<%orientation%>", rotated?'rotated':'');
 
     return { html };
   }, [customHtml, autoClear, trimWhitespace, rotated, imageType, webStyle, descriptionText, confirmText, clearText])
