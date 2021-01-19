@@ -50,6 +50,7 @@ import Signature from 'react-native-signature-canvas';
 | customHtml | `function` | html string that lets you modify things like the layout or elements.
 | autoClear | `boolean` | is auto clear the signature after click confirm button
 | trimWhitespace | `boolean` | trim image whitespace
+| rotated | `boolean` | rotate signature pad 90 degrees
 | imageType | `string` | default is "", "image/jpeg"、"image/svg+xml", imageType of export signature
 | dataURL | `string` | default is "", Base64 string, Draws signature image from data URL.
 | penColor | `string` | default is "black", color of pen

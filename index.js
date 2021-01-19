@@ -51,6 +51,7 @@ const SignatureView = forwardRef(({
     injectedJavaScript = injectedJavaScript.replace("<%backgroundColor%>", backgroundColor);
     injectedJavaScript = injectedJavaScript.replace("<%dotSize%>", dotSize);
     injectedJavaScript = injectedJavaScript.replace("<%minWidth%>", minWidth);
+    injectedJavaScript = injectedJavaScript.replace("<%orientation%>", rotated);
     
     let html = htmlContentValue(injectedJavaScript);
     html = html.replace("<%style%>", webStyle);
