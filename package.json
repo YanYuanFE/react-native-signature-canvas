@@ -1,6 +1,6 @@
 {
   "name": "react-native-signature-canvas",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "React Native Signature Component based Canvas for Android && IOS && expo",
   "main": "index.js",
   "scripts": {
@@ -27,9 +27,9 @@
   },
   "homepage": "https://github.com/YanYuanFE/react-native-signature-canvas#readme",
   "devDependencies": {
-    "react-native-webview": "^10.9.0"
+    "react-native-webview": "^11.0.3"
   },
   "peerDependencies": {
-    "react-native-webview": "^10.9.0"
+    "react-native-webview": "^11.0.3"
   }
 }
