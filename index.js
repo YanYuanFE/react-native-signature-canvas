@@ -29,6 +29,7 @@ const SignatureView = forwardRef(({
   customHtml = null,
   autoClear = false,
   trimWhitespace = false,
+  rotated = false,
   imageType = "",
   dataURL = "",
   penColor = "",
@@ -42,23 +43,24 @@ const SignatureView = forwardRef(({
   const source = useMemo(() => {
     let injectedJavaScript = injectedSignaturePad + injectedApplication;
     const htmlContentValue = customHtml ? customHtml : htmlContent;
-    injectedJavaScript = injectedJavaScript.replace("<%autoClear%>", autoClear);
-    injectedJavaScript = injectedJavaScript.replace("<%trimWhitespace%>", trimWhitespace);
-    injectedJavaScript = injectedJavaScript.replace("<%imageType%>", imageType);
-    injectedJavaScript = injectedJavaScript.replace("<%dataURL%>", dataURL);
-    injectedJavaScript = injectedJavaScript.replace("<%penColor%>", penColor);
-    injectedJavaScript = injectedJavaScript.replace("<%backgroundColor%>", backgroundColor);
-    injectedJavaScript = injectedJavaScript.replace("<%dotSize%>", dotSize);
-    injectedJavaScript = injectedJavaScript.replace("<%minWidth%>", minWidth);
-
+    injectedJavaScript = injectedJavaScript.replace(/<%autoClear%>/g, autoClear);
+    injectedJavaScript = injectedJavaScript.replace(/<%trimWhitespace%>/g, trimWhitespace);
+    injectedJavaScript = injectedJavaScript.replace(/<%imageType%>/g, imageType);
+    injectedJavaScript = injectedJavaScript.replace(/<%dataURL%>/g, dataURL);
+    injectedJavaScript = injectedJavaScript.replace(/<%penColor%>/g, penColor);
+    injectedJavaScript = injectedJavaScript.replace(/<%backgroundColor%>/g, backgroundColor);
+    injectedJavaScript = injectedJavaScript.replace(/<%dotSize%>/g, dotSize);
+    injectedJavaScript = injectedJavaScript.replace(/<%minWidth%>/g, minWidth);
+    
     let html = htmlContentValue(injectedJavaScript);
-    html = html.replace("<%style%>", webStyle);
-    html = html.replace("<%description%>", descriptionText);
-    html = html.replace("<%confirm%>", confirmText);
-    html = html.replace("<%clear%>", clearText);
+    html = html.replace(/<%style%>/g, webStyle);
+    html = html.replace(/<%description%>/g, descriptionText);
+    html = html.replace(/<%confirm%>/g, confirmText);
+    html = html.replace(/<%clear%>/g, clearText);
+    html = html.replace(/<%orientation%>/g, rotated);
 
     return { html };
-  }, [customHtml, autoClear, trimWhitespace, imageType, webStyle, descriptionText, confirmText, clearText])
+  }, [customHtml, autoClear, trimWhitespace, rotated, imageType, webStyle, descriptionText, confirmText, clearText])
 
   const getSignature = e => {
     switch (e.nativeEvent.data) {

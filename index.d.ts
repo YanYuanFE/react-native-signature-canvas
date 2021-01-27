@@ -20,6 +20,7 @@ declare module "react-native-signature-canvas" {
     customHtml?: string | null | undefined;
     autoClear?: boolean;
     trimWhitespace?: boolean;
+    rotated?: boolean;
     imageType?: ImageType;
     dataURL?: DataURL;
     penColor?: string;

@@ -359,7 +359,11 @@ const content = `
       };
       SignaturePad.prototype._createPoint = function (x, y) {
           var rect = this.canvas.getBoundingClientRect();
-          return new Point(x - rect.left, y - rect.top, new Date().getTime());
+          if (<%orientation%>) {
+            return new Point(y - rect.top, rect.left+rect.width-x, new Date().getTime());
+          } else {
+            return new Point(x - rect.left, y - rect.top, new Date().getTime());
+          }
       };
       SignaturePad.prototype._addPoint = function (point) {
           var _lastPoints = this._lastPoints;

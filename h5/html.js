@@ -19,8 +19,23 @@ const content = script =>
       -moz-user-select: none;
       -webkit-user-select: none;
       -ms-user-select: none;
+      margin:0;
+      overflow:hidden;
     }
     
+    .rotated-true {
+      transform: rotate(90deg);
+      transform-origin:bottom left;
+      
+      position:absolute;
+      top: -100vw;
+      left: 0;
+      
+      height:100vw;
+      width:100vh;
+      
+      overflow:auto;
+    }
     .m-signature-pad {
       position: absolute;
       font-size: 10px;
@@ -170,14 +185,16 @@ const content = script =>
     </style>
 </head>
 <body onselectstart="return false">
-  <div id="signature-pad" class="m-signature-pad">
-    <div class="m-signature-pad--body">
-      <canvas></canvas>
-    </div>
-    <div class="m-signature-pad--footer">
-      <div class="description"><%description%></div>
-      <button type="button" class="button clear" data-action="clear"><%clear%></button>
-      <button type="button" class="button save" data-action="save"><%confirm%></button>
+<div class="rotated-<%orientation%>">
+    <div id="signature-pad" class="m-signature-pad">
+      <div class="m-signature-pad--body">
+        <canvas></canvas>
+      </div>
+      <div class="m-signature-pad--footer">
+        <div class="description"><%description%></div>
+        <button type="button" class="button clear" data-action="clear"><%clear%></button>
+        <button type="button" class="button save" data-action="save"><%confirm%></button>
+      </div>
     </div>
   </div>
 
