@@ -60,7 +60,7 @@ const SignatureView = forwardRef(({
     html = html.replace(/<%orientation%>/g, rotated);
 
     return { html };
-  }, [customHtml, autoClear, trimWhitespace, rotated, imageType, webStyle, descriptionText, confirmText, clearText])
+  }, [customHtml, autoClear, trimWhitespace, rotated, imageType, webStyle, descriptionText, confirmText, clearText, dataURL])
 
   const getSignature = e => {
     switch (e.nativeEvent.data) {
