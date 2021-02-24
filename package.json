@@ -4,7 +4,8 @@
   "description": "React Native Signature Component based Canvas for Android && IOS && expo",
   "main": "index.js",
   "scripts": {
-    "build": "npm publish"
+    "build": "npm publish",
+    "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s",
   },
   "repository": {
     "type": "git",
