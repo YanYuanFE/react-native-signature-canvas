@@ -29,10 +29,6 @@ const App = () => {
     console.log('Empty');
   }
 
-  handleClear = () => {
-    console.log('clear success!');
-  }
-
   return (
     <View style={{ flex: 1, paddingTop: 40 }}>
       <View style={styles.preview}>
