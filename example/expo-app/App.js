@@ -8,7 +8,7 @@ import Sign from './Sign';
 const App = () => {
   const [signature, setSign] = useState(null);
   const [value, onChangeText] = useState('Useless Placeholder');
-  const [desc, setDesc] = useState("please sign");
+  const [desc, setDesc] = useState("Please Sign");
 
   const handleSignature = signature => {
     console.log(signature);

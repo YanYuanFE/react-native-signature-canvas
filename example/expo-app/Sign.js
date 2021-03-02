@@ -31,6 +31,7 @@ const Sign = ({text, onOK}) => {
   const handleBegin = () => {
     console.log('begin!');
   };
+  const style = `body,html {height: 300px}`;
 
   return (
     <View style={styles.container}>
@@ -48,6 +49,7 @@ const Sign = ({text, onOK}) => {
           minWidth={5}
           trimWhitespace={true}
           imageType={"image/svg+xml"}
+          webStyle={style}
       />
     </View>
   );
@@ -58,7 +60,6 @@ export default Sign;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
     height: 250,
