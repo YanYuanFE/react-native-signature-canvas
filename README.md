@@ -57,6 +57,7 @@ import Signature from 'react-native-signature-canvas';
 | backgroundColor | `string` | default is "rgba(0,0,0,0)", backgroundColor of canvas
 | dotSize | `number` | radius of a single dot
 | minWidth | `number` | minimum width of a line. Defaults to 0.5
+｜ androidHardwareAccelerationDisabled ｜ `boolean` ｜ androidHardwareAccelerationDisabled for react-native-webview. Default is false
 
 ## Methods
 -------------
@@ -169,6 +170,74 @@ const webStyle = `.m-signature-pad--footer
     onEmpty={handleEmpty}
     onEnd={handleEnd}
   />
+
+```
+
+## Custom Button for Confirm and Clear
+
+``` js
+import React, {useRef} from 'react';
+import { StyleSheet, View, Button } from 'react-native';
+import SignatureScreen from 'react-native-signature-canvas';
+
+const Sign = ({onOK}) => {
+  const ref = useRef();
+
+  const handleSignature = signature => {
+    console.log(signature);
+    onOK(signature);
+  };
+
+  const handleClear = () => {
+    ref.current.clearSignature();
+  }
+
+  const handleConfirm = () => {
+    console.log("end");
+    ref.current.readSignature();
+  }
+
+  const style = `.m-signature-pad--footer {display: none; margin: 0px;}`;
+
+  return (
+    <View style={styles.container}>
+      <SignatureScreen
+          ref={ref}
+          onOK={handleSignature} 
+          webStyle={style}
+      />
+      <View style={styles.row}>
+        <Button
+            title="Clear"
+            onPress={handleClear}
+        />
+        <Button
+          title="Confirm"
+          onPress={handleConfirm}
+        />
+      </View>
+    </View>
+  );
+}
+
+export default Sign;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 250,
+    padding: 10,
+  },
+  row: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: 'space-between',
+    width: '100%',
+    alignItems: 'center',
+  }
+});
 
 ```
 
