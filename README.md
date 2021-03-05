@@ -57,7 +57,7 @@ import Signature from 'react-native-signature-canvas';
 | backgroundColor | `string` | default is "rgba(0,0,0,0)", backgroundColor of canvas
 | dotSize | `number` | radius of a single dot
 | minWidth | `number` | minimum width of a line. Defaults to 0.5
-｜ androidHardwareAccelerationDisabled ｜ `boolean` ｜ androidHardwareAccelerationDisabled for react-native-webview. Default is false
+| androidHardwareAccelerationDisabled | `boolean` |androidHardwareAccelerationDisabled for react-native-webview. Default is false
 
 ## Methods
 -------------
