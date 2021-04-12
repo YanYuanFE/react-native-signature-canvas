@@ -54,7 +54,7 @@ import Signature from 'react-native-signature-canvas';
 | imageType | `string` | default is "", "image/jpeg"、"image/svg+xml", imageType of export signature
 | dataURL | `string` | default is "", Base64 string, Draws signature image from data URL.
 | penColor | `string` | default is "black", color of pen
-| backgroundColor | `string` | default is "rgba(0,0,0,0)", backgroundColor of canvas
+| backgroundColor | `string` | default is "rgba(255,255,255,1)", backgroundColor of canvas
 | dotSize | `number` | radius of a single dot
 | minWidth | `number` | minimum width of a line. Defaults to 0.5
 | androidHardwareAccelerationDisabled | `boolean` |androidHardwareAccelerationDisabled for react-native-webview. Default is false
