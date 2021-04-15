@@ -31,7 +31,7 @@ const Sign = ({text, onOK}) => {
   const handleBegin = () => {
     console.log('begin!');
   };
-  const style = `body,html {height: 300px}`;
+  const style = `body,html { width: 100%; height: 600px; }`;
 
   return (
     <View style={styles.container}>
@@ -42,7 +42,7 @@ const Sign = ({text, onOK}) => {
           onEmpty={handleEmpty}
           onClear={handleClear}
           onBegin={handleBegin}
-          autoClear={false} 
+          autoClear={false}
           descriptionText={text}
           backgroundColor="rgb(255,255,255)"
           penColor={"rgba(255,117,2,1)"}
