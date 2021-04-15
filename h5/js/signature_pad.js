@@ -198,7 +198,7 @@ const content = `
                       return (this.minWidth + this.maxWidth) / 2;
                   };
           this.penColor = options.penColor || 'black';
-          this.backgroundColor = options.backgroundColor || 'rgba(0,0,0,0)';
+          this.backgroundColor = options.backgroundColor || 'rgba(255,255,255,1)';
           this.onBegin = options.onBegin;
           this.onEnd = options.onEnd;
           this._ctx = canvas.getContext('2d');
