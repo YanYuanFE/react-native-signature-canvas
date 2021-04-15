@@ -58,6 +58,7 @@ import Signature from 'react-native-signature-canvas';
 | dotSize | `number` | radius of a single dot
 | minWidth | `number` | minimum width of a line. Defaults to 0.5
 | androidHardwareAccelerationDisabled | `boolean` |androidHardwareAccelerationDisabled for react-native-webview. Default is false
+| style | `object` | style of wrapper view
 
 ## Methods
 -------------

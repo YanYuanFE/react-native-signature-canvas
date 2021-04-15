@@ -1,5 +1,6 @@
 declare module "react-native-signature-canvas" {
   import React from "react";
+  import {StyleProp, ViewStyle} from "react-native";
 
   type ImageType = "image/jpeg" | "image/svg+xml";
 
@@ -28,6 +29,7 @@ declare module "react-native-signature-canvas" {
     dotSize?: number,
     minWidth?: number,
     androidHardwareAccelerationDisabled?: boolean;
+    style?: StyleProp<ViewStyle>
   }
 
   export type SignatureViewRef = {
