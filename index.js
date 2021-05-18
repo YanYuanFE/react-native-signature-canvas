@@ -24,6 +24,7 @@ const SignatureView = forwardRef(({
   onUndo=()=>{},
   onDraw=()=>{},
   onErase=()=>{},
+  onGetData=()=>{},
   onChangePenColor=()=>{},
   onBegin = () => { },
   onEnd = () => { },
@@ -66,6 +67,15 @@ const SignatureView = forwardRef(({
 
     return { html };
   }, [customHtml, autoClear, trimWhitespace, rotated, imageType, webStyle, descriptionText, confirmText, clearText, dataURL])
+  
+  const isJson = (str)=> {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+   }
 
   const getSignature = e => {
     switch (e.nativeEvent.data) {
@@ -94,7 +104,7 @@ const SignatureView = forwardRef(({
         onChangePenColor();
         break;
       default:
-        onOK(e.nativeEvent.data);
+        isJson(e.nativeEvent.data)? onGetData(e.nativeEvent.data): onOK(e.nativeEvent.data);
     }
   };
 
@@ -125,9 +135,13 @@ const SignatureView = forwardRef(({
       }
     },
     changePenColor: (color) => {
-      console.warn(color)
       if (webViewRef.current) {
         webViewRef.current.injectJavaScript("changePenColor('"+color+"');true;");
+      }
+    },
+    getData: () => {
+      if (webViewRef.current) {
+        webViewRef.current.injectJavaScript("getData();true;");
       }
     }
   }), [webViewRef]);

@@ -52,6 +52,12 @@ const content = `
         signaturePad.penColor=color;
         window.ReactNativeWebView.postMessage("CHANGE_PEN");
     }
+    
+    function getData (event) {
+        var data = signaturePad.toData();
+        window.ReactNativeWebView.postMessage(JSON.stringify(data));
+    }
+
 
     function draw(event){
         //signaturePad.minWidth= 0.5;
@@ -188,7 +194,10 @@ const content = `
         }
     }
 
-    saveButton.addEventListener("click", readSignature);
+     saveButton.addEventListener("click", () => {    
+        readSignature();
+        getData();    
+   });
 `;
 
 export default content;
