@@ -21,6 +21,11 @@ const SignatureView = forwardRef(({
   onOK = () => { },
   onEmpty = () => { },
   onClear = () => { },
+  onUndo=()=>{},
+  onDraw=()=>{},
+  onErase=()=>{},
+  onGetData=()=>{},
+  onChangePenColor=()=>{},
   onBegin = () => { },
   onEnd = () => { },
   descriptionText = "Sign above",
@@ -62,6 +67,15 @@ const SignatureView = forwardRef(({
 
     return { html };
   }, [customHtml, autoClear, trimWhitespace, rotated, imageType, webStyle, descriptionText, confirmText, clearText, dataURL])
+  
+  const isJson = (str)=> {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+   }
 
   const getSignature = e => {
     switch (e.nativeEvent.data) {
@@ -77,8 +91,20 @@ const SignatureView = forwardRef(({
       case "CLEAR":
         onClear();
         break;
+      case "UNDO":
+        onUndo();
+        break;
+      case "DRAW":
+        onDraw();
+        break;
+      case "ERASE":
+        onErase();
+        break;
+      case "CHANGE_PEN":
+        onChangePenColor();
+        break;
       default:
-        onOK(e.nativeEvent.data);
+        isJson(e.nativeEvent.data)? onGetData(e.nativeEvent.data): onOK(e.nativeEvent.data);
     }
   };
 
@@ -91,6 +117,31 @@ const SignatureView = forwardRef(({
     clearSignature: () => {
       if (webViewRef.current) {
         webViewRef.current.injectJavaScript("clearSignature();true;");
+      }
+    },
+    undo: () => {
+      if (webViewRef.current) {
+        webViewRef.current.injectJavaScript("undo();true;");
+      }
+    },
+    draw: () => {
+      if (webViewRef.current) {
+        webViewRef.current.injectJavaScript("draw();true;");
+      }
+    },
+    erase: () => {
+      if (webViewRef.current) {
+        webViewRef.current.injectJavaScript("erase();true;");
+      }
+    },
+    changePenColor: (color) => {
+      if (webViewRef.current) {
+        webViewRef.current.injectJavaScript("changePenColor('"+color+"');true;");
+      }
+    },
+    getData: () => {
+      if (webViewRef.current) {
+        webViewRef.current.injectJavaScript("getData();true;");
       }
     }
   }), [webViewRef]);
