@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm publish",
-    "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "postversion": "git push --follow-tags"
   },
   "repository": {

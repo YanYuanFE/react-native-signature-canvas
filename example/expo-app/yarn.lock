@@ -5106,10 +5106,10 @@ react-native-safe-area-context@3.1.9:
   resolved "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-3.1.9.tgz#48864ea976b0fa57142a2cc523e1fd3314e7247e"
   integrity sha512-wmcGbdyE/vBSL5IjDPReoJUEqxkZsywZw5gPwsVUV1NBpw5eTIdnL6Y0uNKHE25Z661moxPHQz6kwAkYQyorxA==
 
-react-native-signature-canvas@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.npmjs.org/react-native-signature-canvas/-/react-native-signature-canvas-3.6.0.tgz#f5567154223342b2e530cb0cf74af9f496a31817"
-  integrity sha512-4TRdii1olBku6F6aCkPs0q3qp+zA6FEBPLRPYRlrpMX3ixVXnAI+PiZ9w4afHAXz4O4lgelh/HDyBiUBgv2GIQ==
+react-native-signature-canvas@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.nlark.com/react-native-signature-canvas/download/react-native-signature-canvas-4.1.0.tgz?cache=0&sync_timestamp=1626268524919&other_urls=https%3A%2F%2Fregistry.nlark.com%2Freact-native-signature-canvas%2Fdownload%2Freact-native-signature-canvas-4.1.0.tgz#99435af051234964258df7b83a088e2d5003100b"
+  integrity sha1-mUNa8FEjSWQljfe4OgiOLVADEAs=
 
 react-native-web@~0.13.12:
   version "0.13.18"

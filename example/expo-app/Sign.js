@@ -19,24 +19,48 @@ const Sign = ({onOK}) => {
     ref.current.readSignature();
   }
 
+  const undo = () => {
+    ref.current.undo();
+  };
+
+  const erase = () => {
+    ref.current.erase();
+  };
+
+  const draw = () => {
+    ref.current.draw();
+  };
+
+  const changeColor = (color) => {
+    ref.current.changePenColor(color);
+  };
+
   const style = `.m-signature-pad--footer {display: none; margin: 0px;}`;
 
   return (
     <View style={styles.container}>
       <SignatureScreen
+          rotated
           ref={ref}
           onOK={handleSignature}
           webStyle={style}
           backgroundColor={'rgba(255,255,255,0)'}
       />
+
+      <View style={styles.row}>
+        <Button title="undo" onPress={undo} />
+        <Button title="draw" onPress={draw} />
+        <Button title="erase" onPress={erase} />
+        <Button title="change color" onPress={()=>changeColor("#d45")} />
+      </View>
       <View style={styles.row}>
         <Button
             title="Clear"
             onPress={handleClear}
         />
         <Button
-          title="Confirm"
-          onPress={handleConfirm}
+            title="Confirm"
+            onPress={handleConfirm}
         />
       </View>
     </View>
@@ -50,7 +74,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 250,
     padding: 10,
   },
   row: {

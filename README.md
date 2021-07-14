@@ -66,6 +66,10 @@ import Signature from 'react-native-signature-canvas';
 | :------------ |:---------------|
 | readSignature() | Reads the current signature on the canvas and triggers either the onOK or onEmpty callbacks |
 | clearSignature() | Clears the current signature |
+| undo() | undo signature |
+| erase() | erase signature |
+| draw() | draw signature |
+| changePenColor(color) | change pen color |
 
 You need to use ref like:
 ``` js

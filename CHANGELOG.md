@@ -1,4 +1,26 @@
-#  (2021-02-24)
+# [4.1.0](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v4.0.0...v4.1.0) (2021-07-14)
+
+
+
+# [4.0.0](https://github.com/YanYuanFE/react-native-signature-canvas/compare/3.6.0...v4.0.0) (2021-04-15)
+
+
+### Bug Fixes
+
+* example ([664ba0c](https://github.com/YanYuanFE/react-native-signature-canvas/commit/664ba0c6a39e5ab476fe94ff9e3c4693ba6f9665))
+
+
+### Features
+
+* style for view ([439ae9f](https://github.com/YanYuanFE/react-native-signature-canvas/commit/439ae9facba56d6c566dbd96bc0d5e2c8ad51312))
+
+
+
+# [3.6.0](https://github.com/YanYuanFE/react-native-signature-canvas/compare/3.5.2...3.6.0) (2021-03-02)
+
+
+
+## [3.5.2](https://github.com/YanYuanFE/react-native-signature-canvas/compare/3.5.1...3.5.2) (2021-02-26)
 
 
 

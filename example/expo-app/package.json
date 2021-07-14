@@ -13,7 +13,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
-    "react-native-signature-canvas": "^3.6.0",
+    "react-native-signature-canvas": "^4.1.0",
     "react-native-web": "~0.13.12",
     "react-native-webview": "^11.2.3"
   },
