@@ -27,6 +27,7 @@ const Sign = ({onOK}) => {
           ref={ref}
           onOK={handleSignature}
           webStyle={style}
+          backgroundColor={'rgba(255,255,255,0)'}
       />
       <View style={styles.row}>
         <Button
