@@ -70,7 +70,8 @@ import SignatureScreen from 'react-native-signature-canvas';
 | onClear                             | `function` | callback function after clearing the signature                                                                                                        |
 | onBegin                             | `function` | callback function when a new stroke is started                                                                                                        |
 | onEnd                               | `function` | callback function when the stroke has ended                                                                                                           |
-| onUndo                              | `function` | callback function when undo() is called                                                                                                               |
+| onUndo                              | `function` | callback function when undo() is called |
+| onRedo                              | `function` | callback function when redo() is called |
 | onDraw                              | `function` | callback function when drawing is enabled                                                                                                             |
 | onErase                             | `function` | callback function when erasing is enabled                                                                                                             |
 | onChangePenColor                    | `function` | callback function after changing the pen color |
@@ -95,6 +96,7 @@ import SignatureScreen from 'react-native-signature-canvas';
 | erase()               | Enable erasing signature                                                                    |
 | readSignature()       | Reads the current signature on the canvas and triggers either the onOK or onEmpty callbacks |
 | undo()                | Undo last stroke                                                                            |
+| redo()                | Redo last stroke                                                                            |
 
 To call the methods use the `useRef` hook:
 

@@ -28,6 +28,7 @@ declare module "react-native-signature-canvas" {
     onEmpty?: () => void;
     onClear?: () => void;
     onUndo?: () => void;
+    onRedo?: () => void;
     onDraw?: () => void;
     onErase?: () => void;
     onGetData?: () => void;
@@ -55,6 +56,7 @@ declare module "react-native-signature-canvas" {
     getData: () => void;
     readSignature: () => void;
     undo: () => void;
+    redo: () => void;
   }
 
   const SignatureView: ForwardRef<SignatureViewRef, SignatureViewProps>

@@ -36,6 +36,7 @@ const SignatureView = forwardRef(({
   onEmpty = () => {},
   onClear = () => {},
   onUndo=()=>{},
+  onRedo=()=>{},
   onDraw=()=>{},
   onErase=()=>{},
   onGetData=()=>{},
@@ -110,6 +111,9 @@ const SignatureView = forwardRef(({
       case "UNDO":
         onUndo();
         break;
+      case "REDO":
+        onRedo();
+        break;
       case "DRAW":
         onDraw();
         break;
@@ -138,6 +142,11 @@ const SignatureView = forwardRef(({
     undo: () => {
       if (webViewRef.current) {
         webViewRef.current.injectJavaScript("undo();true;");
+      }
+    },
+    redo: () => {
+      if (webViewRef.current) {
+        webViewRef.current.injectJavaScript("redo();true;");
       }
     },
     draw: () => {

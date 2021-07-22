@@ -144,6 +144,7 @@ export default `
           this.options = options;
           this._startingSignature = null;
           this._isDrawing = true;
+          this._history = [];
           this._handleMouseDown = function (event) {
               if (event.which === 1) {
                   _this._mouseButtonDown = true;
@@ -214,10 +215,21 @@ export default `
       SignaturePad.prototype.undo = function () {
         const data = this.toData();
         if (data && data.length) {
-            data.pop(); // remove the last stroke
+            this._history.push(data.pop()); // remove the last stroke
         } else if (this._startingSignature) {
             return; // they performed undo of background sig
         }
+        this.clear();
+        if (this._startingSignature) {
+            this.fromDataURL(this._startingSignature, {}, () => this.fromData(data, true));
+        } else {
+            this.fromData(data, true);
+        }
+      };
+      SignaturePad.prototype.redo = function () {
+        if (!this._history.length) return;
+        const data = this.toData();
+        data.push(this._history.pop());
         this.clear();
         if (this._startingSignature) {
             this.fromDataURL(this._startingSignature, {}, () => this.fromData(data, true));
@@ -324,6 +336,7 @@ export default `
           this.onBegin(event);
         }
         this._data.push(newPointGroup);
+        this._history = [];
         this._reset();
         this._strokeUpdate(event);
       };

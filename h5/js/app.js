@@ -45,6 +45,11 @@ export default `
         window.ReactNativeWebView.postMessage("UNDO");
     }
     
+    function redo() {
+        signaturePad.redo();
+        window.ReactNativeWebView.postMessage("REDO");
+      }
+
     function changePenColor(color){
         signaturePad.penColor = color;
         window.ReactNativeWebView.postMessage("CHANGE_PEN");
