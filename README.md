@@ -166,6 +166,7 @@ const style = `.m-signature-pad {box-shadow: none; border: none; }
 
 ## Using an overlay image
 An overlay is a non-erasable image that can be used to "guide" the drawing, similar to lines in a colouring book. Make sure the image format is .png and that it has a transparent background. Also, don't forget to provide the width and height of the image.
+Use the `overlaySrc` prop to provide the link.
 
 ```js
 const imgWidth = 256;
@@ -389,7 +390,7 @@ const styles = StyleSheet.create({
 
 ## Using Typescript
 
-To use Typescript just import `SignatureViewRef` and in [useRef hook](https://reactjs.org/docs/hooks-reference.html#useref) inform that the reference is of the `SignatureViewRef` type, with that the `readSignature` and `clearSignature` methods will be available.
+To use Typescript just import `SignatureViewRef` and in [useRef hook](https://reactjs.org/docs/hooks-reference.html#useref) inform that the reference is of the `SignatureViewRef` type, with that the regular `ref` methods will be available.
 
 ```ts
 import React, { useRef } from "react";
