@@ -1,4 +1,4 @@
-const content = `
+export default `
     var wrapper = document.getElementById("signature-pad"),
         clearButton = wrapper.querySelector("[data-action=clear]"),
         saveButton = wrapper.querySelector("[data-action=save]"),
@@ -32,65 +32,44 @@ const content = `
         backgroundColor: '<%backgroundColor%>',
         dotSize: <%dotSize%>,
         minWidth: <%minWidth%>,
+        maxWidth: <%maxWidth%>,
     });
 
-    function clearSignature (event) {
+    function clearSignature () {
         signaturePad.clear();
         window.ReactNativeWebView.postMessage("CLEAR");
     }
     
-    function undo(event){
-        var data = signaturePad.toData();
-        if (data) {
-        data.pop(); // remove the last dot or line
-        signaturePad.fromData(data);
-        }
+    function undo() {
+        signaturePad.undo();
         window.ReactNativeWebView.postMessage("UNDO");
     }
     
     function changePenColor(color){
-        signaturePad.penColor=color;
+        signaturePad.penColor = color;
         window.ReactNativeWebView.postMessage("CHANGE_PEN");
     }
     
-    function getData (event) {
+    function getData () {
         var data = signaturePad.toData();
         window.ReactNativeWebView.postMessage(JSON.stringify(data));
     }
 
-
-    function draw(event){
-        //signaturePad.minWidth= 0.5;
-        //signaturePad.maxWidth= 2.5;
-        var ctx = canvas.getContext('2d');
-        console.log(ctx.globalCompositeOperation);
-        ctx.globalCompositeOperation = 'source-over';
-        window.ReactNativeWebView.postMessage("DRAW");
+    function draw() {
+      //signaturePad.minWidth= 0.5;
+      //signaturePad.maxWidth= 2.5;
+      signaturePad.draw();
+      window.ReactNativeWebView.postMessage("DRAW");
     }
 
-    function erase(event){
-        //signaturePad.minWidth= 5;
-        //signaturePad.maxWidth= 10;
-        var ctx = canvas.getContext('2d');
-        ctx.globalCompositeOperation = 'destination-out';
-        window.ReactNativeWebView.postMessage("ERASE");
-    }
-
-
-    clearButton.addEventListener("click", clearSignature );
-
-    var autoClear = <%autoClear%>;
-    
-    var trimWhitespace = <%trimWhitespace%>;
-
-    var dataURL = '<%dataURL%>';
-
-    if (dataURL) {
-        signaturePad.fromDataURL(dataURL);
+    function erase() {
+      //signaturePad.minWidth= 5;
+      //signaturePad.maxWidth= 10;
+      signaturePad.erase();
+      window.ReactNativeWebView.postMessage("ERASE");
     }
 
     function cropWhitespace(url) {
-
         var myImage = new Image();
         myImage.crossOrigin = "Anonymous";
         myImage.onload = function(){
@@ -188,16 +167,22 @@ const content = `
         } else {
             var url = signaturePad.toDataURL('<%imageType%>');
             trimWhitespace? cropWhitespace(url): window.ReactNativeWebView.postMessage(url);
-            if (autoClear) {
-                signaturePad.clear();
-            }
+            if (autoClear) signaturePad.clear();
         }
     }
 
-     saveButton.addEventListener("click", () => {    
-        readSignature();
-        getData();    
-   });
-`;
+    var autoClear = <%autoClear%>;
+    
+    var trimWhitespace = <%trimWhitespace%>;
 
-export default content;
+    var dataURL = '<%dataURL%>';
+
+    if (dataURL) signaturePad.fromDataURL(dataURL);
+
+    clearButton.addEventListener("click", clearSignature );
+
+    saveButton.addEventListener("click", () => {    
+      readSignature();
+      getData();    
+    });
+`;

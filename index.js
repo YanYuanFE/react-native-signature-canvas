@@ -17,34 +17,41 @@ const styles = StyleSheet.create({
 });
 
 const SignatureView = forwardRef(({
-  webStyle = "",
-  onOK = () => { },
-  onEmpty = () => { },
-  onClear = () => { },
+  androidHardwareAccelerationDisabled = false,
+  autoClear = false,
+  backgroundColor = "",
+  bgHeight = 0,
+  bgWidth = 0,
+  bgSrc = null,
+  clearText = "Clear",
+  confirmText = "Confirm",
+  customHtml = null,
+  dataURL = "",
+  descriptionText = "Sign above",
+  dotSize = 0,
+  imageType = "",
+  minWidth = 0.5,
+  maxWidth = 2.5,
+  onOK = () => {},
+  onEmpty = () => {},
+  onClear = () => {},
   onUndo=()=>{},
   onDraw=()=>{},
   onErase=()=>{},
   onGetData=()=>{},
   onChangePenColor=()=>{},
-  onBegin = () => { },
-  onEnd = () => { },
-  descriptionText = "Sign above",
-  clearText = "Clear",
-  confirmText = "Confirm",
-  customHtml = null,
-  autoClear = false,
-  trimWhitespace = false,
-  rotated = false,
-  imageType = "",
-  dataURL = "",
+  onBegin = () => {},
+  onEnd = () => {},
+  overlayHeight = 0,
+  overlayWidth = 0,
+  overlaySrc = null,
   penColor = "",
-  backgroundColor = "",
-  dotSize = 0,
-  minWidth = 0.5,
-  androidHardwareAccelerationDisabled = false,
+  rotated = false,
   style = null,
-  webviewContainerStyle = null,
   scrollable = false,
+  trimWhitespace = false,
+  webStyle = "",
+  webviewContainerStyle = null,
 }, ref) => {
   const [loading, setLoading] = useState(true);
   const webViewRef = useRef();
@@ -59,8 +66,15 @@ const SignatureView = forwardRef(({
     injectedJavaScript = injectedJavaScript.replace(/<%backgroundColor%>/g, backgroundColor);
     injectedJavaScript = injectedJavaScript.replace(/<%dotSize%>/g, dotSize);
     injectedJavaScript = injectedJavaScript.replace(/<%minWidth%>/g, minWidth);
+    injectedJavaScript = injectedJavaScript.replace(/<%maxWidth%>/g, maxWidth);
     
     let html = htmlContentValue(injectedJavaScript);
+    html = html.replace(/<%bgWidth%>/g, bgWidth);
+    html = html.replace(/<%bgHeight%>/g, bgHeight);
+    html = html.replace(/<%bgSrc%>/g, bgSrc);
+    html = html.replace(/<%overlayWidth%>/g, overlayWidth);
+    html = html.replace(/<%overlayHeight%>/g, overlayHeight);
+    html = html.replace(/<%overlaySrc%>/g, overlaySrc);
     html = html.replace(/<%style%>/g, webStyle);
     html = html.replace(/<%description%>/g, descriptionText);
     html = html.replace(/<%confirm%>/g, confirmText);
@@ -148,10 +162,7 @@ const SignatureView = forwardRef(({
     }
   }), [webViewRef]);
 
-  const renderError = e => {
-    const { nativeEvent } = e;
-    console.warn("WebView error: ", nativeEvent);
-  };
+  const renderError = ({nativeEvent}) => console.warn("WebView error: ", nativeEvent);
 
   return (
     <View style={[styles.webBg, style]}>
