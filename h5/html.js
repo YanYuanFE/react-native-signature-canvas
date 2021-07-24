@@ -1,5 +1,5 @@
-const content = script =>
-    `<!doctype html>
+export default (script) =>
+  `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -152,10 +152,12 @@ const content = script =>
     </style>
 </head>
 <body onselectstart="return false">
-<div class="rotated-<%orientation%>">
+  <div class="rotated-<%orientation%>">
     <div id="signature-pad" class="m-signature-pad">
       <div class="m-signature-pad--body">
+        <img style="position: absolute; top: 0; left: 0; pointer-events: none;" src=<%bgSrc%> width=<%bgWidth%> height=<%bgHeight%> />
         <canvas></canvas>
+        <img style="position: absolute; top: 0; left: 0; pointer-events: none;" src=<%overlaySrc%> width=<%overlayWidth%> height=<%overlayHeight%> />
       </div>
       <div class="m-signature-pad--footer">
         <button type="button" class="button clear" data-action="clear"><%clear%></button>
@@ -170,5 +172,3 @@ const content = script =>
   </script>
 </body>
 </html>`;
-
-export default content;
