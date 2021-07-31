@@ -55,7 +55,7 @@ import SignatureScreen from 'react-native-signature-canvas';
 | backgroundColor                     |  `string`  | default is "rgba(255,255,255,0)" (_transparent_), background color of the canvas                                                                                           |
 | bgHeight                            |  `number`  | height of the background image                                                                                                                        |
 | bgWidth                             |  `number`  | width of the background image                                                                                                                         |
-| bgSrc                               |  `string`  | background image source uri (_html_)                                                                                                                  |
+| bgSrc                               |  `string`  | background image source uri (_url_)                                                                                                                  |
 | clearText                           |  `string`  | clear button text                                                                                                                                     |
 | confirmText                         |  `string`  | save button text                                                                                                                                      |
 | customHtml                          | `function` | html string that lets you modify things like the layout or elements                                                                                   |
@@ -68,6 +68,7 @@ import SignatureScreen from 'react-native-signature-canvas';
 | onOK                                | `function` | callback function after saving non-empty signature                                                                                                    |
 | onEmpty                             | `function` | callback function after trying to save an empty signature                                                                                             |
 | onClear                             | `function` | callback function after clearing the signature                                                                                                        |
+|onGetData|`function`|callback function when getData() is called
 | onBegin                             | `function` | callback function when a new stroke is started                                                                                                        |
 | onEnd                               | `function` | callback function when the stroke has ended                                                                                                           |
 | onUndo                              | `function` | callback function when undo() is called |
@@ -77,7 +78,7 @@ import SignatureScreen from 'react-native-signature-canvas';
 | onChangePenColor                    | `function` | callback function after changing the pen color |
 |overlayHeight|`number`|height of the overlay image|
 |overlayWidth|`number`|width of the overlay image|
-|overlaySrc|`string`|overlay image source uri (html) _must be .png with a transparent background_
+|overlaySrc|`string`|overlay image source uri (url) _must be .png with a transparent background_
 | penColor                            |  `string`  | default is "black", color of pen                                                                                                                      |
 | rotated                             | `boolean`  | rotate signature pad 90 degrees                                                                                                                       |
 | style                               |  `object`  | style of wrapper view                                                                                                                                 |
@@ -94,7 +95,8 @@ import SignatureScreen from 'react-native-signature-canvas';
 | changePenColor(color) | Change pen color                                                                            |
 | draw()                | Enable drawing signature                                                                    |
 | erase()               | Enable erasing signature                                                                    |
-| readSignature()       | Reads the current signature on the canvas and triggers either the onOK or onEmpty callbacks |
+|getData()| Triggers the `onGetData` callback with a single `data` JSON string |
+| readSignature()       | Reads the current signature on the canvas and triggers either the `onOK` or `onEmpty` callbacks |
 | undo()                | Undo last stroke                                                                            |
 | redo()                | Redo last stroke                                                                            |
 
@@ -127,6 +129,11 @@ const Sign = ({ text, onOK }) => {
     ref.current.readSignature();
   };
 
+  // Called after ref.current.getData()
+  const handleData = (data) => {
+    console.log(data);
+  };
+
   return (
     <SignatureScreen
       ref={ref}
@@ -134,6 +141,7 @@ const Sign = ({ text, onOK }) => {
       onOK={handleOK}
       onEmpty={handleEmpty}
       onClear={handleClear}
+      onGetData={handleData}
       autoClear={true}
       descriptionText={text}
     />
@@ -167,7 +175,7 @@ const style = `.m-signature-pad {box-shadow: none; border: none; }
 ```
 
 ## Using an overlay image
-An overlay is a non-erasable image that can be used to "guide" the drawing, similar to lines in a colouring book. Make sure the image format is .png and that it has a transparent background. Also, don't forget to provide the width and height of the image.
+An overlay is a non-erasable image that can be used as a guideline similar to a colouring book. Make sure the image format is .png and that it has a transparent background. Also, don't forget to provide the width and height of the image.
 Use the `overlaySrc` prop to provide the link.
 
 ```js
@@ -193,7 +201,7 @@ const style = `.m-signature-pad {box-shadow: none; border: none; }
 
 ## Save Base64 Image as File
 
-If you use expo, you can use **expo-file-system** to save the base64 image as a local file; if you're working with react-native-cli, use **react-native-fs**.
+If you're using expo, you can use **expo-file-system** to save the base64 image as a local file; if you're working with react-native-cli, use **react-native-fs**.
 
 ```js
 import * as FileSystem from "expo-file-system";
