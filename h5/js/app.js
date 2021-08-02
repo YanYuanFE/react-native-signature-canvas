@@ -50,9 +50,15 @@ export default `
         window.ReactNativeWebView.postMessage("REDO");
       }
 
-    function changePenColor(color){
+    function changePenColor(color) {
         signaturePad.penColor = color;
         window.ReactNativeWebView.postMessage("CHANGE_PEN");
+    }
+
+    function changePenSize(minW, maxW) {
+      signaturePad.minWidth = minW;
+      signaturePad.maxWidth = maxW;
+      window.ReactNativeWebView.postMessage("CHANGE_PEN_SIZE");
     }
     
     function getData () {
