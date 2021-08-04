@@ -271,13 +271,8 @@ export default `
           if (!this._startingSignature) this._startingSignature = dataUrl;
       };
       SignaturePad.prototype.toDataURL = function (type, encoderOptions) {
-          if (type === void 0) { type = 'image/png'; }
-          switch (type) {
-              case 'image/svg+xml':
-                  return this._toSVG();
-              default:
-                  return this.canvas.toDataURL(type, encoderOptions);
-          }
+        if (type === void 0) type = "image/png";
+        return type === "image/svg+xml" ? this._toSVG() : this.canvas.toDataURL(type, encoderOptions);
       };
       SignaturePad.prototype.on = function () {
           this.canvas.style.touchAction = 'none';

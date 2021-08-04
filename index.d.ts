@@ -2,7 +2,7 @@ declare module "react-native-signature-canvas" {
   import React from "react";
   import {StyleProp, ViewStyle} from "react-native";
 
-  type ImageType = "image/jpeg" | "image/svg+xml";
+  type ImageType = "image/jpeg" | "image/svg+xml" | "image/png";
 
   type DataURL = "Base64";
 
