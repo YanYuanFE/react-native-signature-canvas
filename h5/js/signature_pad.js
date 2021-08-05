@@ -320,7 +320,7 @@ export default `
       SignaturePad.prototype._strokeBegin = function (event) {
         var newPointGroup = {
           color: this.penColor,
-          dotSize: typeof this.dotSize === 'function' ? this.dotSize() : this.dotSize;
+          dotSize: typeof this.dotSize === 'function' ? this.dotSize() : this.dotSize,
           minWidth: this.minWidth,
           maxWidth: this.maxWidth,
           compositeOperation: this._ctx.globalCompositeOperation,
