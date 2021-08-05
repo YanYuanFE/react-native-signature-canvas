@@ -67,15 +67,11 @@ export default `
     }
 
     function draw() {
-      //signaturePad.minWidth= 0.5;
-      //signaturePad.maxWidth= 2.5;
       signaturePad.draw();
       window.ReactNativeWebView.postMessage("DRAW");
     }
 
     function erase() {
-      //signaturePad.minWidth= 5;
-      //signaturePad.maxWidth= 10;
       signaturePad.erase();
       window.ReactNativeWebView.postMessage("ERASE");
     }

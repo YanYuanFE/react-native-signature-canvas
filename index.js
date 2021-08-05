@@ -28,7 +28,7 @@ const SignatureView = forwardRef(({
   customHtml = null,
   dataURL = "",
   descriptionText = "Sign above",
-  dotSize = 0,
+  dotSize = null,
   imageType = "",
   minWidth = 0.5,
   maxWidth = 2.5,
@@ -170,7 +170,7 @@ const SignatureView = forwardRef(({
     },
     changePenSize: (minW, maxW) => {
       if (webViewRef.current) {
-        webViewRef.current.injectJavaScript("changePenSize(" +minW + ',' + maxW + ");true;");
+        webViewRef.current.injectJavaScript("changePenSize("+minW+','+maxW+");true;");
       }
     },
     getData: () => {
