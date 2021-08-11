@@ -4,7 +4,7 @@ declare module "react-native-signature-canvas" {
 
   type ImageType = "image/png" | "image/jpeg" | "image/svg+xml";
 
-  type DataURL = "Base64";
+  type DataURL = "Base64" | string;
 
   type ForwardRef<T, P> = React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<T>>;
 
