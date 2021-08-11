@@ -28,7 +28,7 @@ const SignatureView = forwardRef(({
   customHtml = null,
   dataURL = "",
   descriptionText = "Sign above",
-  dotSize = 0,
+  dotSize = null,
   imageType = "",
   minWidth = 0.5,
   maxWidth = 2.5,
@@ -41,6 +41,7 @@ const SignatureView = forwardRef(({
   onErase=()=>{},
   onGetData=()=>{},
   onChangePenColor=()=>{},
+  onChangePenSize=()=>{},
   onBegin = () => {},
   onEnd = () => {},
   overlayHeight = 0,
@@ -123,6 +124,9 @@ const SignatureView = forwardRef(({
       case "CHANGE_PEN":
         onChangePenColor();
         break;
+      case "CHANGE_PEN_SIZE":
+        onChangePenSize();
+        break;
       default:
         isJson(e.nativeEvent.data)? onGetData(e.nativeEvent.data): onOK(e.nativeEvent.data);
     }
@@ -162,6 +166,11 @@ const SignatureView = forwardRef(({
     changePenColor: (color) => {
       if (webViewRef.current) {
         webViewRef.current.injectJavaScript("changePenColor('"+color+"');true;");
+      }
+    },
+    changePenSize: (minW, maxW) => {
+      if (webViewRef.current) {
+        webViewRef.current.injectJavaScript("changePenSize("+minW+','+maxW+");true;");
       }
     },
     getData: () => {

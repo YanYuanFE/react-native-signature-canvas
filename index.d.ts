@@ -4,7 +4,7 @@ declare module "react-native-signature-canvas" {
 
   type ImageType = "image/png" | "image/jpeg" | "image/svg+xml";
 
-  type DataURL = "Base64";
+  type DataURL = "Base64" | string;
 
   type ForwardRef<T, P> = React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<T>>;
 
@@ -32,7 +32,8 @@ declare module "react-native-signature-canvas" {
     onDraw?: () => void;
     onErase?: () => void;
     onGetData?: () => void;
-    onChangePenColo?: () => void;
+    onChangePenColor?: () => void;
+    onChangePenSize?: () => void;
     onBegin?: () => void;
     onEnd?: () => void;
     overlayHeight?: number;
@@ -49,6 +50,7 @@ declare module "react-native-signature-canvas" {
 
   export type SignatureViewRef = {
     changePenColor: (color: string) => void;
+    changePenSize: (minW: number, maxW: number) => void;
     clearSignature: () => void;
     cropWhitespace: (url: string) => void;
     draw: () => void;

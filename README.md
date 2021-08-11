@@ -76,6 +76,7 @@ import SignatureScreen from 'react-native-signature-canvas';
 | onDraw                              | `function` | callback function when drawing is enabled                                                                                                             |
 | onErase                             | `function` | callback function when erasing is enabled                                                                                                             |
 | onChangePenColor                    | `function` | callback function after changing the pen color |
+| onChangePenSize | `function` | callback function after changing the pen size
 |overlayHeight|`number`|height of the overlay image|
 |overlayWidth|`number`|width of the overlay image|
 |overlaySrc|`string`|overlay image source uri (url) _must be .png with a transparent background_
@@ -89,16 +90,17 @@ import SignatureScreen from 'react-native-signature-canvas';
 
 ---
 
-| Function              | Description                                                                                 |
-| :-------------------- | :------------------------------------------------------------------------------------------ |
-| clearSignature()      | Clear the current signature                                                                 |
-| changePenColor(color) | Change pen color                                                                            |
-| draw()                | Enable drawing signature                                                                    |
-| erase()               | Enable erasing signature                                                                    |
-|getData()| Triggers the `onGetData` callback with a single `data` JSON string |
-| readSignature()       | Reads the current signature on the canvas and triggers either the `onOK` or `onEmpty` callbacks |
-| undo()                | Undo last stroke                                                                            |
-| redo()                | Redo last stroke                                                                            |
+| Function                  | Description                                                                                     |
+| :--------------------     | :-----------------------------------------------------------------------------------------------|
+| clearSignature()          | Clear the current signature                                                                     |
+| changePenColor(color)     | Change pen color                                                                                |
+| changePenSize(minW, maxW) | Change pen size                                                                                 |
+| draw()                    | Enable drawing signature                                                                        |
+| erase()                   | Enable erasing signature                                                                        |
+| getData()                 | Triggers the `onGetData` callback with a single `data` JSON string                              |
+| readSignature()           | Reads the current signature on the canvas and triggers either the `onOK` or `onEmpty` callbacks |
+| undo()                    | Undo last stroke                                                                                |
+| redo()                    | Redo last stroke                                                                                |
 
 To call the methods use the `useRef` hook:
 
