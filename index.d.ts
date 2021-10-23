@@ -17,7 +17,7 @@ declare module "react-native-signature-canvas" {
     bgSrc?: string;
     clearText?: string;
     confirmText?: string;
-    customHtml?: string | null | undefined;
+    customHtml?: (injectedJavaScript: string) => string;
     dataURL?: DataURL;
     descriptionText?: string;
     dotSize?: number;
