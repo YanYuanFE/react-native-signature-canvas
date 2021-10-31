@@ -58,7 +58,7 @@ import SignatureScreen from 'react-native-signature-canvas';
 | bgSrc                               |  `string`  | background image source uri (_url_)                                                                                                                  |
 | clearText                           |  `string`  | clear button text                                                                                                                                     |
 | confirmText                         |  `string`  | save button text                                                                                                                                      |
-| customHtml                          | `function` | html string that lets you modify things like the layout or elements                                                                                   |
+| customHtml                          | `(injectedJavaScript: string) => string` | html string that lets you modify things like the layout or elements                                                                                   |
 | dataURL                             |  `string`  | default is "", Base64 string, draws saved signature from dataURL.                                                                                     |
 | descriptionText                     |  `string`  | description text for signature                                                                                                                        |
 | dotSize                             |  `number`  | radius of a single dot _(not stroke width)_                                                                                                           |
