@@ -39,13 +39,23 @@ const Sign = ({onOK}) => {
 
   return (
     <View style={styles.container}>
-      <SignatureScreen
-          rotated
-          ref={ref}
-          onOK={handleSignature}
-          webStyle={style}
-          backgroundColor={'rgba(255,255,255,0)'}
-      />
+      <View style={styles.box}>
+        <SignatureScreen
+            ref={ref}
+            onOK={handleSignature}
+            webStyle={`
+                .m-signature-pad {
+                  flex: 1;
+                  box-shadow: none;
+                  border-radius: 10px;
+                }
+                .m-signature-pad--footer {
+                  display: none;
+                }
+                `}
+            backgroundColor={'rgba(255,255,255,0)'}
+        />
+      </View>
 
       <View style={styles.row}>
         <Button title="undo" onPress={undo} />
@@ -72,8 +82,8 @@ export default Sign;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     padding: 10,
   },
   row: {
@@ -82,5 +92,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     alignItems: 'center',
+    height: 50,
+    backgroundColor: 'red'
+  },
+  box: {
+    backgroundColor: 'green',
+    height: 300
   }
 });

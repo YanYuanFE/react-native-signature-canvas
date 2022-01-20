@@ -31,7 +31,7 @@ const App = () => {
 
   return (
     <View style={{ flex: 1, paddingTop: 40 }}>
-      {/* <View style={styles.preview}>
+      <View style={styles.preview}>
         {signature ? (
           <Image
             resizeMode={"contain"}
@@ -39,9 +39,9 @@ const App = () => {
             source={{ uri: signature }}
           />
         ) : null}
-      </View> */}
+      </View>
       <Sign
-        onOK={handleSignature} 
+        onOK={handleSignature}
         text={desc}
        />
     </View>
