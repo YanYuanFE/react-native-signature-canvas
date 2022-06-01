@@ -69,7 +69,7 @@ const SignatureView = forwardRef(({
     injectedJavaScript = injectedJavaScript.replace(/<%dotSize%>/g, dotSize);
     injectedJavaScript = injectedJavaScript.replace(/<%minWidth%>/g, minWidth);
     injectedJavaScript = injectedJavaScript.replace(/<%maxWidth%>/g, maxWidth);
-    
+
     let html = htmlContentValue(injectedJavaScript);
     html = html.replace(/<%bgWidth%>/g, bgWidth);
     html = html.replace(/<%bgHeight%>/g, bgHeight);
@@ -84,8 +84,8 @@ const SignatureView = forwardRef(({
     html = html.replace(/<%orientation%>/g, rotated);
 
     return { html };
-  }, [customHtml, autoClear, trimWhitespace, rotated, imageType, webStyle, descriptionText, confirmText, clearText, dataURL])
-  
+  }, [customHtml, autoClear, trimWhitespace, rotated, imageType, webStyle, descriptionText, confirmText, clearText, dataURL, bgSrc, bgWidth, bgHeight])
+
   const isJson = (str)=> {
     try {
         JSON.parse(str);
