@@ -31,7 +31,7 @@ declare module "react-native-signature-canvas" {
     onRedo?: () => void;
     onDraw?: () => void;
     onErase?: () => void;
-    onGetData?: () => void;
+    onGetData?: (data: any) => void;
     onChangePenColor?: () => void;
     onChangePenSize?: () => void;
     onBegin?: () => void;
