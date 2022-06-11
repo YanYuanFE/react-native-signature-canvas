@@ -24,6 +24,7 @@ const Sign = ({onOK}) => {
   }
 
   const undo = () => {
+    console.log("undo");
     ref.current.undo();
   };
 
@@ -58,7 +59,7 @@ const Sign = ({onOK}) => {
                 }
                 `}
             backgroundColor={'rgba(255,255,255,0)'}
-            dataURL={url}
+            // dataURL={url}
         />
       </View>
 
@@ -102,6 +103,6 @@ const styles = StyleSheet.create({
   },
   box: {
     backgroundColor: 'green',
-    height: 300
+    height: 250
   }
 });

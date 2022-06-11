@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, forwardRef, useImperativeHandle } from "react";
+import React, { useState, useEffect, useMemo, useRef, forwardRef, useImperativeHandle } from "react";
 import { View, StyleSheet, ActivityIndicator } from "react-native";
 
 import htmlContent from "./h5/html";
@@ -85,6 +85,11 @@ const SignatureView = forwardRef(({
 
     return { html };
   }, [customHtml, autoClear, trimWhitespace, rotated, imageType, webStyle, descriptionText, confirmText, clearText, dataURL, bgSrc, bgWidth, bgHeight])
+
+  useEffect(()=> {
+    if(webViewRef.current) {
+      webViewRef.current.reload();
+    } }, [source]);
 
   const isJson = (str)=> {
     try {
