@@ -24,7 +24,6 @@ const Sign = ({onOK}) => {
   }
 
   const undo = () => {
-    console.log("undo");
     ref.current.undo();
   };
 
@@ -48,7 +47,12 @@ const Sign = ({onOK}) => {
         <SignatureScreen
             ref={ref}
             onOK={handleSignature}
+            style={styles.sign}
+            webviewContainerStyle={styles.sign}
             webStyle={`
+                .m-signature-pad {
+                  background-color: transparent;
+                }
                 .m-signature-pad {
                   flex: 1;
                   box-shadow: none;
@@ -58,7 +62,7 @@ const Sign = ({onOK}) => {
                   display: none;
                 }
                 `}
-            backgroundColor={'rgba(255,255,255,0)'}
+            backgroundColor={'rgba(0,0,0,0)'}
             // dataURL={url}
         />
       </View>
@@ -91,6 +95,7 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center',
     padding: 10,
+    backgroundColor: 'red',
   },
   row: {
     display: "flex",
@@ -102,7 +107,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'red'
   },
   box: {
-    backgroundColor: 'green',
+    // backgroundColor: 'green',
     height: 250
+  },
+  sign: {
+    backgroundColor: 'transparent'
   }
 });
