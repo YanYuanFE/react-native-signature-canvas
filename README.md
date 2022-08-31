@@ -9,10 +9,8 @@
 React Native Signature Component based Canvas for Android &amp;&amp; IOS &amp;&amp; expo
 
 - Supports Android and iOS and Expo
-- Pure JavaScript implementation with no native dependencies
-- Tested with RN 0.50
+- Tested with RN 0.69
 - Core use [signature_pad.js](https://github.com/szimek/signature_pad)
-- Only depend on react and react native
 - Generates a base64 encoded png image of the signature
   Note: Expo support for React Native Signature Canvas v1.5.0 started with Expo SDK v33.0.0.
 
@@ -27,6 +25,10 @@ or
 ```bash
 npm install --save react-native-signature-canvas
 ```
+
+> This package depends on [react-native-webview](https://github.com/react-native-webview/react-native-webview#readme) and it is particularly needed when you are using **_React Native CLI_**. To install `react-native-webview` follow the steps mentioned [here](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Getting-Started.md)
+
+
 
 ## Installation(for React Native V0.5x.x or Expo SDK < v33)
 
