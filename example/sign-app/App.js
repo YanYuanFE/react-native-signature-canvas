@@ -39,7 +39,6 @@ const Sign = ({ text, onOK }) => {
           onEmpty={handleEmpty}
           onClear={handleClear}
           onGetData={handleData}
-          autoClear={true}
           descriptionText={text}
       />
   );
@@ -47,11 +46,11 @@ const Sign = ({ text, onOK }) => {
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Sign text="Test" onOK={() => {
-        console.log('ok')
-      }} />
-    </View>
+      <View style={styles.container}>
+        <Sign text="Test" onOK={() => {
+          console.log('ok')
+        }} />
+      </View>
   );
 }
 
