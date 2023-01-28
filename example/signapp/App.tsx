@@ -15,13 +15,11 @@ import {
 } from 'react-native';
 import SignatureScreen from 'react-native-signature-canvas';
 
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-  const [signature, setSignature] = useState(null);
+  const [signature, setSignature] = useState('');
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -31,15 +29,15 @@ function App(): JSX.Element {
     <SafeAreaView style={backgroundStyle}>
       <View style={styles.preview}>
         {signature && (
-            <Image style={styles.previewImage} source={{uri: signature}} />
+          <Image style={styles.previewImage} source={{uri: signature}} />
         )}
       </View>
       <SignatureScreen
-          onOK={setSignature}
-          onEmpty={() => console.log('onEmpty')}
-          onClear={() => setSignature(null)}
-          autoClear={true}
-          imageType={'image/png+xml'}
+        onOK={setSignature}
+        onEmpty={() => console.log('onEmpty')}
+        onClear={() => setSignature('')}
+        autoClear={true}
+        imageType={'image/png'}
       />
     </SafeAreaView>
   );
