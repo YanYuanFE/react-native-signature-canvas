@@ -193,6 +193,7 @@ const SignatureView = forwardRef(({
         bounces={false}
         style={[webviewContainerStyle]}
         scrollEnabled={scrollable}
+        androidLayerType="hardware"
         androidHardwareAccelerationDisabled={androidHardwareAccelerationDisabled}
         ref={webViewRef}
         useWebKit={true}
