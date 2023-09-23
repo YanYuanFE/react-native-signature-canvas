@@ -51,37 +51,38 @@ import SignatureScreen from 'react-native-signature-canvas';
 ---
 
 | Prop                                |    Type    | Description                                                                                                                                           |
-| :---------------------------------- | :--------: | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:------------------------------------| :--------: |:------------------------------------------------------------------------------------------------------------------------------------------------------|
 | androidHardwareAccelerationDisabled | `boolean`  | androidHardwareAccelerationDisabled for react-native-webview. Default is false                                                                        |
 | autoClear                           | `boolean`  | should auto clear the signature after clicking the Confirm button                                                                                     |
-| backgroundColor                     |  `string`  | default is "rgba(255,255,255,0)" (_transparent_), background color of the canvas                                                                                           |
+| backgroundColor                     |  `string`  | default is "rgba(255,255,255,0)" (_transparent_), background color of the canvas                                                                      |
 | bgHeight                            |  `number`  | height of the background image                                                                                                                        |
 | bgWidth                             |  `number`  | width of the background image                                                                                                                         |
-| bgSrc                               |  `string`  | background image source uri (_url_)                                                                                                                  |
+| bgSrc                               |  `string`  | background image source uri (_url_)                                                                                                                   |
 | clearText                           |  `string`  | clear button text                                                                                                                                     |
 | confirmText                         |  `string`  | save button text                                                                                                                                      |
 | customHtml                          | `(injectedJavaScript: string) => string` | html string that lets you modify things like the layout or elements                                                                                   |
 | dataURL                             |  `string`  | default is "", Base64 string, draws saved signature from dataURL.                                                                                     |
 | descriptionText                     |  `string`  | description text for signature                                                                                                                        |
 | dotSize                             |  `number`  | radius of a single dot _(not stroke width)_                                                                                                           |
-| imageType                           |  `string`  | "image/png" (_default_), "image/jpeg"、"image/svg+xml", imageType of exported signature                                                               |
+| imageType                           |  `string`  | "image/png" (_default_), "image/jpeg"、"image/svg+xml", imageType of exported signature                                                                |
 | minWidth                            |  `number`  | minimum width of a line. Defaults to 0.5                                                                                                              |
 | maxWidth                            |  `number`  | maximum width of a line. Defaults to 2.5                                                                                                              |
 | onOK                                | `function` | callback function after saving non-empty signature                                                                                                    |
 | onEmpty                             | `function` | callback function after trying to save an empty signature                                                                                             |
 | onClear                             | `function` | callback function after clearing the signature                                                                                                        |
-|onGetData|`function`|callback function when getData() is called
+| onGetData                           |`function`| callback function when getData() is called                                                                                                            
 | onBegin                             | `function` | callback function when a new stroke is started                                                                                                        |
 | onEnd                               | `function` | callback function when the stroke has ended                                                                                                           |
-| onUndo                              | `function` | callback function when undo() is called |
-| onRedo                              | `function` | callback function when redo() is called |
+| onLoadEnd                           | `function` | callback function when the webview canvas load ended                                                                                                  |
+| onUndo                              | `function` | callback function when undo() is called                                                                                                               |
+| onRedo                              | `function` | callback function when redo() is called                                                                                                               |
 | onDraw                              | `function` | callback function when drawing is enabled                                                                                                             |
 | onErase                             | `function` | callback function when erasing is enabled                                                                                                             |
-| onChangePenColor                    | `function` | callback function after changing the pen color |
-| onChangePenSize | `function` | callback function after changing the pen size
-|overlayHeight|`number`|height of the overlay image|
-|overlayWidth|`number`|width of the overlay image|
-|overlaySrc|`string`|overlay image source uri (url) _must be .png with a transparent background_
+| onChangePenColor                    | `function` | callback function after changing the pen color                                                                                                        |
+| onChangePenSize                     | `function` | callback function after changing the pen size                                                                                                         
+| overlayHeight                       |`number`| height of the overlay image                                                                                                                           |
+| overlayWidth                        |`number`| width of the overlay image                                                                                                                            |
+| overlaySrc                          |`string`| overlay image source uri (url) _must be .png with a transparent background_                                                                           
 | penColor                            |  `string`  | default is "black", color of pen                                                                                                                      |
 | rotated                             | `boolean`  | rotate signature pad 90 degrees                                                                                                                       |
 | style                               |  `object`  | style of wrapper view                                                                                                                                 |

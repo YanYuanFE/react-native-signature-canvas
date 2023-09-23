@@ -61,6 +61,7 @@ const SignatureView = forwardRef(
       onChangePenSize = () => {},
       onBegin = () => {},
       onEnd = () => {},
+      onLoadEnd = () => {},
       overlayHeight = 0,
       overlayWidth = 0,
       overlaySrc = null,
@@ -253,6 +254,11 @@ const SignatureView = forwardRef(
     const renderError = ({ nativeEvent }) =>
       console.warn("WebView error: ", nativeEvent);
 
+    const handleLoadEnd = () => {
+        setLoading(false);
+        onLoadEnd();
+    }
+
     return (
       <View style={[styles.webBg, style]}>
         <WebView
@@ -269,7 +275,7 @@ const SignatureView = forwardRef(
           onMessage={getSignature}
           javaScriptEnabled={true}
           onError={renderError}
-          onLoadEnd={() => setLoading(false)}
+          onLoadEnd={handleLoadEnd}
         />
         {loading && (
           <View style={styles.loadingOverlayContainer}>

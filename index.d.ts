@@ -36,6 +36,7 @@ declare module "react-native-signature-canvas" {
     onChangePenSize?: () => void;
     onBegin?: () => void;
     onEnd?: () => void;
+    onLoadEnd?: () => void;
     overlayHeight?: number;
     overlayWidth?: number;
     overlaySrc?: string;
