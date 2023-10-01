@@ -3,7 +3,7 @@ export default (script) =>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Signature Pad demo</title>
+  <title>Signature Canvas</title>
   <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">

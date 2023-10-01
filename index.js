@@ -72,6 +72,7 @@ const SignatureView = forwardRef(
       trimWhitespace = false,
       webStyle = "",
       webviewContainerStyle = null,
+      androidLayerType = "hardware",
     },
     ref
   ) => {
@@ -265,7 +266,7 @@ const SignatureView = forwardRef(
           bounces={false}
           style={[webviewContainerStyle]}
           scrollEnabled={scrollable}
-          androidLayerType="hardware"
+          androidLayerType={androidLayerType}
           androidHardwareAccelerationDisabled={
             androidHardwareAccelerationDisabled
           }

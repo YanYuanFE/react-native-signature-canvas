@@ -41,6 +41,9 @@ const Sign = ({ text, onOK }) => {
 
   return (
       <SignatureScreen
+            onLoadEnd={() => {
+                console.log('load end')
+            }}
           ref={ref}
           onEnd={handleEnd}
           onOK={handleOK}
@@ -145,7 +148,7 @@ export default function App() {
             }} />}
           </View>
           </ImageBackground>
-          <Text>...Something to rasterize...</Text>
+          <Text>...Something to rasterize111...</Text>
         </ViewShot>
         <View style={styles.preview}>
           {img ? (

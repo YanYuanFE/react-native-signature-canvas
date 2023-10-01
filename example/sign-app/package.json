@@ -13,7 +13,7 @@
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
     "react-native": "0.70.5",
-    "react-native-signature-canvas": "^4.6.1",
+    "react-native-signature-canvas": "^4.7.0",
     "react-native-view-shot": "3.4.0",
     "react-native-webview": "^13.3.1"
   },

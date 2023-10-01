@@ -47,6 +47,7 @@ declare module "react-native-signature-canvas" {
     trimWhitespace?: boolean;
     webStyle?: string;
     webviewContainerStyle?: StyleProp<ViewStyle>;
+    androidLayerType?: "none" | "software" | "hardware";
   }
 
   export type SignatureViewRef = {
