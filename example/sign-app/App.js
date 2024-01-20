@@ -52,7 +52,7 @@ const Sign = ({ text, onOK }) => {
           onGetData={handleData}
           descriptionText={text}
           backgroundColor={'transparent'}
-          style={{ flex: 1, height: 300 }}
+          style={{ flex: 1, height: 800 }}
           androidHardwareAccelerationDisabled={false}
           webStyle={`
                 .m-signature-pad canvas {
@@ -64,6 +64,7 @@ const Sign = ({ text, onOK }) => {
                   flex: 1;
                   box-shadow: none;
                   border-radius: 10px;
+                  height: 600px;
                 }
                 `}
       />
@@ -106,6 +107,7 @@ const ScrollApp = () => {
   );
 }
 
+
 export default function App() {
   const [img, setImg] = useState(null);
   const [sign, setSign] = useState(null);
@@ -130,10 +132,10 @@ export default function App() {
   return (
       <View style={styles.container}>
         <ViewShot ref={ref} options={{ fileName: "Your-File-Name", format: "png", quality: 0.9, result: 'data-uri' }}>
-          <ImageBackground source={{uri: bg}} style={styles.image}>
+          {/*<ImageBackground source={{uri: bg}} style={styles.image}>*/}
           <View style={{
             width: 400,
-            height: 300
+            height: 800
           }}>
             {sign ? (
                       <Image
@@ -147,18 +149,17 @@ export default function App() {
               onCapture();
             }} />}
           </View>
-          </ImageBackground>
-          <Text>...Something to rasterize111...</Text>
+          {/*</ImageBackground>*/}
         </ViewShot>
-        <View style={styles.preview}>
-          {img ? (
-              <Image
-                  resizeMode={"contain"}
-                  style={{ width: 335, height: 114 }}
-                  source={{ uri: img }}
-              />
-          ) : null}
-        </View>
+        {/*<View style={styles.preview}>*/}
+        {/*  {img ? (*/}
+        {/*      <Image*/}
+        {/*          resizeMode={"contain"}*/}
+        {/*          style={{ width: 335, height: 114 }}*/}
+        {/*          source={{ uri: img }}*/}
+        {/*      />*/}
+        {/*  ) : null}*/}
+        {/*</View>*/}
       </View>
   );
 }

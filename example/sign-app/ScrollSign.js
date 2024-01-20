@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'red',
         width: '90%',
-        height: 300, // Increase the height for more drawing space
+        height: 800, // Increase the height for more drawing space
     },
     buttonsContainer: {
         flexDirection: 'row',
