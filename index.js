@@ -49,6 +49,7 @@ const SignatureView = forwardRef(
       imageType = "",
       minWidth = 0.5,
       maxWidth = 2.5,
+      nestedScrollEnabled = false,
       onOK = () => {},
       onEmpty = () => {},
       onClear = () => {},
@@ -277,6 +278,7 @@ const SignatureView = forwardRef(
           javaScriptEnabled={true}
           onError={renderError}
           onLoadEnd={handleLoadEnd}
+          nestedScrollEnabled={nestedScrollEnabled}
         />
         {loading && (
           <View style={styles.loadingOverlayContainer}>
