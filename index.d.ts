@@ -24,6 +24,7 @@ declare module "react-native-signature-canvas" {
     imageType?: ImageType;
     minWidth?: number;
     maxWidth?: number;
+    nestedScrollEnabled?: boolean;
     onOK?: (signature: string) => void;
     onEmpty?: () => void;
     onClear?: () => void;
