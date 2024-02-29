@@ -50,6 +50,7 @@ const SignatureView = forwardRef(
       minWidth = 0.5,
       maxWidth = 2.5,
       nestedScrollEnabled = false,
+      showsVerticalScrollIndicator= true,
       onOK = () => {},
       onEmpty = () => {},
       onClear = () => {},
@@ -279,6 +280,7 @@ const SignatureView = forwardRef(
           onError={renderError}
           onLoadEnd={handleLoadEnd}
           nestedScrollEnabled={nestedScrollEnabled}
+          showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         />
         {loading && (
           <View style={styles.loadingOverlayContainer}>
