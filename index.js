@@ -49,21 +49,22 @@ const SignatureView = forwardRef(
       imageType = "",
       minWidth = 0.5,
       maxWidth = 2.5,
+      minDistance = 5,
       nestedScrollEnabled = false,
-      showsVerticalScrollIndicator= true,
-      onOK = () => {},
-      onEmpty = () => {},
-      onClear = () => {},
-      onUndo = () => {},
-      onRedo = () => {},
-      onDraw = () => {},
-      onErase = () => {},
-      onGetData = () => {},
-      onChangePenColor = () => {},
-      onChangePenSize = () => {},
-      onBegin = () => {},
-      onEnd = () => {},
-      onLoadEnd = () => {},
+      showsVerticalScrollIndicator = true,
+      onOK = () => { },
+      onEmpty = () => { },
+      onClear = () => { },
+      onUndo = () => { },
+      onRedo = () => { },
+      onDraw = () => { },
+      onErase = () => { },
+      onGetData = () => { },
+      onChangePenColor = () => { },
+      onChangePenSize = () => { },
+      onBegin = () => { },
+      onEnd = () => { },
+      onLoadEnd = () => { },
       overlayHeight = 0,
       overlayWidth = 0,
       overlaySrc = null,
@@ -112,6 +113,10 @@ const SignatureView = forwardRef(
       injectedJavaScript = injectedJavaScript.replace(
         /<%maxWidth%>/g,
         maxWidth
+      );
+      injectedJavaScript = injectedJavaScript.replace(
+        /<%minDistance%>/g,
+        minDistance
       );
 
       let html = htmlContentValue(injectedJavaScript);
@@ -258,8 +263,8 @@ const SignatureView = forwardRef(
       console.warn("WebView error: ", nativeEvent);
 
     const handleLoadEnd = () => {
-        setLoading(false);
-        onLoadEnd();
+      setLoading(false);
+      onLoadEnd();
     }
 
     return (
