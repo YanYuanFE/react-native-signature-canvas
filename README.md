@@ -28,8 +28,6 @@ npm install --save react-native-signature-canvas
 
 > This package depends on [react-native-webview](https://github.com/react-native-webview/react-native-webview#readme) and it is particularly needed when you are using **_React Native CLI_**. To install `react-native-webview` follow the steps mentioned [here](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Getting-Started.md)
 
-
-
 ## Installation(for React Native V0.5x.x or Expo SDK < v33)
 
 ```bash
@@ -37,13 +35,17 @@ npm install --save react-native-signature-canvas@1.4.2
 ```
 
 ## Usage
+
 Basic
+
 ```js
 import Signature from "react-native-signature-canvas";
 ```
+
 Custom
+
 ```js
-import SignatureScreen from 'react-native-signature-canvas';
+import SignatureScreen from "react-native-signature-canvas";
 ```
 
 ## Properties
@@ -51,7 +53,7 @@ import SignatureScreen from 'react-native-signature-canvas';
 ---
 
 | Prop                                |                   Type                   | Description                                                                                                                                           |
-|:------------------------------------|:----------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :---------------------------------- | :--------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | androidHardwareAccelerationDisabled |                `boolean`                 | androidHardwareAccelerationDisabled for react-native-webview. Default is false                                                                        |
 | autoClear                           |                `boolean`                 | should auto clear the signature after clicking the Confirm button                                                                                     |
 | backgroundColor                     |                 `string`                 | default is "rgba(255,255,255,0)" (_transparent_), background color of the canvas                                                                      |
@@ -64,15 +66,16 @@ import SignatureScreen from 'react-native-signature-canvas';
 | dataURL                             |                 `string`                 | default is "", Base64 string, draws saved signature from dataURL.                                                                                     |
 | descriptionText                     |                 `string`                 | description text for signature                                                                                                                        |
 | dotSize                             |                 `number`                 | radius of a single dot _(not stroke width)_                                                                                                           |
-| imageType                           |                 `string`                 | "image/png" (_default_), "image/jpeg"、"image/svg+xml", imageType of exported signature                                                                |
+| imageType                           |                 `string`                 | "image/png" (_default_), "image/jpeg"、"image/svg+xml", imageType of exported signature                                                               |
 | minWidth                            |                 `number`                 | minimum width of a line. Defaults to 0.5                                                                                                              |
 | maxWidth                            |                 `number`                 | maximum width of a line. Defaults to 2.5                                                                                                              |
+| minDistance                         |                 `number`                 | Add the next point only if the previous one is farther than x pixels. Defaults to 5. 5                                                                |
 | nestedScrollEnabled                 |                `boolean`                 | enable nested scrolling for use inside of a scrollview                                                                                                |
-| showsVerticalScrollIndicator                 |                `boolean`                 | Boolean value that determines whether a vertical scroll indicator is shown in the `WebView`, The default value is `true`.                             |
+| showsVerticalScrollIndicator        |                `boolean`                 | Boolean value that determines whether a vertical scroll indicator is shown in the `WebView`, The default value is `true`.                             |
 | onOK                                |                `function`                | callback function after saving non-empty signature                                                                                                    |
 | onEmpty                             |                `function`                | callback function after trying to save an empty signature                                                                                             |
 | onClear                             |                `function`                | callback function after clearing the signature                                                                                                        |
-| onGetData                           |                `function`                | callback function when getData() is called                                                                                                            
+| onGetData                           |                `function`                | callback function when getData() is called                                                                                                            |
 | onBegin                             |                `function`                | callback function when a new stroke is started                                                                                                        |
 | onEnd                               |                `function`                | callback function when the stroke has ended                                                                                                           |
 | onLoadEnd                           |                `function`                | callback function when the webview canvas load ended                                                                                                  |
@@ -81,23 +84,23 @@ import SignatureScreen from 'react-native-signature-canvas';
 | onDraw                              |                `function`                | callback function when drawing is enabled                                                                                                             |
 | onErase                             |                `function`                | callback function when erasing is enabled                                                                                                             |
 | onChangePenColor                    |                `function`                | callback function after changing the pen color                                                                                                        |
-| onChangePenSize                     |                `function`                | callback function after changing the pen size                                                                                                         
+| onChangePenSize                     |                `function`                | callback function after changing the pen size                                                                                                         |
 | overlayHeight                       |                 `number`                 | height of the overlay image                                                                                                                           |
 | overlayWidth                        |                 `number`                 | width of the overlay image                                                                                                                            |
-| overlaySrc                          |                 `string`                 | overlay image source uri (url) _must be .png with a transparent background_                                                                           
+| overlaySrc                          |                 `string`                 | overlay image source uri (url) _must be .png with a transparent background_                                                                           |
 | penColor                            |                 `string`                 | default is "black", color of pen                                                                                                                      |
 | rotated                             |                `boolean`                 | rotate signature pad 90 degrees                                                                                                                       |
 | style                               |                 `object`                 | style of wrapper view                                                                                                                                 |
 | trimWhitespace                      |                `boolean`                 | trim image whitespace                                                                                                                                 |
 | webStyle                            |                 `string`                 | webview style for overwrite default style, all style: https://github.com/YanYuanFE/react-native-signature-canvas/blob/master/h5/css/signature-pad.css |
-| androidLayerType                            |         `none、software、hardware`         | Sets the android webview layerType                                                                                                                    |
+| androidLayerType                    |        `none、software、hardware`        | Sets the android webview layerType                                                                                                                    |
 
 ## Methods
 
 ---
 
 | Function                  | Description                                                                                     |
-| :--------------------     | :-----------------------------------------------------------------------------------------------|
+| :------------------------ | :---------------------------------------------------------------------------------------------- |
 | clearSignature()          | Clear the current signature                                                                     |
 | changePenColor(color)     | Change pen color                                                                                |
 | changePenSize(minW, maxW) | Change pen size                                                                                 |
@@ -158,13 +161,15 @@ const Sign = ({ text, onOK }) => {
 
 export default Sign;
 ```
+
 ## Using a background image
+
 You can use a non-erasable background image to draw your signature on using the `bgSrc` prop. Make sure to provide the width and height of the image.
 
 ```js
 const imgWidth = 300;
 const imgHeight = 200;
-const style = `.m-signature-pad {box-shadow: none; border: none; } 
+const style = `.m-signature-pad {box-shadow: none; border: none; }
               .m-signature-pad--body {border: none;}
               .m-signature-pad--footer {display: none; margin: 0px;}
               body,html {
@@ -183,13 +188,14 @@ const style = `.m-signature-pad {box-shadow: none; border: none; }
 ```
 
 ## Using an overlay image
+
 An overlay is a non-erasable image that can be used as a guideline similar to a colouring book. Make sure the image format is .png and that it has a transparent background. Also, don't forget to provide the width and height of the image.
 Use the `overlaySrc` prop to provide the link.
 
 ```js
 const imgWidth = 256;
 const imgHeight = 256;
-const style = `.m-signature-pad {box-shadow: none; border: none; } 
+const style = `.m-signature-pad {box-shadow: none; border: none; }
               .m-signature-pad--body {border: none;}
               .m-signature-pad--footer {display: none; margin: 0px;}
               body,html {
