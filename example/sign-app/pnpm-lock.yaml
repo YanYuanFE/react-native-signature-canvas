@@ -18,8 +18,8 @@ dependencies:
     specifier: 0.73.2
     version: 0.73.2(@babel/core@7.23.7)(@babel/preset-env@7.23.8)(react@18.2.0)
   react-native-signature-canvas:
-    specifier: ^4.7.1
-    version: 4.7.1(react-native-webview@13.6.4)
+    specifier: ^4.7.2
+    version: 4.7.2(react-native-webview@13.6.4)
   react-native-view-shot:
     specifier: 3.4.0
     version: 3.4.0(react-native@0.73.2)(react@18.2.0)
@@ -5520,8 +5520,8 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
 
-  /react-native-signature-canvas@4.7.1(react-native-webview@13.6.4):
-    resolution: {integrity: sha512-80+FwydjaVMZGE/QXNVQyObnM/rAWikpnYnunDJ01H0zCJ5GY860E121ztmT8vAWr+Z6RsXCID2ff6hsSeM0yw==}
+  /react-native-signature-canvas@4.7.2(react-native-webview@13.6.4):
+    resolution: {integrity: sha512-n4TUmYEFTHIbosLSa7ovMhirA+9EWw6pYbUIk2uUuiCfYqyF5TESb9EzjRU7VllDESWce9Djwy20VmwPKvEJWA==}
     peerDependencies:
       react-native-webview: '>=13'
     dependencies:

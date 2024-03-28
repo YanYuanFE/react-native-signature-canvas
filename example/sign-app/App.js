@@ -13,6 +13,8 @@ const Sign = ({ text, onOK }) => {
   const ref = useRef();
   const [bg, setBg] = useState(bgUrl);
 
+  const [, setIsScrollEnabled] = useState(false);
+
   // Called after ref.current.readSignature() reads a non-empty base64 string
   const handleOK = (signature) => {
     console.log(signature);
@@ -39,33 +41,34 @@ const Sign = ({ text, onOK }) => {
     console.log(data);
   };
 
+  const signHeight = 500;
+
+  const height = 3;
+
+
+
   return (
       <SignatureScreen
-            onLoadEnd={() => {
-                console.log('load end')
-            }}
+          onBegin={() => setIsScrollEnabled(false)}
+          bgHeight={100}
+          trimWhitespace={true}
+          scrollable={false}
           ref={ref}
+          onClear={handleClear}
+          onEmpty={handleEmpty}
           onEnd={handleEnd}
           onOK={handleOK}
-          onEmpty={handleEmpty}
-          onClear={handleClear}
           onGetData={handleData}
-          descriptionText={text}
-          backgroundColor={'transparent'}
-          style={{ flex: 1, height: 800 }}
-          androidHardwareAccelerationDisabled={false}
+          autoClear={false}
+          style={{
+            maxHeight: height * signHeight,
+            overflow: "hidden",
+          }}
+          webviewContainerStyle={{
+            maxHeight: height * signHeight,
+          }}
           webStyle={`
-                .m-signature-pad canvas {
-                  background-image: url('${bg}');
-                  background-size: 100% 100%;
-                  background-repeat: no-repeat;
-                }
-                .m-signature-pad {
-                  flex: 1;
-                  box-shadow: none;
-                  border-radius: 10px;
-                  height: 600px;
-                }
+                .m-signature-pad { max-Height: ${height} * ${signHeight}, margin:0px !important; overflow: hidden !important; background: white !important; border: none !important; border: 2px dashed #000; }  .m-signature-pad--footer   {display: none !important;}
                 `}
       />
   );
@@ -145,8 +148,8 @@ export default function App() {
                       />
             ) : <Sign text="Test" onOK={(img) => {
               console.log('ok')
-              setSign(img);
-              onCapture();
+              // setSign(img);
+              // onCapture();
             }} />}
           </View>
           {/*</ImageBackground>*/}
