@@ -1,14 +1,21 @@
 declare module "react-native-signature-canvas" {
   import React from "react";
   import { StyleProp, ViewStyle } from "react-native";
+  
+  // Enhanced type definitions with better error handling
 
   type ImageType = "image/png" | "image/jpeg" | "image/svg+xml";
 
-  type DataURL = "Base64" | string;
+  type DataURL = string; // Simplified - should be base64 data URL
 
   type ForwardRef<T, P> = React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   >;
+  
+  // Enhanced callback types
+  type SignatureCallback = (signature: string) => void;
+  type EmptyCallback = () => void;
+  type ErrorCallback = (error: Error) => void;
 
   type SignatureViewProps = {
     androidHardwareAccelerationDisabled?: boolean;
@@ -27,21 +34,23 @@ declare module "react-native-signature-canvas" {
     minWidth?: number;
     maxWidth?: number;
     minDistance?: number;
+    onError?: ErrorCallback; // Added missing prop
     nestedScrollEnabled?: boolean;
     showsVerticalScrollIndicator?: boolean;
-    onOK?: (signature: string) => void;
-    onEmpty?: () => void;
-    onClear?: () => void;
-    onUndo?: () => void;
-    onRedo?: () => void;
-    onDraw?: () => void;
-    onErase?: () => void;
-    onGetData?: (data: any) => void;
-    onChangePenColor?: () => void;
-    onChangePenSize?: () => void;
-    onBegin?: () => void;
-    onEnd?: () => void;
-    onLoadEnd?: () => void;
+    onOK?: SignatureCallback;
+    onEmpty?: EmptyCallback;
+    onClear?: EmptyCallback;
+    onUndo?: EmptyCallback;
+    onRedo?: EmptyCallback;
+    onDraw?: EmptyCallback;
+    onErase?: EmptyCallback;
+    onGetData?: (data: string) => void; // Should be JSON string
+    onChangePenColor?: EmptyCallback;
+    onChangePenSize?: EmptyCallback;
+    onBegin?: EmptyCallback;
+    onEnd?: EmptyCallback;
+    onLoadEnd?: EmptyCallback;
+    onError?: ErrorCallback; // Added missing error callback
     overlayHeight?: number;
     overlayWidth?: number;
     overlaySrc?: string;
@@ -59,15 +68,23 @@ declare module "react-native-signature-canvas" {
     changePenColor: (color: string) => void;
     changePenSize: (minW: number, maxW: number) => void;
     clearSignature: () => void;
-    cropWhitespace: (url: string) => void;
     draw: () => void;
     erase: () => void;
     getData: () => void;
     readSignature: () => void;
     undo: () => void;
     redo: () => void;
+    // Removed cropWhitespace as it's not exposed in the component
   };
 
-  const SignatureView: ForwardRef<SignatureViewRef, SignatureViewProps>;
+  // Enhanced component interface with better type safety
+  interface SignatureCanvasComponent extends ForwardRef<SignatureViewRef, SignatureViewProps> {
+    displayName?: string;
+  }
+  
+  const SignatureView: SignatureCanvasComponent;
   export default SignatureView;
+  
+  // Export additional types for external use
+  export { SignatureViewProps, SignatureViewRef, ImageType, DataURL };
 }
