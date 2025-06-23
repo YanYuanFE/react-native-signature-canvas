@@ -10,7 +10,7 @@ declare module "react-native-signature-canvas" {
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   >;
 
-  type SignatureViewProps = {
+  export type SignatureViewProps = {
     androidHardwareAccelerationDisabled?: boolean;
     autoClear?: boolean;
     backgroundColor?: string;
