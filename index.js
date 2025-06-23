@@ -280,6 +280,7 @@ const SignatureView = forwardRef(
           ref={webViewRef}
           useWebKit={true}
           source={source}
+          originWhitelist={['*']}
           onMessage={getSignature}
           javaScriptEnabled={true}
           onError={renderError}
