@@ -1,55 +1,53 @@
-# [4.7.4](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v4.1.0...v4.7.4) (2024-12-20)
+# [5.0.0](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v4.5.1...v5.0.0) (2025-06-28)
 
-## 🚀 Major Features
 
-### ✨ WebView Customization
-- **NEW**: `webviewProps` parameter for full WebView customization
-- **Enhancement**: Smart prop layering - core functionality protected, defaults customizable
-- **Improvement**: Platform-specific optimization support
+### Bug Fixes
 
-### 🛡️ Advanced Error Handling  
-- **NEW**: Automatic error recovery with exponential backoff
-- **NEW**: Circuit breaker pattern to prevent cascading failures
-- **NEW**: Enhanced error classification and context reporting
-- **Enhancement**: User-configurable error callbacks with `onError` prop
+* add originWhitelist prop ([068c646](https://github.com/YanYuanFE/react-native-signature-canvas/commit/068c6467d1e9910c4911e727b2144e065a9a7322))
+* backgorund color to transparent and loader color to transparent ([3001d4e](https://github.com/YanYuanFE/react-native-signature-canvas/commit/3001d4edfdcf1806e2f16a518d25f1690b80557e))
+* fix canvas not display for android api 28 ([835669b](https://github.com/YanYuanFE/react-native-signature-canvas/commit/835669bb65ab5c88c43830b7a783eed105f3910d))
 
-### ⚡ Performance Optimizations
-- **NEW**: Performance monitoring and automatic optimization
-- **NEW**: Memory pressure detection with adaptive settings  
-- **Improvement**: Debounced resize handling for smooth interaction
-- **Improvement**: Optimized `useMemo` dependencies to reduce re-renders
-- **Enhancement**: Device-specific performance configurations
 
-### 🔧 Code Quality Improvements
-- **Fix**: Global variable pollution in WebView JavaScript eliminated
-- **Fix**: Race condition in save/getData operations resolved
-- **Enhancement**: Input validation for all public methods
-- **Enhancement**: Enhanced TypeScript definitions with better error types
-- **Improvement**: Better null checks and error boundaries
+### Features
 
-### 🛠️ Developer Experience
-- **NEW**: Comprehensive documentation with `WEBVIEW_PROPS.md`
-- **NEW**: `QUICK_START.md` guide for rapid setup
-- **Enhancement**: Enhanced example applications with best practices
-- **Improvement**: Better error messages and debugging information
+* add onLoadEnd prop ([49a8664](https://github.com/YanYuanFE/react-native-signature-canvas/commit/49a866408b6356ce9e71b1c794993a3f2fe85337))
+* add showsVerticalScrollIndicator prop ([a4d64c5](https://github.com/YanYuanFE/react-native-signature-canvas/commit/a4d64c5754a9da4ecb9d531a1585a38994d18d6d))
+* export SignatureViewProps ([8f0c321](https://github.com/YanYuanFE/react-native-signature-canvas/commit/8f0c3211b20782cd8f35a43083f39d5ea351f932))
 
-## 🔧 Bug Fixes
-- Fixed memory leaks in event handlers and performance monitoring
-- Resolved WebView reload optimization issues  
-- Fixed TypeScript definition mismatches (`cropWhitespace` removed)
-- Improved message validation and error handling in WebView bridge
-- Enhanced cross-platform compatibility
 
-## 📖 Documentation
-- Updated README with new features and troubleshooting guide
-- Added WebView customization documentation
-- Enhanced TypeScript definitions with comprehensive error handling
-- Updated package.json with better keywords and description
 
-## 🔄 Migration Guide
-This version is **100% backward compatible**. All existing code will continue to work without changes. New features are opt-in via new props.
+## [4.5.1](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v4.3.0...v4.5.1) (2023-05-04)
 
----
+
+### Bug Fixes
+
+* **android:** sigsegv crash on android ([49644b8](https://github.com/YanYuanFE/react-native-signature-canvas/commit/49644b802a7cb80443292972b1fbd3d4dbdfd9c4))
+* fix bgSrc props ([bef3ab2](https://github.com/YanYuanFE/react-native-signature-canvas/commit/bef3ab27ebb990a94dd74517ab67754d557307ae))
+* fix webview version ([1b55f45](https://github.com/YanYuanFE/react-native-signature-canvas/commit/1b55f45e27560cd8b0bdf62504a7d27b412687c2))
+
+
+### Features
+
+* update rn latest example ([f9a568f](https://github.com/YanYuanFE/react-native-signature-canvas/commit/f9a568f68c966690ee2ec1b300b2e2fb6f18ee56))
+
+
+
+# [4.3.0](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v4.2.1...v4.3.0) (2021-08-11)
+
+
+
+## [4.2.1](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v4.2.0...v4.2.1) (2021-08-04)
+
+
+### Bug Fixes
+
+* ts imageType ([d50d227](https://github.com/YanYuanFE/react-native-signature-canvas/commit/d50d22747278f860152ff1c8a87be6e335236724))
+
+
+
+# [4.2.0](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v4.1.0...v4.2.0) (2021-07-24)
+
+
 
 # [4.1.0](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v4.0.0...v4.1.0) (2021-07-14)
 

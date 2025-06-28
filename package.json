@@ -1,6 +1,6 @@
 {
   "name": "react-native-signature-canvas",
-  "version": "4.7.4",
+  "version": "5.0.0",
   "description": "A performant, customizable React Native signature canvas with advanced error handling, WebView optimization, and TypeScript support for iOS, Android, and Expo",
   "main": "index.js",
   "scripts": {
