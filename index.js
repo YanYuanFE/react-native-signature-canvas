@@ -260,6 +260,13 @@ const SignatureView = forwardRef(
           executeWebViewMethod('changePenSize', [minW, maxW]);
         },
         getData: () => executeWebViewMethod('getData'),
+        fromData: (pointGroups) => {
+          if (!pointGroups) {
+            console.warn('fromData: pointGroups must be an array');
+            return;
+          }
+          executeWebViewMethod('fromData', [pointGroups, false]);
+        },
       }),
       [executeWebViewMethod]
     );

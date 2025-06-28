@@ -116,6 +116,11 @@ export default `
         window.ReactNativeWebView.postMessage(JSON.stringify(data));
     }
 
+    function fromData (pointGroups) {
+        signaturePad.fromData(pointGroups);
+        window.ReactNativeWebView.postMessage(JSON.stringify(pointGroups));
+    }
+
     function draw() {
       signaturePad.draw();
       window.ReactNativeWebView.postMessage("DRAW");

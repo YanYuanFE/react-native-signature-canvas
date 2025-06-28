@@ -2,7 +2,7 @@ declare module "react-native-signature-canvas" {
   import React from "react";
   import { StyleProp, ViewStyle } from "react-native";
   import { WebViewProps } from "react-native-webview";
-  
+
   // Enhanced type definitions with better error handling
 
   type ImageType = "image/png" | "image/jpeg" | "image/svg+xml";
@@ -12,7 +12,7 @@ declare module "react-native-signature-canvas" {
   type ForwardRef<T, P> = React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   >;
-  
+
   // Enhanced callback types
   type SignatureCallback = (signature: string) => void;
   type EmptyCallback = () => void;
@@ -76,17 +76,19 @@ declare module "react-native-signature-canvas" {
     readSignature: () => void;
     undo: () => void;
     redo: () => void;
+    fromData: (pointGroups, suppressClear = false) => void;
     // Removed cropWhitespace as it's not exposed in the component
   };
 
   // Enhanced component interface with better type safety
-  interface SignatureCanvasComponent extends ForwardRef<SignatureViewRef, SignatureViewProps> {
+  interface SignatureCanvasComponent
+    extends ForwardRef<SignatureViewRef, SignatureViewProps> {
     displayName?: string;
   }
-  
+
   const SignatureView: SignatureCanvasComponent;
   export default SignatureView;
-  
+
   // Export additional types for external use
   export { SignatureViewProps, SignatureViewRef, ImageType, DataURL };
 }
