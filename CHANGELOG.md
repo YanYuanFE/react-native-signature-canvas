@@ -1,3 +1,56 @@
+# [4.7.4](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v4.1.0...v4.7.4) (2024-12-20)
+
+## 🚀 Major Features
+
+### ✨ WebView Customization
+- **NEW**: `webviewProps` parameter for full WebView customization
+- **Enhancement**: Smart prop layering - core functionality protected, defaults customizable
+- **Improvement**: Platform-specific optimization support
+
+### 🛡️ Advanced Error Handling  
+- **NEW**: Automatic error recovery with exponential backoff
+- **NEW**: Circuit breaker pattern to prevent cascading failures
+- **NEW**: Enhanced error classification and context reporting
+- **Enhancement**: User-configurable error callbacks with `onError` prop
+
+### ⚡ Performance Optimizations
+- **NEW**: Performance monitoring and automatic optimization
+- **NEW**: Memory pressure detection with adaptive settings  
+- **Improvement**: Debounced resize handling for smooth interaction
+- **Improvement**: Optimized `useMemo` dependencies to reduce re-renders
+- **Enhancement**: Device-specific performance configurations
+
+### 🔧 Code Quality Improvements
+- **Fix**: Global variable pollution in WebView JavaScript eliminated
+- **Fix**: Race condition in save/getData operations resolved
+- **Enhancement**: Input validation for all public methods
+- **Enhancement**: Enhanced TypeScript definitions with better error types
+- **Improvement**: Better null checks and error boundaries
+
+### 🛠️ Developer Experience
+- **NEW**: Comprehensive documentation with `WEBVIEW_PROPS.md`
+- **NEW**: `QUICK_START.md` guide for rapid setup
+- **Enhancement**: Enhanced example applications with best practices
+- **Improvement**: Better error messages and debugging information
+
+## 🔧 Bug Fixes
+- Fixed memory leaks in event handlers and performance monitoring
+- Resolved WebView reload optimization issues  
+- Fixed TypeScript definition mismatches (`cropWhitespace` removed)
+- Improved message validation and error handling in WebView bridge
+- Enhanced cross-platform compatibility
+
+## 📖 Documentation
+- Updated README with new features and troubleshooting guide
+- Added WebView customization documentation
+- Enhanced TypeScript definitions with comprehensive error handling
+- Updated package.json with better keywords and description
+
+## 🔄 Migration Guide
+This version is **100% backward compatible**. All existing code will continue to work without changes. New features are opt-in via new props.
+
+---
+
 # [4.1.0](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v4.0.0...v4.1.0) (2021-07-14)
 
 

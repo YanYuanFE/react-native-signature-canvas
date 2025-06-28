@@ -10,14 +10,19 @@ A React Native component for capturing signatures or drawing on a canvas with a 
 
 ## Features
 
-- Cross-platform support (iOS, Android, Expo)
-- Smooth, responsive drawing experience
-- Customizable pen color, size, and background
-- Support for background and overlay images
-- Export signatures as PNG, JPEG, or SVG
-- Undo/redo functionality
-- Drawing and erasing modes
-- TypeScript support
+- ✅ **Cross-platform support** (iOS, Android, Expo)
+- ✅ **Smooth, responsive drawing experience** with optimized performance
+- ✅ **Customizable pen color, size, and background**
+- ✅ **Support for background and overlay images**
+- ✅ **Export signatures** as PNG, JPEG, or SVG
+- ✅ **Undo/redo functionality**
+- ✅ **Drawing and erasing modes**
+- ✅ **Full TypeScript support** with enhanced type definitions
+- 🆕 **Advanced error handling** with automatic recovery
+- 🆕 **Performance monitoring** and optimization
+- 🆕 **Flexible WebView customization** via `webviewProps`
+- 🆕 **Enhanced security** with configurable restrictions
+- 🆕 **Memory management** and leak prevention
 
 ## Installation
 
@@ -55,23 +60,33 @@ import SignatureCanvas from 'react-native-signature-canvas';
 
 const SignatureScreen = () => {
   const [signature, setSignature] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const ref = useRef();
 
   const handleSignature = (signature) => {
-    console.log(signature);
+    console.log('Signature captured:', signature);
     setSignature(signature);
+    setIsLoading(false);
   };
 
   const handleEmpty = () => {
-    console.log('Empty');
+    console.log('Signature is empty');
+    setIsLoading(false);
   };
 
   const handleClear = () => {
-    console.log('Clear success!');
+    console.log('Signature cleared');
+    setSignature(null);
+  };
+
+  const handleError = (error) => {
+    console.error('Signature pad error:', error);
+    setIsLoading(false);
   };
 
   const handleEnd = () => {
-    ref.current.readSignature();
+    setIsLoading(true);
+    ref.current?.readSignature();
   };
 
   return (
@@ -91,10 +106,18 @@ const SignatureScreen = () => {
         onOK={handleSignature}
         onEmpty={handleEmpty}
         onClear={handleClear}
+        onError={handleError}
         autoClear={true}
         descriptionText="Sign here"
         clearText="Clear"
-        confirmText="Save"
+        confirmText={isLoading ? "Processing..." : "Save"}
+        penColor="#000000"
+        backgroundColor="rgba(255,255,255,0)"
+        webviewProps={{
+          // Custom WebView optimization
+          cacheEnabled: true,
+          androidLayerType: "hardware",
+        }}
       />
     </View>
   );
@@ -162,6 +185,8 @@ export default SignatureScreen;
 | `webStyle` | `string` | - | WebView style to override default style |
 | `webviewContainerStyle` | `object` | - | Style for the WebView container |
 | `androidLayerType` | `none\|software\|hardware` | `hardware` | Sets the Android WebView layer type |
+| `onError` | `function` | - | Callback when an error occurs |
+| `webviewProps` | `object` | `{}` | Additional props to pass to the underlying WebView |
 
 ## Methods
 
@@ -178,6 +203,76 @@ Access these methods using a ref to the SignatureCanvas component.
 | `readSignature()` | Read the current signature and trigger callbacks |
 | `undo()` | Undo last stroke |
 | `redo()` | Redo last stroke |
+
+## WebView Customization (New!)
+
+The `webviewProps` parameter allows you to customize the underlying WebView behavior while maintaining signature functionality:
+
+```jsx
+<SignatureCanvas
+  // ... other props
+  webviewProps={{
+    // Performance optimization
+    cacheEnabled: true,
+    androidLayerType: "hardware",
+    androidHardwareAccelerationDisabled: false,
+    
+    // Security settings
+    allowFileAccess: false,
+    allowFileAccessFromFileURLs: false,
+    mixedContentMode: "never",
+    
+    // UI customization
+    decelerationRate: 'fast',
+    bounces: false,
+    
+    // Any other WebView props...
+  }}
+/>
+```
+
+### Performance Optimization Examples
+
+```jsx
+// High-performance mode
+<SignatureCanvas
+  webviewProps={{
+    cacheEnabled: true,
+    androidLayerType: "hardware",
+    androidHardwareAccelerationDisabled: false,
+  }}
+/>
+
+// Low-memory mode
+<SignatureCanvas
+  webviewProps={{
+    cacheEnabled: false,
+    androidLayerType: "software",
+    androidHardwareAccelerationDisabled: true,
+  }}
+/>
+```
+
+## Error Handling (Enhanced!)
+
+```jsx
+const [error, setError] = useState(null);
+
+const handleError = (error) => {
+  console.error('Signature error:', error);
+  setError(error.message);
+  // Error recovery is automatic, but you can handle it here
+};
+
+<SignatureCanvas
+  onError={handleError}
+  // Component automatically retries on recoverable errors
+/>
+
+{error && (
+  <Text style={{ color: 'red' }}>Error: {error}</Text>
+)}
+```
 
 ## Advanced Usage
 
@@ -304,12 +399,162 @@ const styles = StyleSheet.create({
 });
 ```
 
+## Performance & Reliability
+
+### Automatic Error Recovery
+- **Smart retry logic** with exponential backoff
+- **Circuit breaker pattern** to prevent cascading failures  
+- **Memory leak prevention** with automatic cleanup
+- **Performance monitoring** with automatic optimization
+
+### Performance Features
+- **Debounced resize handling** for smooth interaction
+- **Memory pressure detection** with adaptive optimization
+- **Optimized rendering** with reduced re-renders
+- **Device-specific optimization** based on hardware capabilities
+
+### Security Enhancements
+- **Configurable WebView security** via `webviewProps`
+- **Input validation** for all methods and callbacks
+- **XSS protection** with content security policies
+- **File access restrictions** by default
+
+## Migration Guide
+
+### From v4.6.x to v4.7.x
+
+This version is fully backward compatible. New features:
+
+```jsx
+// NEW: Enhanced error handling
+<SignatureCanvas
+  onError={(error) => console.error(error)} // New callback
+/>
+
+// NEW: WebView customization
+<SignatureCanvas
+  webviewProps={{ // New prop
+    cacheEnabled: false,
+    androidLayerType: "software"
+  }}
+/>
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue**: Signature pad not loading
+```jsx
+// Solution: Add error handling and check WebView props
+<SignatureCanvas
+  onError={(error) => console.log('Error:', error)}
+  onLoadEnd={() => console.log('Loaded successfully')}
+  webviewProps={{
+    startInLoadingState: true,
+    renderLoading: () => <ActivityIndicator />
+  }}
+/>
+```
+
+**Issue**: Poor performance on older devices
+```jsx
+// Solution: Use low-performance mode
+<SignatureCanvas
+  webviewProps={{
+    androidLayerType: "software",
+    androidHardwareAccelerationDisabled: true,
+    cacheEnabled: false
+  }}
+/>
+```
+
+**Issue**: Memory issues
+```jsx
+// Solution: The component now handles this automatically
+// But you can customize via webviewProps if needed
+<SignatureCanvas
+  webviewProps={{
+    cacheEnabled: false, // Reduce memory usage
+    androidLayerType: "software" // Use software rendering
+  }}
+/>
+```
+
+## API Reference
+
+For detailed API documentation, see:
+- [WEBVIEW_PROPS.md](./WEBVIEW_PROPS.md) - WebView customization guide
+- [TypeScript definitions](./index.d.ts) - Complete type definitions
+
 ## Core Technology
 
 This component is built on:
 - [signature_pad.js](https://github.com/szimek/signature_pad) for the core signature functionality
 - React Native WebView for cross-platform rendering
+- Enhanced with performance monitoring and error recovery systems
+
+## Contributing
+
+Contributions are welcome! Please read our contributing guidelines and submit pull requests to help improve this component.
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/YanYuanFE/react-native-signature-canvas.git
+
+# Install dependencies
+cd react-native-signature-canvas
+npm install
+
+# Run example apps
+cd example/expo-app
+npm install && npm start
+```
+
+## Changelog
+
+### v4.7.x (Latest)
+- 🆕 Added `webviewProps` for WebView customization
+- 🆕 Enhanced error handling with automatic recovery
+- 🆕 Performance monitoring and optimization
+- 🆕 Memory leak prevention
+- 🆕 Improved TypeScript definitions
+- 🔧 Fixed global variable pollution in WebView JavaScript
+- 🔧 Added input validation for all methods
+- ⚡ Optimized rendering performance
+
+[View full changelog](./CHANGELOG.md)
 
 ## License
 
-MIT
+MIT License - see [LICENSE](./LICENSE) file for details.
+
+
+## Buy Me a Coffee ☕
+
+If you find this project helpful, consider supporting its development with cryptocurrency donations:
+
+### Cryptocurrency Donations
+
+| Currency | Address | QR Code |
+|----------|---------|----------|
+| **Bitcoin (BTC)** | `bc1phyz9agr0m9l2w9pd8w85w4da2jt3wl4cre7vv0qq4uesm3fv00pscu96tux` | ![BTC QR](https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=bc1phyz9agr0m9l2w9pd8w85w4da2jt3wl4cre7vv0qq4uesm3fv00pscu96tux) |
+| **Ethereum (ETH)** | `0xf5dfe16b1e64e8e3a92063fb2922447e13b48945` | ![ETH QR](https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=0xf5dfe16b1e64e8e3a92063fb2922447e13b48945) |
+| **Solana (SOL)** | `3VuhyeTj3hMSrmzq7NctHkgFxvJrmtAUQTzagEBEu3Vm` | ![SOL QR](https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=3VuhyeTj3hMSrmzq7NctHkgFxvJrmtAUQTzagEBEu3Vm) |
+
+
+### Other Ways to Support
+
+- ⭐ Star this repository
+- 🐛 Report bugs and issues
+- 💡 Suggest new features
+- 🤝 Contribute code improvements
+- 📢 Share this project with others
+
+Your support helps maintain and improve this open-source project. Thank you! 🙏
+
+---
+
+**Made with ❤️ for the React Native community**

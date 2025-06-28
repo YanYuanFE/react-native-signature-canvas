@@ -1,6 +1,7 @@
 declare module "react-native-signature-canvas" {
   import React from "react";
   import { StyleProp, ViewStyle } from "react-native";
+  import { WebViewProps } from "react-native-webview";
   
   // Enhanced type definitions with better error handling
 
@@ -62,6 +63,7 @@ declare module "react-native-signature-canvas" {
     webStyle?: string;
     webviewContainerStyle?: StyleProp<ViewStyle>;
     androidLayerType?: "none" | "software" | "hardware";
+    webviewProps?: Partial<WebViewProps>;
   };
 
   export type SignatureViewRef = {

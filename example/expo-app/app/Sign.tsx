@@ -148,6 +148,14 @@ const Sign = ({ onOK }) => {
           onLoadEnd={handleLoadEnd}
           onEmpty={handleEmpty}
           penColor={penColor}
+          // Example of using webviewProps to customize WebView behavior
+          webviewProps={{
+            // Override default WebView settings
+            cacheEnabled: false, // Disable cache for this specific use case
+            allowsFullscreenVideo: false,
+            decelerationRate: 'fast',
+            // Add any other WebView props as needed
+          }}
           // dataURL={url}
         />
       </View>

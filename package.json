@@ -1,7 +1,7 @@
 {
   "name": "react-native-signature-canvas",
   "version": "4.7.4",
-  "description": "React Native Signature Component based Canvas for Android && IOS && expo",
+  "description": "A performant, customizable React Native signature canvas with advanced error handling, WebView optimization, and TypeScript support for iOS, Android, and Expo",
   "main": "index.js",
   "scripts": {
     "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
@@ -17,9 +17,16 @@
     "ios",
     "android",
     "signature",
-    "pad",
+    "signature-pad",
     "canvas",
-    "expo"
+    "expo",
+    "typescript",
+    "drawing",
+    "webview",
+    "performance",
+    "error-handling",
+    "undo-redo",
+    "svg-export"
   ],
   "author": "YanYuanFE",
   "license": "MIT",

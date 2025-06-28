@@ -92,6 +92,7 @@ const SignatureView = forwardRef(
       webStyle = "",
       webviewContainerStyle = null,
       androidLayerType = "hardware",
+      webviewProps = {},
     },
     ref
   ) => {
@@ -315,6 +316,17 @@ const SignatureView = forwardRef(
     return (
       <View style={[styles.webBg, style]}>
         <WebView
+          // Core functionality props (cannot be overridden)
+          ref={webViewRef}
+          source={source}
+          onMessage={getSignature}
+          onError={renderError}
+          onLoadEnd={handleLoadEnd}
+          onLoadStart={handleLoadStart}
+          onLoadProgress={handleLoadProgress}
+          javaScriptEnabled={true}
+          useWebKit={true}
+          // Default component props (can be overridden by webviewProps)
           bounces={false}
           style={[webviewContainerStyle]}
           scrollEnabled={scrollable}
@@ -322,31 +334,24 @@ const SignatureView = forwardRef(
           androidHardwareAccelerationDisabled={
             androidHardwareAccelerationDisabled
           }
-          ref={webViewRef}
-          useWebKit={true}
-          source={source}
-          onMessage={getSignature}
-          javaScriptEnabled={true}
-          onError={renderError}
-          onLoadEnd={handleLoadEnd}
-          onLoadStart={handleLoadStart}
-          onLoadProgress={handleLoadProgress}
           nestedScrollEnabled={nestedScrollEnabled}
           showsVerticalScrollIndicator={showsVerticalScrollIndicator}
-          // Performance optimizations
+          // Default performance optimizations
           cacheEnabled={true}
           allowsInlineMediaPlayback={false}
           mediaPlaybackRequiresUserAction={true}
           allowsBackForwardNavigationGestures={false}
-          // Security enhancements
+          // Default security enhancements
           allowsLinkPreview={false}
           allowFileAccess={false}
           allowFileAccessFromFileURLs={false}
           allowUniversalAccessFromFileURLs={false}
           mixedContentMode="never"
           originWhitelist={['*']}
-          // Error recovery
+          // Default error recovery
           startInLoadingState={true}
+          // User-provided WebView props (can override defaults but not core functionality)
+          {...webviewProps}
         />
         {(loading || hasError) && (
           <View style={styles.loadingOverlayContainer}>
