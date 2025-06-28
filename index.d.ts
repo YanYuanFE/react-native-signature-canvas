@@ -18,7 +18,7 @@ declare module "react-native-signature-canvas" {
   type EmptyCallback = () => void;
   type ErrorCallback = (error: Error) => void;
 
-  type SignatureViewProps = {
+  export type SignatureViewProps = {
     androidHardwareAccelerationDisabled?: boolean;
     autoClear?: boolean;
     backgroundColor?: string;

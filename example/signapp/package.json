@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "react": "19.0.0",
-    "react-native": "0.78.1"
+    "react-native": "0.78.1",
+    "react-native-signature-canvas": "^4.7.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

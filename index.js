@@ -97,7 +97,7 @@ const SignatureView = forwardRef(
     ref
   ) => {
     const [loading, setLoading] = useState(true);
-    
+
     const [hasError, setHasError] = useState(false);
     const [retryCount, setRetryCount] = useState(0);
     const maxRetries = 3;
@@ -139,11 +139,11 @@ const SignatureView = forwardRef(
 
     // Optimize WebView reload to prevent excessive reloads
     const [shouldReload, setShouldReload] = useState(false);
-    
+
     useEffect(() => {
       setShouldReload(true);
     }, [source]);
-    
+
     useEffect(() => {
       if (shouldReload && webViewRef.current) {
         try {
@@ -170,9 +170,9 @@ const SignatureView = forwardRef(
         console.warn("Invalid message received from WebView");
         return;
       }
-      
+
       const data = e.nativeEvent.data;
-      
+
       try {
         switch (data) {
           case MESSAGE_TYPES.BEGIN:
@@ -225,9 +225,9 @@ const SignatureView = forwardRef(
         console.warn(`WebView ref is null when calling ${method}`);
         return;
       }
-      
+
       try {
-        const script = params.length > 0 
+        const script = params.length > 0
           ? `${method}(${params.map(p => typeof p === 'string' ? `'${p}'` : p).join(',')});true;`
           : `${method}();true;`;
         webViewRef.current.injectJavaScript(script);
@@ -267,14 +267,14 @@ const SignatureView = forwardRef(
     const renderError = useCallback(({ nativeEvent }) => {
       console.error("WebView error: ", nativeEvent);
       setHasError(true);
-      
+
       // Call user-provided error handler
       try {
         onError(new Error(`WebView error: ${nativeEvent.description || nativeEvent.code}`));
       } catch (err) {
         console.warn('Error in onError callback:', err);
       }
-      
+
       // Attempt to recover from error with retry logic
       if (webViewRef.current && nativeEvent.code !== -999 && retryCount < maxRetries) {
         setTimeout(() => {
@@ -293,19 +293,19 @@ const SignatureView = forwardRef(
       setLoading(false);
       setHasError(false);
       setRetryCount(0);
-      
+
       try {
         onLoadEnd();
       } catch (error) {
         console.warn('Error in onLoadEnd callback:', error);
       }
     }, [onLoadEnd]);
-    
+
     // Performance monitoring
     const handleLoadStart = useCallback(() => {
       setLoading(true);
     }, []);
-    
+
     const handleLoadProgress = useCallback(({ nativeEvent }) => {
       // Optional: Add progress monitoring
       if (nativeEvent.progress === 1) {
