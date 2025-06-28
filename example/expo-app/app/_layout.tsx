@@ -9,7 +9,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import "react-native-reanimated";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Text } from "react-native";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import Sign from "./Sign";
@@ -23,11 +23,11 @@ export default function RootLayout() {
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
-  const [signature, setSign] = useState(null);
+  const [signature, setSign] = useState("");
   const [value, onChangeText] = useState("Useless Placeholder");
   const [desc, setDesc] = useState("Please Sign");
 
-  const handleSignature = (signature) => {
+  const handleSignature = (signature: string) => {
     console.log(signature);
     setSign(signature);
     setDesc("sign success");
@@ -59,16 +59,17 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <View style={{ flex: 1, paddingTop: 40 }}>
+        <Text>Signature Canvas</Text>
         <View style={styles.preview}>
           {signature ? (
             <Image
               resizeMode={"contain"}
-              style={{ width: 750, height: 100 }}
+              style={{ width: 750, height: 80 }}
               source={{ uri: signature }}
             />
           ) : null}
         </View>
-        <Sign onOK={handleSignature} text={desc} />
+        <Sign onOK={handleSignature} />
       </View>
     </ThemeProvider>
   );
@@ -76,12 +77,11 @@ export default function RootLayout() {
 
 const styles = StyleSheet.create({
   preview: {
-    height: 50,
-    backgroundColor: "#F8F8F8",
+    height: 200,
+    backgroundColor: "yellow",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 15,
-    flex: 1,
   },
   previewText: {
     color: "#FFF",

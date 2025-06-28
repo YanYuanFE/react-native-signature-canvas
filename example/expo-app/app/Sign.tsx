@@ -11,12 +11,12 @@ const url =
 // Enhanced theme configuration
 const theme = {
   colors: {
-    background: '#f8f9fa',
-    primary: '#007AFF',
-    secondary: '#6c757d',
-    success: '#28a745',
-    danger: '#dc3545',
-    warning: '#ffc107',
+    background: "#f8f9fa",
+    primary: "#007AFF",
+    secondary: "#6c757d",
+    success: "#28a745",
+    danger: "#dc3545",
+    warning: "#ffc107",
   },
   spacing: {
     xs: 4,
@@ -28,30 +28,33 @@ const theme = {
   borderRadius: 8,
 };
 
-const Sign = ({ onOK }) => {
+const Sign = ({ onOK }: { onOK: (signature: string) => void }) => {
   const ref = useRef();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [penColor, setPenColor] = useState('#000000');
+  const [penColor, setPenColor] = useState("#000000");
 
-  const handleSignature = useCallback((signature) => {
-    try {
-      console.log('Signature captured:', signature.length, 'bytes');
-      setError(null);
-      onOK(signature);
-    } catch (err) {
-      console.error('Error handling signature:', err);
-      setError('Failed to process signature');
-    }
-  }, [onOK]);
+  const handleSignature = useCallback(
+    (signature) => {
+      try {
+        console.log("Signature captured:", signature.length, "bytes");
+        setError(null);
+        onOK(signature);
+      } catch (err) {
+        console.error("Error handling signature:", err);
+        setError("Failed to process signature");
+      }
+    },
+    [onOK]
+  );
 
   const handleClear = useCallback(() => {
     try {
       ref.current?.clearSignature();
       setError(null);
     } catch (err) {
-      console.error('Error clearing signature:', err);
-      setError('Failed to clear signature');
+      console.error("Error clearing signature:", err);
+      setError("Failed to clear signature");
     }
   }, []);
 
@@ -60,8 +63,8 @@ const Sign = ({ onOK }) => {
       setIsLoading(true);
       ref.current?.readSignature();
     } catch (err) {
-      console.error('Error reading signature:', err);
-      setError('Failed to read signature');
+      console.error("Error reading signature:", err);
+      setError("Failed to read signature");
       setIsLoading(false);
     }
   }, []);
@@ -70,8 +73,8 @@ const Sign = ({ onOK }) => {
     try {
       ref.current?.undo();
     } catch (err) {
-      console.error('Error undoing:', err);
-      setError('Failed to undo');
+      console.error("Error undoing:", err);
+      setError("Failed to undo");
     }
   }, []);
 
@@ -79,8 +82,8 @@ const Sign = ({ onOK }) => {
     try {
       ref.current?.erase();
     } catch (err) {
-      console.error('Error switching to erase mode:', err);
-      setError('Failed to switch to erase mode');
+      console.error("Error switching to erase mode:", err);
+      setError("Failed to switch to erase mode");
     }
   }, []);
 
@@ -88,8 +91,8 @@ const Sign = ({ onOK }) => {
     try {
       ref.current?.draw();
     } catch (err) {
-      console.error('Error switching to draw mode:', err);
-      setError('Failed to switch to draw mode');
+      console.error("Error switching to draw mode:", err);
+      setError("Failed to switch to draw mode");
     }
   }, []);
 
@@ -99,25 +102,26 @@ const Sign = ({ onOK }) => {
       setPenColor(color);
       setError(null);
     } catch (err) {
-      console.error('Error changing pen color:', err);
-      setError('Failed to change pen color');
+      console.error("Error changing pen color:", err);
+      setError("Failed to change pen color");
     }
   }, []);
-  
+
   const handleError = useCallback((err) => {
-    console.error('Signature pad error:', err);
-    setError(err.message || 'An error occurred');
+    console.error("Signature pad error:", err);
+    setError(err.message || "An error occurred");
     setIsLoading(false);
   }, []);
-  
+
   const handleLoadEnd = useCallback(() => {
+    console.log("SignatureScreen loaded successfully");
     setIsLoading(false);
     setError(null);
   }, []);
-  
+
   const handleEmpty = useCallback(() => {
     setIsLoading(false);
-    Alert.alert('Empty Signature', 'Please draw a signature before saving.');
+    Alert.alert("Empty Signature", "Please draw a signature before saving.");
   }, []);
 
   const style = `.m-signature-pad--footer {display: none; margin: 0px;}`;
@@ -132,30 +136,28 @@ const Sign = ({ onOK }) => {
           webviewContainerStyle={styles.signature}
           webStyle={`
                 .m-signature-pad {
-                  background-color: transparent;
-                }
-                .m-signature-pad {
+                  background-color: white;
                   flex: 1;
                   box-shadow: none;
                   border-radius: 10px;
                 }
-                .m-signature-pad--footer {
-                  display: none;
-                }
+
                 `}
-          backgroundColor={"rgba(0,0,0,0)"}
+          backgroundColor={"white"}
           onError={handleError}
           onLoadEnd={handleLoadEnd}
           onEmpty={handleEmpty}
           penColor={penColor}
           // Example of using webviewProps to customize WebView behavior
-          webviewProps={{
-            // Override default WebView settings
-            cacheEnabled: false, // Disable cache for this specific use case
-            allowsFullscreenVideo: false,
-            decelerationRate: 'fast',
-            // Add any other WebView props as needed
-          }}
+          webviewProps={
+            {
+              // Override default WebView settings
+              // cacheEnabled: false, // Disable cache for this specific use case
+              // allowsFullscreenVideo: false,
+              // decelerationRate: 0.998,
+              // Add any other WebView props as needed
+            }
+          }
           // dataURL={url}
         />
       </View>
@@ -165,60 +167,60 @@ const Sign = ({ onOK }) => {
           <Text style={styles.errorText}>{error}</Text>
         </View>
       )}
-      
+
       <View style={styles.controlsContainer}>
         <View style={styles.row}>
-          <Button 
-            title="Undo" 
-            onPress={undo} 
+          <Button
+            title="Undo"
+            onPress={undo}
             color={theme.colors.secondary}
             disabled={isLoading}
           />
-          <Button 
-            title="Draw" 
-            onPress={draw} 
+          <Button
+            title="Draw"
+            onPress={draw}
             color={theme.colors.primary}
             disabled={isLoading}
           />
-          <Button 
-            title="Erase" 
-            onPress={erase} 
+          <Button
+            title="Erase"
+            onPress={erase}
             color={theme.colors.warning}
             disabled={isLoading}
           />
         </View>
-        
+
         <View style={styles.row}>
-          <Button 
-            title="Red" 
-            onPress={() => changeColor("#dc3545")} 
+          <Button
+            title="Red"
+            onPress={() => changeColor("#dc3545")}
             color={theme.colors.danger}
             disabled={isLoading}
           />
-          <Button 
-            title="Blue" 
-            onPress={() => changeColor("#007AFF")} 
+          <Button
+            title="Blue"
+            onPress={() => changeColor("#007AFF")}
             color={theme.colors.primary}
             disabled={isLoading}
           />
-          <Button 
-            title="Black" 
-            onPress={() => changeColor("#000000")} 
+          <Button
+            title="Black"
+            onPress={() => changeColor("#000000")}
             color={theme.colors.secondary}
             disabled={isLoading}
           />
         </View>
-        
+
         <View style={styles.row}>
-          <Button 
-            title="Clear" 
-            onPress={handleClear} 
+          <Button
+            title="Clear"
+            onPress={handleClear}
             color={theme.colors.secondary}
             disabled={isLoading}
           />
-          <Button 
-            title={isLoading ? "Processing..." : "Save"} 
-            onPress={handleConfirm} 
+          <Button
+            title={isLoading ? "Processing..." : "Save"}
+            onPress={handleConfirm}
             color={theme.colors.success}
             disabled={isLoading}
           />
@@ -237,15 +239,15 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   box: {
-    height: 300,
+    height: 400,
     marginBottom: theme.spacing.md,
     borderRadius: theme.borderRadius,
     borderWidth: 1,
-    borderColor: '#e0e0e0',
-    overflow: 'hidden',
+    borderColor: "#e0e0e0",
+    overflow: "hidden",
   },
   signature: {
-    backgroundColor: "transparent",
+    backgroundColor: "white",
     flex: 1,
   },
   controlsContainer: {
@@ -264,8 +266,8 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.md,
   },
   errorText: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: '500',
+    color: "white",
+    textAlign: "center",
+    fontWeight: "500",
   },
 });

@@ -8,7 +8,6 @@ export default `
         
     if (!wrapper || !canvas) {
         console.error('Required DOM elements not found');
-        return;
     }
     
     // Enhanced canvas resize with debouncing
@@ -81,12 +80,6 @@ export default `
     function changePenColor(color) {
         if (!signaturePad) {
             console.warn('SignaturePad not initialized');
-            return;
-        }
-        
-        // Validate color format
-        if (typeof color !== 'string' || (!color.match(/^#[0-9A-F]{6}$/i) && !color.match(/^rgba?\(/))) {
-            console.warn('Invalid color format:', color);
             return;
         }
         
