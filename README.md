@@ -401,12 +401,6 @@ const styles = StyleSheet.create({
 
 ## Performance & Reliability
 
-### Automatic Error Recovery
-- **Smart retry logic** with exponential backoff
-- **Circuit breaker pattern** to prevent cascading failures  
-- **Memory leak prevention** with automatic cleanup
-- **Performance monitoring** with automatic optimization
-
 ### Performance Features
 - **Debounced resize handling** for smooth interaction
 - **Memory pressure detection** with adaptive optimization
@@ -421,7 +415,7 @@ const styles = StyleSheet.create({
 
 ## Migration Guide
 
-### From v4.6.x to v4.7.x
+### From v4.x to v5.x
 
 This version is fully backward compatible. New features:
 
@@ -515,7 +509,7 @@ npm install && npm start
 
 ## Changelog
 
-### v4.7.x (Latest)
+### v5.0.1 (Latest)
 - 🆕 Added `webviewProps` for WebView customization
 - 🆕 Enhanced error handling with automatic recovery
 - 🆕 Performance monitoring and optimization
