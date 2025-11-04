@@ -37,10 +37,14 @@ export default `
             canvas.width = canvas.offsetWidth * ratio;
             canvas.height = canvas.offsetHeight * ratio;
             context.scale(ratio, ratio);
-            
-            if (imgData && signaturePad) {
+
+            // Restore previous signature if available
+            if (imgData && imgData.length > 0 && signaturePad) {
                 signaturePad.fromData(imgData);
-            }
+            }   
+            else if (dataURL && signaturePad) {
+                signaturePad.fromDataURL(dataURL);
+            } 
         } catch (error) {
             console.error('Error resizing canvas:', error);
         }
@@ -64,6 +68,7 @@ export default `
 
     function clearSignature () {
         signaturePad.clear();
+        dataURL = ''; // reset dataURL to avoid restoring cleared signature
         window.ReactNativeWebView.postMessage("CLEAR");
     }
     
