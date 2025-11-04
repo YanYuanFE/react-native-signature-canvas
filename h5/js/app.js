@@ -39,10 +39,10 @@ export default `
             context.scale(ratio, ratio);
 
             // Restore previous signature if available
-            if (imgData && signaturePad) {
+            if (imgData && imgData.length > 0 && signaturePad) {
                 signaturePad.fromData(imgData);
             }   
-            else if (dataURL && signaturePad) {
+            else if (dataURL && imgData.length > 0 && signaturePad) {
                 signaturePad.fromDataURL(dataURL);
             } 
         } catch (error) {
@@ -68,7 +68,7 @@ export default `
 
     function clearSignature () {
         signaturePad.clear();
-        dataURL = '';
+        dataURL = ''; // reset dataURL to avoid restoring cleared signature
         window.ReactNativeWebView.postMessage("CLEAR");
     }
     
