@@ -42,7 +42,7 @@ export default `
             if (imgData && imgData.length > 0 && signaturePad) {
                 signaturePad.fromData(imgData);
             }   
-            else if (dataURL && imgData.length > 0 && signaturePad) {
+            else if (dataURL && signaturePad) {
                 signaturePad.fromDataURL(dataURL);
             } 
         } catch (error) {
