@@ -35,9 +35,9 @@ declare module "react-native-signature-canvas" {
     minWidth?: number;
     maxWidth?: number;
     minDistance?: number;
-    onError?: ErrorCallback; // Added missing prop
     nestedScrollEnabled?: boolean;
     showsVerticalScrollIndicator?: boolean;
+    showsHorizontalScrollIndicator?: boolean;
     onOK?: SignatureCallback;
     onEmpty?: EmptyCallback;
     onClear?: EmptyCallback;
@@ -90,5 +90,5 @@ declare module "react-native-signature-canvas" {
   export default SignatureView;
 
   // Export additional types for external use
-  export { SignatureViewProps, SignatureViewRef, ImageType, DataURL };
+  export { ImageType, DataURL };
 }

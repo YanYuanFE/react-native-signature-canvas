@@ -78,6 +78,7 @@ const SignatureView = forwardRef(
       minDistance = 5,
       nestedScrollEnabled = false,
       showsVerticalScrollIndicator = true,
+      showsHorizontalScrollIndicator = true,
       onOK = () => { },
       onEmpty = () => { },
       onClear = () => { },
@@ -354,6 +355,7 @@ const SignatureView = forwardRef(
           }
           nestedScrollEnabled={nestedScrollEnabled}
           showsVerticalScrollIndicator={showsVerticalScrollIndicator}
+          showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
           // Default performance optimizations
           cacheEnabled={true}
           allowsInlineMediaPlayback={false}
