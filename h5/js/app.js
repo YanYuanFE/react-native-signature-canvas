@@ -46,7 +46,11 @@ export default `
     });
 
     // Initial canvas setup
-    resizeCanvas();
+    const observer = new ResizeObserver(() => {
+        resizeCanvas();
+    });
+    
+    observer.observe(canvas);
 
     function clearSignature () {
         signaturePad.clear();
