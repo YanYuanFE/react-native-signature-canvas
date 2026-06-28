@@ -1,6 +1,6 @@
 declare module "react-native-signature-canvas" {
   import React from "react";
-  import { StyleProp, ViewStyle } from "react-native";
+  import { StyleProp, ViewStyle, ActivityIndicator } from "react-native";
   import { WebViewProps } from "react-native-webview";
 
   // Enhanced type definitions with better error handling
@@ -17,6 +17,11 @@ declare module "react-native-signature-canvas" {
   type SignatureCallback = (signature: string) => void;
   type EmptyCallback = () => void;
   type ErrorCallback = (error: Error) => void;
+
+  type LoadingOverlayProps = {
+    loadingOverlayStyle?: StyleProp<ViewStyle>;
+    activityIndicatorProps?: React.ComponentProps<typeof ActivityIndicator>;
+  }
 
   export type SignatureViewProps = {
     androidHardwareAccelerationDisabled?: boolean;
@@ -64,6 +69,7 @@ declare module "react-native-signature-canvas" {
     webviewContainerStyle?: StyleProp<ViewStyle>;
     androidLayerType?: "none" | "software" | "hardware";
     webviewProps?: Partial<WebViewProps>;
+    loadingOverlayProps?: LoadingOverlayProps; // Added missing prop for loading overlay
   };
 
   export type SignatureViewRef = {
