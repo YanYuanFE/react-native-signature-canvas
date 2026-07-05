@@ -4,7 +4,7 @@
   "description": "A performant, customizable React Native signature canvas with advanced error handling, WebView optimization, and TypeScript support for iOS, Android, and Expo",
   "main": "index.js",
   "scripts": {
-    "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "genlog": "npx -y -p conventional-changelog -p conventional-changelog-angular conventional-changelog -p angular -i CHANGELOG.md",
     "preversion": "npm whoami",
     "version": "npm run genlog && git add CHANGELOG.md",
     "postversion": "git push --follow-tags && npm publish"
