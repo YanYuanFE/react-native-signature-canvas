@@ -55,6 +55,7 @@ const getParamForInjection = (param) =>
 const SignatureView = forwardRef(
   (
     {
+      loadingOverlayProps = {},
       androidHardwareAccelerationDisabled = false,
       autoClear = false,
       backgroundColor = "",
@@ -437,13 +438,13 @@ const SignatureView = forwardRef(
           useWebKit={true}
         />
         {(loading || hasError) && (
-          <View style={styles.loadingOverlayContainer}>
+          <View style={[styles.loadingOverlayContainer, loadingOverlayProps.loadingOverlayStyle]}>
             {hasError ? (
               <Text style={{ color: '#ff0000', textAlign: 'center', padding: 10 }}>
                 Error loading signature pad{retryCount > 0 ? ` (Retry ${retryCount}/${maxRetries})` : ''}
               </Text>
             ) : (
-              <ActivityIndicator color={"#007AFF"} size="small" />
+              <ActivityIndicator color={"#007AFF"} size="small" {...loadingOverlayProps.activityIndicatorProps} />
             )}
           </View>
         )}
