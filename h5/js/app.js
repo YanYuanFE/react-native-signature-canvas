@@ -5,6 +5,17 @@ export default `
         canvas = wrapper && wrapper.querySelector("canvas"),
         signaturePad;
 
+    // Single bridge entry point. Guards the rare window where the RN WebView
+    // bridge is missing (injection race / WebView torn down) and surfaces the
+    // dropped message instead of swallowing it.
+    function postMessage(data) {
+        if (window.ReactNativeWebView && window.ReactNativeWebView.postMessage) {
+            window.ReactNativeWebView.postMessage(data);
+        } else {
+            console.warn("[signature-canvas] RN bridge unavailable, dropped message: " + data);
+        }
+    }
+
     function resizeCanvas() {
         if (!canvas || !canvas.getContext || !signaturePad) {
             return;
@@ -35,8 +46,8 @@ export default `
     }
 
     signaturePad = new SignaturePad(canvas, {
-        onBegin: () => window.ReactNativeWebView.postMessage("BEGIN"),
-        onEnd: () => window.ReactNativeWebView.postMessage("END"),
+        onBegin: () => postMessage("BEGIN"),
+        onEnd: () => postMessage("END"),
         penColor: '<%penColor%>',
         backgroundColor: '<%backgroundColor%>',
         dotSize: <%dotSize%>,
@@ -55,17 +66,17 @@ export default `
     function clearSignature () {
         signaturePad.clear();
         dataURL='';
-        window.ReactNativeWebView.postMessage("CLEAR");
+        postMessage("CLEAR");
     }
 
     function undo() {
         signaturePad.undo();
-        window.ReactNativeWebView.postMessage("UNDO");
+        postMessage("UNDO");
     }
 
     function redo() {
         signaturePad.redo();
-        window.ReactNativeWebView.postMessage("REDO");
+        postMessage("REDO");
       }
 
     function changePenColor(color) {
@@ -73,7 +84,7 @@ export default `
             return;
         }
         signaturePad.penColor = color;
-        window.ReactNativeWebView && window.ReactNativeWebView.postMessage("CHANGE_PEN");
+        postMessage("CHANGE_PEN");
     }
 
     function changePenSize(minW, maxW) {
@@ -85,34 +96,34 @@ export default `
         }
         signaturePad.minWidth = minW;
         signaturePad.maxWidth = maxW;
-        window.ReactNativeWebView && window.ReactNativeWebView.postMessage("CHANGE_PEN_SIZE");
+        postMessage("CHANGE_PEN_SIZE");
     }
 
     function getData () {
         var data = signaturePad.toData();
-        window.ReactNativeWebView.postMessage(JSON.stringify(data));
+        postMessage(JSON.stringify(data));
     }
 
-    function fromData (pointGroups) {
-        signaturePad.fromData(pointGroups);
-        window.ReactNativeWebView.postMessage(JSON.stringify(pointGroups));
+    function fromData (pointGroups, suppressClear) {
+        signaturePad.fromData(pointGroups, suppressClear);
+        postMessage(JSON.stringify(pointGroups));
     }
 
     function draw() {
       signaturePad.draw();
-      window.ReactNativeWebView.postMessage("DRAW");
+      postMessage("DRAW");
     }
 
     function erase() {
       signaturePad.erase();
-      window.ReactNativeWebView.postMessage("ERASE");
+      postMessage("ERASE");
     }
 
     function cropWhitespace(url) {
         var myImage = new Image();
         myImage.crossOrigin = "Anonymous";
         myImage.onload = function(){
-            window.ReactNativeWebView.postMessage(removeImageBlanks(myImage));
+            postMessage(removeImageBlanks(myImage));
         }
         myImage.src = url;
 
@@ -198,7 +209,7 @@ export default `
         }
 
         if (signaturePad.isEmpty()) {
-            window.ReactNativeWebView && window.ReactNativeWebView.postMessage("EMPTY");
+            postMessage("EMPTY");
         } else {
             var imageType = '<%imageType%>' || 'image/png';
             var url = signaturePad.toDataURL(imageType);
@@ -206,7 +217,7 @@ export default `
             if (trimWhitespace === true) {
                 cropWhitespace(url);
             } else {
-                window.ReactNativeWebView && window.ReactNativeWebView.postMessage(url);
+                postMessage(url);
             }
 
             if (autoClear === true && signaturePad) {
@@ -219,7 +230,8 @@ export default `
 
     var trimWhitespace = <%trimWhitespace%>;
 
-    var dataURL = '<%dataURL%>';
+    // <%dataURL%> is injected as an already-quoted JSON string literal
+    var dataURL = <%dataURL%>;
 
     if (dataURL) signaturePad.fromDataURL(dataURL);
 

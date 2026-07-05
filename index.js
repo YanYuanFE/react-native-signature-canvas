@@ -46,16 +46,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const getParamForInjection = (param) => {
-  switch (typeof param) {
-    case "string":
-      return `'${param}'`
-    case "object":
-      return JSON.stringify(param)
-    default:
-      return param
-  }
-}
+// JSON.stringify produces a valid JS literal with quotes/backslashes/newlines escaped
+const getParamForInjection = (param) =>
+  typeof param === "string" || typeof param === "object"
+    ? JSON.stringify(param)
+    : param;
 
 const SignatureView = forwardRef(
   (
@@ -125,18 +120,21 @@ const SignatureView = forwardRef(
     // Split source generation for better performance
     // Include webViewKey to regenerate script when WebView needs remounting
     const injectedScript = useMemo(() => {
+      // String values go through a function replacer so "$&"-style patterns
+      // in user input are inserted literally instead of being expanded
       let script = injectedSignaturePad + injectedApplication;
       script = script.replace(/<%autoClear%>/g, autoClear);
       script = script.replace(/<%trimWhitespace%>/g, trimWhitespace);
-      script = script.replace(/<%imageType%>/g, imageType || "image/png");
-      // Use currentDataURLRef to get the latest dataURL value
-      script = script.replace(/<%dataURL%>/g, currentDataURLRef.current || "");
-      script = script.replace(/<%penColor%>/g, penColor || "black");
-      script = script.replace(/<%backgroundColor%>/g, backgroundColor || "rgba(255,255,255,0)");
-      script = script.replace(/<%dotSize%>/g, dotSize || "null");
-      script = script.replace(/<%minWidth%>/g, minWidth || 0.5);
-      script = script.replace(/<%maxWidth%>/g, maxWidth || 2.5);
-      script = script.replace(/<%minDistance%>/g, minDistance || 5);
+      script = script.replace(/<%imageType%>/g, () => imageType || "image/png");
+      // Use currentDataURLRef to get the latest dataURL value;
+      // JSON.stringify emits a quoted JS string literal with escaping
+      script = script.replace(/<%dataURL%>/g, () => JSON.stringify(currentDataURLRef.current || ""));
+      script = script.replace(/<%penColor%>/g, () => penColor || "black");
+      script = script.replace(/<%backgroundColor%>/g, () => backgroundColor || "rgba(255,255,255,0)");
+      script = script.replace(/<%dotSize%>/g, dotSize ?? "null");
+      script = script.replace(/<%minWidth%>/g, minWidth ?? 0.5);
+      script = script.replace(/<%maxWidth%>/g, maxWidth ?? 2.5);
+      script = script.replace(/<%minDistance%>/g, minDistance ?? 5);
       script = script.replace(/<%orientation%>/g, rotated || false);
       return script;
     }, [autoClear, trimWhitespace, imageType, penColor, backgroundColor, dotSize, minWidth, maxWidth, minDistance, rotated, webViewKey]);
@@ -144,16 +142,16 @@ const SignatureView = forwardRef(
     const source = useMemo(() => {
       const htmlContentValue = customHtml || htmlContent;
       let html = htmlContentValue(injectedScript);
-      html = html.replace(/<%bgWidth%>/g, bgWidth || 0);
-      html = html.replace(/<%bgHeight%>/g, bgHeight || 0);
-      html = html.replace(/<%bgSrc%>/g, bgSrc || "null");
-      html = html.replace(/<%overlayWidth%>/g, overlayWidth || 0);
-      html = html.replace(/<%overlayHeight%>/g, overlayHeight || 0);
-      html = html.replace(/<%overlaySrc%>/g, overlaySrc || "null");
-      html = html.replace(/<%style%>/g, webStyle || "");
-      html = html.replace(/<%description%>/g, descriptionText || "Sign above");
-      html = html.replace(/<%confirm%>/g, confirmText || "Confirm");
-      html = html.replace(/<%clear%>/g, clearText || "Clear");
+      html = html.replace(/<%bgWidth%>/g, bgWidth ?? 0);
+      html = html.replace(/<%bgHeight%>/g, bgHeight ?? 0);
+      html = html.replace(/<%bgSrc%>/g, () => bgSrc || "null");
+      html = html.replace(/<%overlayWidth%>/g, overlayWidth ?? 0);
+      html = html.replace(/<%overlayHeight%>/g, overlayHeight ?? 0);
+      html = html.replace(/<%overlaySrc%>/g, () => overlaySrc || "null");
+      html = html.replace(/<%style%>/g, () => webStyle || "");
+      html = html.replace(/<%description%>/g, () => descriptionText || "Sign above");
+      html = html.replace(/<%confirm%>/g, () => confirmText || "Confirm");
+      html = html.replace(/<%clear%>/g, () => clearText || "Clear");
       html = html.replace(/<%orientation%>/g, rotated || false);
 
       return { html };
@@ -173,7 +171,7 @@ const SignatureView = forwardRef(
       // Update dataURL in WebView without full reload
       if (dataURL) {
         const script = `
-          dataURL = '${dataURL}';
+          dataURL = ${JSON.stringify(dataURL)};
           if (signaturePad && signaturePad.isEmpty()) {
             signaturePad.fromDataURL(dataURL);
           }
@@ -292,12 +290,12 @@ const SignatureView = forwardRef(
           executeWebViewMethod('changePenSize', [minW, maxW]);
         },
         getData: () => executeWebViewMethod('getData'),
-        fromData: (pointGroups) => {
+        fromData: (pointGroups, suppressClear = false) => {
           if (!pointGroups) {
             console.warn('fromData: pointGroups must be an array');
             return;
           }
-          executeWebViewMethod('fromData', [pointGroups, false]);
+          executeWebViewMethod('fromData', [pointGroups, suppressClear]);
         },
         // New method to set dataURL without causing WebView reload
         setDataURL: (url) => {
@@ -310,7 +308,7 @@ const SignatureView = forwardRef(
             return;
           }
           const script = `
-            dataURL = '${url}';
+            dataURL = ${JSON.stringify(url)};
             if (signaturePad) {
               signaturePad.clear();
               if (dataURL) {
@@ -397,20 +395,6 @@ const SignatureView = forwardRef(
     return (
       <View style={[styles.webBg, style]}>
         <WebView
-          // Key for forcing remount when WebView needs reinitialization
-          key={`signature-webview-${webViewKey}`}
-          // Core functionality props (cannot be overridden)
-          ref={webViewRef}
-          source={source}
-          onMessage={getSignature}
-          onError={renderError}
-          onLoadEnd={handleLoadEnd}
-          onLoadStart={handleLoadStart}
-          onLoadProgress={handleLoadProgress}
-          // Handle iOS WKWebView content process termination (crucial for bottom sheets/modals)
-          onContentProcessDidTerminate={handleContentProcessDidTerminate}
-          javaScriptEnabled={true}
-          useWebKit={true}
           // Default component props (can be overridden by webviewProps)
           bounces={false}
           style={[{ flex: 1 }, webviewContainerStyle]}
@@ -437,6 +421,20 @@ const SignatureView = forwardRef(
           startInLoadingState={true}
           // User-provided WebView props (can override defaults but not core functionality)
           {...webviewProps}
+          // Core functionality props (cannot be overridden — placed after the spread)
+          // Key for forcing remount when WebView needs reinitialization
+          key={`signature-webview-${webViewKey}`}
+          ref={webViewRef}
+          source={source}
+          onMessage={getSignature}
+          onError={renderError}
+          onLoadEnd={handleLoadEnd}
+          onLoadStart={handleLoadStart}
+          onLoadProgress={handleLoadProgress}
+          // Handle iOS WKWebView content process termination (crucial for bottom sheets/modals)
+          onContentProcessDidTerminate={handleContentProcessDidTerminate}
+          javaScriptEnabled={true}
+          useWebKit={true}
         />
         {(loading || hasError) && (
           <View style={styles.loadingOverlayContainer}>

@@ -5,9 +5,9 @@ declare module "react-native-signature-canvas" {
 
   // Enhanced type definitions with better error handling
 
-  type ImageType = "image/png" | "image/jpeg" | "image/svg+xml";
+  export type ImageType = "image/png" | "image/jpeg" | "image/svg+xml";
 
-  type DataURL = string; // Simplified - should be base64 data URL
+  export type DataURL = string; // Simplified - should be base64 data URL
 
   type ForwardRef<T, P> = React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
@@ -51,7 +51,6 @@ declare module "react-native-signature-canvas" {
     onBegin?: EmptyCallback;
     onEnd?: EmptyCallback;
     onLoadEnd?: EmptyCallback;
-    onError?: ErrorCallback; // Added missing error callback
     overlayHeight?: number;
     overlayWidth?: number;
     overlaySrc?: string;
@@ -91,7 +90,4 @@ declare module "react-native-signature-canvas" {
 
   const SignatureView: SignatureCanvasComponent;
   export default SignatureView;
-
-  // Export additional types for external use
-  export { SignatureViewProps, SignatureViewRef, ImageType, DataURL };
 }
