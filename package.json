@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "postversion": "git push --follow-tags"
+    "preversion": "npm whoami",
+    "version": "npm run genlog && git add CHANGELOG.md",
+    "postversion": "git push --follow-tags && npm publish"
   },
   "repository": {
     "type": "git",
