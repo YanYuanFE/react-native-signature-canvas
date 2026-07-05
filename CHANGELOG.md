@@ -1,3 +1,9 @@
+# [5.1.0](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v5.0.2...v5.1.0) (2026-07-05)
+
+### Bug Fixes
+
+* harden string injection, prop handling, and WebView bridge ([98f158d](https://github.com/YanYuanFE/react-native-signature-canvas/commit/98f158d4f883981052b88d07f1b7c3c703cd0401))
+
 ## [5.0.2](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v5.0.1...v5.0.2) (2025-12-28)
 
 
