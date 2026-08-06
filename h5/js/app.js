@@ -230,10 +230,11 @@ export default `
 
     var trimWhitespace = <%trimWhitespace%>;
 
-    // <%dataURL%> is injected as an already-quoted JSON string literal
+    // <%dataURL%> is injected as an already-quoted JSON string literal.
+    // The initial paint happens in resizeCanvas() when ResizeObserver fires
+    // its mandatory first callback, so the canvas already has its final size;
+    // painting here too would draw the signature twice (issue #439).
     var dataURL = <%dataURL%>;
-
-    if (dataURL) signaturePad.fromDataURL(dataURL);
 
     if (clearButton) {
         clearButton.addEventListener("click", clearSignature);
