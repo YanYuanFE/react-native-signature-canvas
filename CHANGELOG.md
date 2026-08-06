@@ -1,3 +1,14 @@
+## [5.1.1](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v5.1.0...v5.1.1) (2026-08-06)
+
+### Bug Fixes
+
+* paint initial dataURL only once via ResizeObserver resize path ([369aa57](https://github.com/YanYuanFE/react-native-signature-canvas/commit/369aa57eb5f59bfec70f27c4ea6f02895b53e9d6)), closes [#439](https://github.com/YanYuanFE/react-native-signature-canvas/issues/439)
+
+### Features
+
+* enhance type definitions and add loading overlay props for signature canvas ([5524a47](https://github.com/YanYuanFE/react-native-signature-canvas/commit/5524a47479888049d14200d95f8abfca47461d49))
+* enhance type definitions and add missing loading overlay props for signature canvas ([1bc8f71](https://github.com/YanYuanFE/react-native-signature-canvas/commit/1bc8f716d0f7cf466871d98a92be9b823366c8c4))
+
 # [5.1.0](https://github.com/YanYuanFE/react-native-signature-canvas/compare/v5.0.2...v5.1.0) (2026-07-05)
 
 ### Bug Fixes
